@@ -1,0 +1,14 @@
+.raise:hover, .raise:focus {
+    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateY(-0.25em);
+}
+
+.raise {
+    --color: #ffffff;
+    --hover: #9a9a9a;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+  }
+  
