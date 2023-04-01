@@ -1,14 +1,25 @@
-.raise:hover, .raise:focus {
-    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
-    transform: translateY(-0.25em);
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+  transform: translateY(-0.25em);
 }
 
 .raise {
-    --color: #ffffff;
-    --hover: #9a9a9a;
+  --color: #ffffff;
+  --hover: #9a9a9a;
 }
 
 body::-webkit-scrollbar {
-    display: none;
-  }
-  
+  display: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
