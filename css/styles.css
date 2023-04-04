@@ -55,3 +55,11 @@ code {
 .head-secondary {
   font-family: 'Raleway', sans-serif;
 }
+
+.indent {
+    text-indent: 2em;
+}
+
+.indent a {
+  text-indent: 0;
+}

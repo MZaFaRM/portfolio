@@ -89,11 +89,26 @@
       href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet"> 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body
@@ -113,10 +128,7 @@
           href="index.html"
         >
           <img src="images/icon.png" height="50px" />
-          <span
-            class="ms-md-1 mt-1 fw-bolder head"
-            >CLICKERY</span
-          >
+          <span class="ms-md-1 mt-1 fw-bolder head">CLICKERY</span>
         </a>
 
         <ul
@@ -167,7 +179,10 @@
                   </div>
                 </h1>
               </div>
-              <p class="text-secondary border-top pt-5 mt-5" data-aos="fade-up">
+              <p
+                class="text-secondary indent border-top pt-5 mt-5"
+                data-aos="fade-up"
+              >
                 Clickery is an automation software designed to simplify the
                 process of automating user inputs, without requiring any coding
                 expertise. Developed in Python, Clickery offers a user-friendly
@@ -203,637 +218,735 @@
         </div>
         <div class="col-12 col-lg-10 col-xl-8">
           <div class="row d-flex align-items-start" data-aos="fade-right">
-            <h2 class="h2 mt-5 border-top pt-5 sub-head mb-5">Getting Started</h2>
-            <p class="text-secondary">To get started with Clickery, 
+            <h2 class="h2 mt-5 border-top pt-5 sub-head mb-5">
+              Getting Started
+            </h2>
+            <p class="text-secondary">
+              To get started with Clickery,
               <a
                 href="https://github.com/MZaFaRM/Clickery/archive/refs/heads/main.zip"
                 class="link-fancy link-fancy-light"
                 >download the Clickery zip</a
-              >, extract it, open it on any terminal <span class="highlight">OR</span> clone repository with
-            <br><br><code>git clone https://github.com/MZaFaRM/Clickery.git</code><br><br>
-            and execute the following command in the terminal:
-            <br><br><code>python setup.py</code><br><br>
-          </code>
-              This will install all the required libraries to run the
-              project. Then, execute the following command to start the
-              program:
-              <br><br><code>python main.py</code><br><br>
-          </code>
+              >, extract it, open it on any terminal
+              <span class="highlight">OR</span> clone repository with
+              <br /><br /><code
+                >git clone https://github.com/MZaFaRM/Clickery.git</code
+              ><br /><br />
+              and execute the following command in the terminal:
+              <br /><br /><code>python setup.py</code><br /><br />
+              This will install all the required libraries to run the project.
+              Then, execute the following command to start the program:
+              <br /><br /><code>python main.py</code><br /><br />
+            </p>
+          </div>
+        </div>
+
+        <div class="row d-flex align-items-start" data-aos="fade-right">
+          <h1 class="h1 mt-5 border-top pt-5 sub-head">Mode of Input</h1>
+          <p class="text-secondary indent">
+            After running the program, you will be prompted to choose the mode
+            of input.
+          </p>
+          <h2 class="head-secondary">File Input</h2>
+          <p class="text-secondary indent">
+            For file input, your JSON file must be formatted in the specified
+            way in order to be read by the program. It is not recommended to
+            write this file from scratch; it is always better to first record
+            your actions through manual input and copy and paste them from
+            <code>history.json</code> or <code>history.db</code> later. However,
+            you can manually write a file following these guidelines if desired.
+          </p>
+          <h6 class="head-secondary">General Guidelines</h6>
+          <p class="text-secondary indent">
+            Your file input must be a list of dictionaries, where each
+            dictionary represents an action. Each dictionary may or may not
+            contain an ID.
+          </p>
+          <table class="mb-5">
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Syntax</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>MOVE CURSOR</td>
+                <td>
+                  <code>{'move': {'x': 935, 'y': 697}}</code>
+                </td>
+              </tr>
+              <tr>
+                <td>LEFT CLICK</td>
+                <td><code>{'click': 'left'}</code></td>
+              </tr>
+              <tr>
+                <td>RIGHT CLICK</td>
+                <td><code>{'click': 'right'}</code></td>
+              </tr>
+              <tr>
+                <td>DRAG CURSOR</td>
+                <td>
+                  <code>{'drag': {'x': 1031, 'y': 955}}</code>
+                </td>
+              </tr>
+              <tr>
+                <td>ENTER TEXT</td>
+                <td>
+                  <code>{'write': 'Hello World'}</code>
+                </td>
+              </tr>
+              <tr>
+                <td>WAIT TIME</td>
+                <td><code>{'sleep': 1}</code></td>
+              </tr>
+              <tr>
+                <td>WAIT FOR IMAGE</td>
+                <td>
+                  <code>{'image': 'C:/Users/images/image-to-search.png'}</code>
+                </td>
+              </tr>
+              <tr>
+                <td>WAIT FOR KEY INPUT</td>
+                <td><code>{'wait_key': 1}</code></td>
+              </tr>
+              <tr>
+                <td>INSERT KEY</td>
+                <td><code>{'key': 'shift'}</code></td>
+              </tr>
+              <tr>
+                <td>INSERT HOTKEY</td>
+                <td>
+                  <code>{'hotkey': ['ctrl', 'C']}</code>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">MOVE CURSOR</h5>
+            <p>
+              <code>{'move': {'x': 935, 'y': 697}}</code>
+            </p>
+            <p class="text-secondary indent">
+              The key must be <code>move</code>, and the <code>x</code> and
+              <code>y</code> positions must be specified as shown in the
+              example. The top-left corner of the screen is the
+              <code>(0,0)</code> region, with <code>x</code> increasing as you
+              go right and <code>y</code> increasing as you go down.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">LEFT CLICK</h5>
+            <p>
+              <code>{'move': {'x': 935, 'y': 697}}</code>
+            </p>
+            <p class="text-secondary indent">
+              The key must be <code>click</code>, and the value
+              <code>left</code>.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">RIGHT CLICK</h5>
+            <p>
+              <code>{'click': 'right'}</code>
+            </p>
+            <p class="text-secondary indent">
+              The key must be <code>click</code>, and the value
+              <code>right</code>.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">DRAG CURSOR</h5>
+            <p>
+              <code>{'drag': {'x': 1031, 'y': 955}}</code>
+            </p>
+            <p class="text-secondary indent">
+              The key must be <code>drag</code>, and the <code>x</code> and
+              <code>y</code> positions must be specified as shown in the
+              example. The top-left corner of the screen is the
+              <code>(0,0)</code> region, with <code>x</code> increasing going
+              right and <code>y</code> increasing going down.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">ENTER TEXT</h5>
+            <p>
+              <code>{'write': 'Hello World'}</code>
+            </p>
+            <p class="text-secondary indent">
+              The key must be <code>write</code> and the value must be the text
+              you would like to write.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">WAIT TIME</h5>
+            <p>
+              <code>{'sleep': 1}</code>
+            </p>
+            <p class="text-secondary indent">
+              To pause the program for a specified amount of time, use the key
+              <code>sleep</code> and specify the desired time in seconds as the
+              value.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">WAIT FOR IMAGE</h5>
+            <p>
+              <code>{'image': 'C:/Users/images/image-to-search.png'}</code>
+            </p>
+            <p class="text-secondary indent">
+              To pause the program until a specified image appears on the
+              screen, use the key <code>image</code> and specify the file path
+              of the image as the value.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">WAIT FOR KEY INPUT</h5>
+            <p>
+              <code>{'wait_key': 1}</code>
+            </p>
+            <p class="text-secondary indent">
+              To pause the program until the user presses a key on the keyboard,
+              use the key <code>wait_key</code>. The value can be anything, as
+              it is ignored by the program.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">INSERT KEY</h5>
+            <p>
+              <code>{'key': 'shift'}</code>
+            </p>
+            <p class="text-secondary indent">
+              To insert a single key into the program, use the key
+              <code>key</code> and specify the desired key in lowercase and
+              without whitespace as the value.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">INSERT HOTKEY</h5>
+            <p>
+              <code>{'hotkey': ['ctrl', 'C']}</code>
+            </p>
+            <p class="text-secondary indent">
+              To insert a combination of keys as a hotkey, use the key
+              <code>hotkey</code> and specify a list of the keys in lowercase as
+              the value.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h3 class="mt-5">Example</h3>
+            <pre><code>
+              [
+                {
+                  "move": { "x": 1008, "y": 863 },
+                  "id": 1
+                },
+                {
+                  "click": "left",
+                  "id": 2
+                },
+                {
+                  "click": "right",
+                  "id": 3
+                },
+                {
+                  "drag": { "x": 1007, "y": 864 },
+                  "id": 4
+                },
+                {
+                  "write": "He110 W0r1D",
+                  "id": 5
+                },
+                {
+                  "sleep": 3,
+                  "id": 6
+                },
+                {
+                  "image": "C:/Users/images/image-to-search.png",
+                  "id": 7
+                },
+                {
+                  "wait_key": "shift",
+                  "id": 8
+                },
+                {
+                  "key": "shift",
+                  "id": 9
+                },
+                {
+                  "hotkey": ["ctrl", "x"],
+                  "id": 10
+                }
+              ]</code></pre>
+
+            <p class="text-secondary indent">
+              <em>Note: only json files are supported for file input</em>
             </p>
           </div>
 
-              </div>
+          <h2 class="head-secondary">Manual Input</h2>
+          <p>
+            To record actions using manual input, follow these instructions:
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>description</th>
+                <th>call</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>MOVE CURSOR</td>
+                <td><code>1</code></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>LEFT CLICK</td>
+                <td><code>2</code></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>RIGHT CLICK</td>
+                <td><code>3</code></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>DRAG CURSOR</td>
+                <td><code>4</code></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>ENTER TEXT</td>
+                <td><code>5</code></td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>WAIT TIME</td>
+                <td><code>6</code></td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>WAIT FOR IMAGE</td>
+                <td><code>7</code></td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>WAIT FOR KEY INPUT</td>
+                <td><code>8</code></td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>INSERT KEY</td>
+                <td><code>9</code></td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>INSERT HOTKEY</td>
+                <td><code>0</code></td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>DELETE LAST ACTION</td>
+                <td><code>-</code></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">MOVE CURSOR</h5>
+            <p class="text-secondary indent">
+              To record the action of moving the cursor to a specific location,
+              hover over the location and input <code>1</code>.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">LEFT CLICK</h5>
+            <p class="text-secondary indent">
+              To record a left click at the current cursor position, input
+              <code>2</code>. It is best used in conjunction with the
+              <code>MOVE CURSOR</code> or <code>WAIT FOR IMAGE</code> actions.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">RIGHT CLICK</h5>
+            <p class="text-secondary indent">
+              To record a right click at the current cursor position, input
+              <code>3</code>. Like the <code>LEFT CLICK</code> action, it is
+              most effective when used with <code>MOVE CURSOR</code> or
+              <code>WAIT FOR IMAGE</code>.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">DRAG CURSOR</h5>
+            <p class="text-secondary indent">
+              To record the action of dragging the cursor to a specific
+              location, hover over the location and input <code>4</code>. The
+              cursor will click and hold at its current position, move to the
+              specified location, and then release.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">ENTER TEXT</h5>
+            <p class="text-secondary indent">
+              To record the action of entering text, input <code>5</code> and
+              enter the desired text in the dialogue box that appears.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">WAIT TIME</h5>
+            <p class="text-secondary indent">
+              To record a waiting period, input <code>6</code> and enter the
+              number of seconds to wait.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">WAIT FOR IMAGE</h5>
+            <p class="text-secondary indent">
+              To record a waiting period until a specific image appears on
+              screen, input <code>7</code> and select the location of the image.
+              This action has several additional features:
+            </p>
+            <p></p>
+            <ul class="hidden-list">
+              <li
+                class="text-secondary indent"
+                style="margin-left: 3rem; margin-bottom: 1rem"
+              >
+                Automatically moves the cursor to the center of the image if
+                found on screen
+              </li>
+              <li
+                class="text-secondary indent"
+                style="margin-left: 3rem; margin-bottom: 1rem"
+              >
+                Waits until the image appears on screen
+              </li>
+              <li
+                class="text-secondary indent"
+                style="margin-left: 3rem; margin-bottom: 1rem"
+              >
+                Can be used in conjunction with <code>LEFT CLICK</code> or
+                <code>RIGHT CLICK</code> for additional functionality
+              </li>
+            </ul>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">WAIT FOR KEY INPUT</h5>
+            <p class="text-secondary indent">
+              To record a waiting period until a specific key is pressed, input
+              <code>8</code> and enter the desired key.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">INSERT KEY</h5>
+            <p class="text-secondary indent">
+              To record the action of inserting a specific key from the
+              keyboard, input <code>9</code> and enter the desired key.
+            </p>
+            <p class="text-secondary indent">
+              To insert multiple keys at once, use the
+              <code>INSERT HOTKEY</code> action.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">INSERT HOTKEY</h5>
+            <p class="text-secondary indent">
+              To record the action of inserting multiple keys at once, input
+              <code>0</code> and enter each key individually, then click
+              <code>Submit</code>. This is useful for actions such as
+              <code>Ctrl+C</code> or <code>Ctrl+W</code>.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h5 class="small-head">DELETE LAST ACTION</h5>
+            <p class="text-secondary indent">
+              To delete the last recorded action in manual input mode, input
+              <code>-</code>. In the <code>Replace Action</code> section (after
+              all actions have been recorded), this action will delete the
+              element with the specified ID.
+            </p>
+          </div>
+        </div>
 
-
-              <div class="row d-flex align-items-start" data-aos="fade-right">
-                <h2 class="h2 mt-5 border-top pt-5 sub-head">Mode of Input</h2>
-                <p class="text-secondary">
-                After running the program, you will be prompted to choose the
-                mode of input. <p>
-              <h5 class="head-secondary">File Input</h3>
-              <p class="text-secondary">
-                For file input, your JSON file must be formatted in the
-                specified way in order to be read by the program. It is not
-                recommended to write this file from scratch; it is always better
-                to first record your actions through manual input and copy and
-                paste them from <code>history.json</code> or
-                <code>history.db</code> later. However, you can manually write a
-                file following these guidelines if desired.
-              </p>
-              <h6 class="head-secondary">General Guidelines</h4>
-              <p class="text-secondary">
-                Your file input must be a list of dictionaries, where each
-                dictionary represents an action. Each dictionary may or may not
-                contain an ID.
-              </p>
-              <table class="mb-5">
-                <thead>
-                  <tr>
-                    <th>Action</th>
-                    <th>Syntax</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>MOVE CURSOR</td>
-                    <td>
-                      <code
-                        >{'move': {'x': 935, 'y':
-                        697}}</code
-                      >
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>LEFT CLICK</td>
-                    <td><code>{'click': 'left'}</code></td>
-                  </tr>
-                  <tr>
-                    <td>RIGHT CLICK</td>
-                    <td><code>{'click': 'right'}</code></td>
-                  </tr>
-                  <tr>
-                    <td>DRAG CURSOR</td>
-                    <td>
-                      <code
-                        >{'drag': {'x': 1031, 'y':
-                        955}}</code
-                      >
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>ENTER TEXT</td>
-                    <td>
-                      <code>{'write': 'Hello World'}</code>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>WAIT TIME</td>
-                    <td><code>{'sleep': 1}</code></td>
-                  </tr>
-                  <tr>
-                    <td>WAIT FOR IMAGE</td>
-                    <td>
-                      <code
-                        >{'image':
-                        'C:/Users/images/image-to-search.png'}</code
-                      >
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>WAIT FOR KEY INPUT</td>
-                    <td><code>{'wait_key': 1}</code></td>
-                  </tr>
-                  <tr>
-                    <td>INSERT KEY</td>
-                    <td><code>{'key': 'shift'}</code></td>
-                  </tr>
-                  <tr>
-                    <td>INSERT HOTKEY</td>
-                    <td>
-                      <code
-                        >{'hotkey': ['ctrl', 'C']}</code
-                      >
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="small-head">MOVE CURSOR</h6>
-              <p>
-                <code
-                  >{'move': {'x': 935, 'y': 697}}</code
-                >
-              </p>
-              <p class="text-secondary">
-                The key must be <code>move</code>, and the <code>x</code> and
-                <code>y</code> positions must be specified as shown in the
-                example. The top-left corner of the screen is the
-                <code>(0,0)</code> region, with <code>x</code> increasing as you
-                go right and <code>y</code> increasing as you go down.
-              </p>
-              <h5 class="small-head">LEFT CLICK</h5>
-              <p>
-                <code
-                >{'move': {'x': 935, 'y': 697}}</code
-                >
-              </p>
-              <p class="text-secondary">
-                The key must be <code>click</code>, and the value
-                <code>left</code>.
-              </p>
-              <h5 class="small-head">RIGHT CLICK</h5>
-              <p>
-              <code>{'click': 'right'}</code>
-              </p>
-              <p class="text-secondary">
-                The key must be <code>click</code>, and the value
-                <code>right</code>.
-              </p>
-              <h5 class="small-head">DRAG CURSOR</h5>
-              <p>
-              <code
-              >{'drag': {'x': 1031, 'y': 955}}</code
-              ></p>
-              <p class="text-secondary">
-                The key must be <code>drag</code>, and the <code>x</code> and
-                <code>y</code> positions must be specified as shown in the
-                example. The top-left corner of the screen is the
-                <code>(0,0)</code> region, with <code>x</code> increasing going
-                right and <code>y</code> increasing going down.
-              </p>
-              <h5 class="small-head">ENTER TEXT</h5>
-              <p>
-              <code>{'write': 'Hello World'}</code>
-              </p>
-              <p class="text-secondary">
-              The key must be <code>write</code> and the value must be the
-                text you would like to write.
-              </p>
-              <h5 class="small-head">WAIT TIME</h5>
-              <p>
-                <code>{'sleep': 1}</code></p>
-                <p class="text-secondary">
-                To pause the program for a specified amount of time, use the key
-                <code>sleep</code> and specify the desired time in seconds as
-                the value.
-              </p>
-              <h5 class="small-head">WAIT FOR IMAGE</h5>
-              <p>
-              <code
-              >{'image': 'C:/Users/images/image-to-search.png'}</code
-              ></p>
-              <p class="text-secondary">
-                To pause the program until a specified image appears on the
-                screen, use the key <code>image</code> and specify the file path
-                of the image as the value.
-              </p>
-              <h5 class="small-head">WAIT FOR KEY INPUT</h5>
-              <p>
-              <code>{'wait_key': 1}</code>
-              </p>
-              <p class="text-secondary">
-                To pause the program until the user presses a key on the
-                keyboard, use the key <code>wait_key</code>. The value can be
-                anything, as it is ignored by the program.
-              </p>
-              <h5 class="small-head">INSERT KEY</h5>
-              <p>
-              <code>{'key': 'shift'}</code>
-              </p>
-              <p class="text-secondary">
-                To insert a single key into the program, use the key
-                <code>key</code> and specify the desired key in lowercase and
-                without whitespace as the value.
-              </p>
-              <h5 class="small-head">INSERT HOTKEY</h5>
-              <p>
-              <code>{'hotkey': ['ctrl', 'C']}</code>
-              </p>
-              <p class="text-secondary">
-                To insert a combination of keys as a hotkey, use the key
-                <code>hotkey</code> and specify a list of the keys in lowercase
-                as the value.
-              </p>
-              <h3 class="mt-5">Example</h3>
-              <p><code>
-              [<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;{ "move": { "x": 1008, "y": 863 }, "id": 1 },<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;{ "click": 'left', "id": 2 },<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;{ "click": 'right', "id": 3 },<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;{ "drag": { "x": 1007, "y": 864 }, "id": 4 },<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;{ "write": "He110 W0r1D", "id": 5 },<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;{ "sleep": 3, "id": 6 },<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;{ "image": "C:/Users/images/image-to-search.png", "id": 7 },<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;{ "wait_key": "shift", "id": 8 },<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;{ "key": "shift", "id": 9 },<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;{ "hotkey": ["ctrl", "x"], "id": 10 }<br>
-              ]<br>
-              </code></p>
-              <p class="text-secondary"><em>Note: only json files are supported for file input</em></p>
-              </div>
-
-              <div class="row d-flex align-items-start" data-aos="fade-right">
-                <h2 class="h2 mt-5 border-top pt-5 sub-head">Manual Input</h2>
-              <p>
-                To record actions using manual input, follow these instructions:
-              </p>
-              <table>
-                <thead>
-                  <tr>
-                    <th>id</th>
-                    <th>description</th>
-                    <th>call</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>MOVE CURSOR</td>
-                    <td><code>1</code></td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>LEFT CLICK</td>
-                    <td><code>2</code></td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>RIGHT CLICK</td>
-                    <td><code>3</code></td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>DRAG CURSOR</td>
-                    <td><code>4</code></td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>ENTER TEXT</td>
-                    <td><code>5</code></td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>WAIT TIME</td>
-                    <td><code>6</code></td>
-                  </tr>
-                  <tr>
-                    <td>7</td>
-                    <td>WAIT FOR IMAGE</td>
-                    <td><code>7</code></td>
-                  </tr>
-                  <tr>
-                    <td>8</td>
-                    <td>WAIT FOR KEY INPUT</td>
-                    <td><code>8</code></td>
-                  </tr>
-                  <tr>
-                    <td>9</td>
-                    <td>INSERT KEY</td>
-                    <td><code>9</code></td>
-                  </tr>
-                  <tr>
-                    <td>10</td>
-                    <td>INSERT HOTKEY</td>
-                    <td><code>0</code></td>
-                  </tr>
-                  <tr>
-                    <td>11</td>
-                    <td>DELETE LAST ACTION</td>
-                    <td><code>-</code></td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="small-head">MOVE CURSOR</h5>
-              <p class="text-secondary">
-                To record the action of moving the cursor to a specific
-                location, hover over the location and input <code>1</code>.
-              </p>
-              <h5 class="small-head">LEFT CLICK</h5>
-              <p class="text-secondary">
-                To record a left click at the current cursor position, input
-                <code>2</code>. It is best used in conjunction with the
-                <code>MOVE CURSOR</code> or <code>WAIT FOR IMAGE</code> actions.
-              </p>
-              <h5 class="small-head">RIGHT CLICK</h5>
-              <p class="text-secondary">
-                To record a right click at the current cursor position, input
-                <code>3</code>. Like the <code>LEFT CLICK</code> action, it is
-                most effective when used with <code>MOVE CURSOR</code> or
-                <code>WAIT FOR IMAGE</code>.
-              </p>
-              <h5 class="small-head">DRAG CURSOR</h5>
-              <p class="text-secondary">
-                To record the action of dragging the cursor to a specific
-                location, hover over the location and input <code>4</code>. The
-                cursor will click and hold at its current position, move to the
-                specified location, and then release.
-              </p>
-              <h5 class="small-head">ENTER TEXT</h5>
-              <p class="text-secondary">
-                To record the action of entering text, input <code>5</code> and
-                enter the desired text in the dialogue box that appears.
-              </p>
-              <h5 class="small-head">WAIT TIME</h5>
-              <p class="text-secondary">
-                To record a waiting period, input <code>6</code> and enter the
-                number of seconds to wait.
-              </p>
-              <h5 class="small-head">WAIT FOR IMAGE</h5>
-              <p class="text-secondary">
-                To record a waiting period until a specific image appears on
-                screen, input <code>7</code> and select the location of the
-                image. This action has several additional features:
-              </p>
-            <p>
-              <ul>
-                <li class="text-secondary" style="margin-left: 3rem;">
-                  Automatically moves the cursor to the center of the image if
-                  found on screen
-                </li>
-                <li class="text-secondary" style="margin-left: 3rem;">Waits until the image appears on screen</li>
-                <li class="text-secondary" style="margin-left: 3rem;">
-                  Can be used in conjunction with <code>LEFT CLICK</code> or
-                  <code>RIGHT CLICK</code> for additional functionality
-                </li>
-              </ul>
-              </p>
-              <h5 class="small-head">WAIT FOR KEY INPUT</h5>
-              <p class="text-secondary">
-                To record a waiting period until a specific key is pressed,
-                input <code>8</code> and enter the desired key.
-              </p>
-              <h5 class="small-head">INSERT KEY</h5>
-              <p class="text-secondary">
-                  To record the action of inserting a specific key from the
-                  keyboard, input <code>9</code> and enter the desired key.
-                </p>
-                <p class="text-secondary">
-                  To insert multiple keys at once, use the
-                  <code>INSERT HOTKEY</code> action.
-              </p>
-              <h5 class="small-head">INSERT HOTKEY</h5>
-              <p class="text-secondary">
-                To record the action of inserting multiple keys at once, input
-                <code>0</code> and enter each key individually, then click
-                <code>Submit</code>. This is useful for actions such as
-                <code>Ctrl+C</code> or <code>Ctrl+W</code>.
-              </p>
-              <h5 class="small-head">DELETE LAST ACTION</h5>
-              <p class="text-secondary">
-                To delete the last recorded action in manual input mode, input
-                <code>-</code>. In the <code>Replace Action</code> section
-                (after all actions have been recorded), this action will delete
-                the element with the specified ID.
-              </p>
-              <h1 id="post-recording-actions">Post-Recording Actions</h1>
-              <p>
-                If you input <code>esc</code>, all actions up to that point will
-                be saved in
-                <a
-                  href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/json/history.json"
-                  ><code>history.json</code></a
-                >. These actions can be further modified by:
-              </p>
-              <h2 id="loop">LOOP</h2>
-              <p>
-                Requested portions of the recorded actions can be repeated any
-                number of times by entering the desired number of loops in the
-                dialogue box that appears after you input the
-                <code>ctrl</code> key.
-              </p>
-              <h2 id="replace">REPLACE</h2>
-              <p>
-                An action can be replaced with another one by entering the ID of
-                the action to be replaced and the
-                <a href="guide.md#manual-input">call</a> of the action you would
-                like to use as the replacement.
-              </p>
-              <h4 id="tip-">Tip:</h4>
-              <p>
-                <em
-                  >Combining Replacing and Looping allows you to insert actions
-                  into your recorded sequence.</em
-                >
-              </p>
-              <h1 id="finalization">Finalization</h1>
-              <p>
-                After recording and modifying the actions, they can be started
-                by pressing the <code>space</code> key.
-              </p>
-              <h4 id="things-to-note-">Things to Note:</h4>
-              <ul>
-                <li>
-                  A started execution can be exited with
-                  <code>ctrl+c</code> (Keyboard Interrupt).
-                </li>
-                <li>
-                  It can also be exited by moving the cursor to the corner of
-                  the screen.
-                </li>
-                <li>
-                  Other methods commonly used for exiting a program can also be
-                  used.
-                </li>
-              </ul>
-              <h1 id="saving-the-input">Saving the Input</h1>
-              <p>
-                Every successful execution from the last
-                <code>reset.py</code> is saved in the
-                <a
-                  href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/database/history.db"
-                  ><code>assets/database/history.db</code></a
-                >
-                in the <code>history</code> table, while the last recorded
-                action is saved in the
-                <a
-                  href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/json/history.json"
-                  ><code>assets/json/history.json</code></a
-                >.
-              </p>
-              <h1 id="modifying-input-speed">Modifying Input Speed</h1>
-              <p>
-                The input speed for clicking, dragging, and typing can be
-                modified through the configuration file located at
-                <a
-                  href="https://github.com/MZaFaRM/CLICKERY/blob/main/sample/universal/config.py"
-                  ><code>sample/universal/config.py</code></a
-                >.
-              </p>
-              <h1 id="development">Development</h1>
-              <p>
-                <img
-                  src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&amp;logo=python&amp;logoColor=ffdd54"
-                  alt="Python"
-                />
-                <img
-                  src="https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&amp;logo=opencv&amp;logoColor=white"
-                  alt="OpenCV"
-                />
-              </p>
-              <p>
-                This project was built with Python version
-                <a href="https://www.python.org/downloads/"
-                  ><code>3.11.0</code></a
-                >. The following libraries are required to run the project:
-              </p>
-              <ul>
-                <li>keyboard <code>0.13.5</code></li>
-                <li>Pillow <code>9.3.0</code></li>
-                <li>PyAutoGUI <code>0.9.53</code></li>
-                <li>rich <code>12.6.0</code></li>
-                <li>tabulate <code>0.9.0</code></li>
-                <li>opencv-python <code>4.6.0.66</code></li>
-                <li>pyclean <code>2.2.0</code></li>
-              </ul>
-              <h1 id="file-reference-guide">File Reference Guide</h1>
-              <h2 id="setup-py">setup.py</h2>
-              <p>
-                This Python file is responsible for downloading and installing
-                all of the necessary libraries required to run the program
-                successfully.
-              </p>
-              <h2 id="reset-py">reset.py</h2>
-              <p>
-                This Python file is used to clear various elements such as
-                history, database, pycache files, and converted images, ensuring
-                that the program is running optimally.
-              </p>
-              <h2 id="requirements-txt">requirements.txt</h2>
-              <p>
-                This file is utilized by <code>setup.py</code> to obtain a
-                comprehensive list of the libraries required for the program to
-                function correctly.
-              </p>
-              <h2 id="main-py">main.py</h2>
-              <p>
-                This is the primary program file, which should only be executed
-                after <code>setup.py</code> has been successfully run.
-              </p>
-              <h2 id="sample">sample</h2>
-              <p>
-                This directory contains a variety of subprogram files,
-                including:
-              </p>
-              <h3 id="helpers">helpers</h3>
-              <p>
-                These files are responsible for managing dialogue boxes, saving
-                recorded input, and improving the clarity of dialogue boxes.
-              </p>
-              <h3 id="post_record">post_record</h3>
-              <p>
-                These files handle functions such as <code>LOOP</code> and
-                <code>REPLACE</code>
-              </p>
-              <h3 id="pre_record">pre_record</h3>
-              <p>
-                These files assist in the process of recording user requests.
-              </p>
-              <h3 id="universal">universal</h3>
-              <p>
-                This directory contains important data such as constant
-                configurations and a list of possible user requests.
-              </p>
-              <h3 id="core-py">core.py</h3>
-              <p>
-                This is the second main file and plays a crucial role in the
-                overall functioning of the program.
-              </p>
-              <h1 id="configuration">Configuration</h1>
-              <p>
-                The typing speed, clicking speed, and dragging speed for this
-                project can be modified within the
-                <a
-                  href="https://github.com/MZaFaRM/CLICKERY/blob/main/sample/universal/config.py"
-                  ><code>sample\universal\config.py</code></a
-                >
-                file.
-              </p>
-              <h1 id="database">Database</h1>
-              <p>
-                <img
-                  src="https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&amp;logo=sqlite&amp;logoColor=white"
-                  alt="SQLite"
-                />
-              </p>
-              <p>
-                This project utilizes <code>sqlite3</code> as its database to
-                store all successful executions starting from the last execution
-                of the <code>reset.py</code> script. The schema for the
-                database, which can be found at
-                <a
-                  href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/database/history.db"
-                  ><code>assets\database\history.db</code></a
-                >, is as follows:
-              </p>
-              <pre><code><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> history (
-                  actions_id <span class="hljs-built_in">INTEGER</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-                  <span class="hljs-keyword">JSON</span> <span class="hljs-built_in">TEXT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-                  PRIMARY <span class="hljs-keyword">KEY</span> (actions_id)
+        <div class="row d-flex align-items-start" data-aos="fade-right">
+          <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">
+            Post-Recording Actions
+          </h1>
+          <p class="text-secondary indent">
+            If you input <code>esc</code>, all actions up to that point will be
+            saved in
+            <a
+              href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/json/history.json"
+              class="link-fancy link-fancy-light"
+              ><code>history.json</code></a
+            >. These actions can be further modified by:
+          </p>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h4 class="head-secondary mt-5 mb-5">LOOP</h4>
+            <p class="text-secondary indent">
+              Requested portions of the recorded actions can be repeated any
+              number of times by entering the desired number of loops in the
+              dialogue box that appears after you input the
+              <code>ctrl</code> key.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h4 class="head-secondary mt-5 mb-5">REPLACE</h4>
+            <p class="text-secondary indent">
+              An action can be replaced with another one by entering the ID of
+              the action to be replaced and the
+              <a
+                href="guide.md#manual-input"
+                class="link-fancy link-fancy-light"
+                >call</a
+              >
+              of the action you would like to use as the replacement.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h6 class="head-secondary">Tip:</h6>
+            <p class="text-secondary indent">
+              <em
+                >Combining Replacing and Looping allows you to insert actions
+                into your recorded sequence.</em
+              >
+            </p>
+          </div>
+        </div>
+        <div class="row d-flex align-items-start" data-aos="fade-right">
+          <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">Finalization</h1>
+          <p class="text-secondary">
+            After recording and modifying the actions, they can be started by
+            pressing the <code>space</code> key.
+          </p>
+          <h4 class="head-secondary mb-5">Things to Note:</h4>
+          <ul class="hidden-list">
+            <li
+              class="text-secondary indent"
+              style="margin-left: 3rem; margin-bottom: 1rem"
+            >
+              A started execution can be exited with
+              <code>ctrl+delete</code> when terminal is not in focus.
+            </li>
+            <li
+              class="text-secondary indent"
+              style="margin-left: 3rem; margin-bottom: 1rem"
+            >
+              A started execution can be exited with
+              <code>ctrl+c</code> (Keyboard Interrupt) when terminal is in
+              focus.
+            </li>
+            <li
+              class="text-secondary indent"
+              style="margin-left: 3rem; margin-bottom: 1rem"
+            >
+              It can also be exited by moving the cursor to the corner of the
+              screen.
+            </li>
+            <li
+              class="text-secondary indent"
+              style="margin-left: 3rem; margin-bottom: 1rem"
+            >
+              Other methods commonly used for exiting a program can also be
+              used.
+            </li>
+          </ul>
+          <h3 class="head-secondary">Saving the input</h3>
+          <p class="text-secondary indent">
+            Every successful execution from the last
+            <code>reset.py</code> is saved in the
+            <a
+              href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/database/history.db"
+              class="link-fancy link-fancy-light"
+              ><code>assets/database/history.db</code></a
+            >
+            in the <code>history</code> table, while the last recorded action is
+            saved in the
+            <a
+              href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/json/history.json"
+              class="link-fancy link-fancy-light"
+              ><code>assets/json/history.json</code></a
+            >.
+          </p>
+        </div>
+        <div class="row d-flex align-items-start" data-aos="fade-right">
+          <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">Development</h1>
+          <p class="text-secondary indent">
+            This project was built with Python version
+            <a
+              href="https://www.python.org/downloads/"
+              class="link-fancy link-fancy-light"
+              ><code>3.11.0</code></a
+            >. The following libraries are required to run the project:
+          </p>
+          <ul>
+            <li class="text-secondary indent" style="margin-left: 3rem">
+              keyboard <code>0.13.5</code>
+            </li>
+            <li class="text-secondary indent" style="margin-left: 3rem">
+              Pillow <code>9.3.0</code>
+            </li>
+            <li class="text-secondary indent" style="margin-left: 3rem">
+              PyAutoGUI <code>0.9.53</code>
+            </li>
+            <li class="text-secondary indent" style="margin-left: 3rem">
+              rich <code>12.6.0</code>
+            </li>
+            <li class="text-secondary indent" style="margin-left: 3rem">
+              tabulate <code>0.9.0</code>
+            </li>
+            <li class="text-secondary indent" style="margin-left: 3rem">
+              opencv-python <code>4.6.0.66</code>
+            </li>
+            <li class="text-secondary indent" style="margin-left: 3rem">
+              pyclean <code>2.2.0</code>
+            </li>
+          </ul>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">
+              File Reference Guide
+            </h1>
+            <h3 class="head-secondary">setup.py</h3>
+            <p class="text-secondary mb-5 indent">
+              This Python file is responsible for downloading and installing all
+              of the necessary libraries required to run the program
+              successfully.
+            </p>
+            <h3 class="head-secondary">reset.py</h3>
+            <p class="text-secondary mb-5 indent">
+              This Python file is used to clear various elements such as
+              history, database, pycache files, and converted images, ensuring
+              that the program is running optimally.
+            </p>
+            <h3 class="head-secondary">requirements.txt</h3>
+            <p class="text-secondary mb-5 indent">
+              This file is utilized by <code>setup.py</code> to obtain a
+              comprehensive list of the libraries required for the program to
+              function correctly.
+            </p>
+            <h3 class="head-secondary">main.py</h3>
+            <p class="text-secondary mb-5 indent">
+              This is the primary program file, which should only be executed
+              after <code>setup.py</code> has been successfully run.
+            </p>
+            <h3 class="head-secondary">sample</h3>
+            <p class="text-secondary mb-5 indent">
+              This directory contains a variety of subprogram files, including:
+            </p>
+            <h3 class="head-secondary">helpers</h3>
+            <p class="text-secondary mb-5 indent">
+              These files are responsible for managing dialogue boxes, saving
+              recorded input, and improving the clarity of dialogue boxes.
+            </p>
+            <h3 class="head-secondary">post_record</h3>
+            <p class="text-secondary mb-5 indent">
+              These files handle functions such as <code>LOOP</code> and
+              <code>REPLACE</code>
+            </p>
+            <h3 class="head-secondary">pre_record</h3>
+            <p class="text-secondary mb-5 indent">
+              These files assist in the process of recording user requests.
+            </p>
+            <h3 class="head-secondary">universal</h3>
+            <p class="text-secondary mb-5 indent">
+              This directory contains important data such as constant
+              configurations and a list of possible user requests. The typing
+              speed, clicking speed, and dragging speed for this project can be
+              modified within the
+              <a
+                href="https://github.com/MZaFaRM/CLICKERY/blob/main/sample/universal/config.py"
+                class="link-fancy link-fancy-light"
+                ><code>sample\universal\config.py</code></a
+              >
+              file.
+            </p>
+            <h3 class="head-secondary">core.py</h3>
+            <p class="text-secondary mb-5 indent">
+              This is the second main file and plays a crucial role in the
+              overall functioning of the program.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">Database</h1>
+            <p class="text-secondary">
+              This project utilizes <code>sqlite3</code> as its database to
+              store all successful executions starting from the last execution
+              of the <code>reset.py</code> script. The schema for the database,
+              which can be found at
+              <a
+                href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/database/history.db"
+                class="link-fancy link-fancy-light"
+                ><code>assets\database\history.db</code></a
+              >, is as follows:
+            </p>
+            <pre class="mt-5 mb-5"><code>CREATE TABLE history (
+                  actions_id INTEGER NOT NULL,
+                  JSON TEXT NOT NULL,
+                  PRIMARY KEY (actions_id)
               );
               </code></pre>
-              <p>
-                Should you wish to download <code>sqlite3</code>, you may do so
-                from the
-                <a href="https://www.sqlite.org/index.html">official website</a
-                >. While downloading is not necessary for the proper functioning
-                of the software, certain features may not be available if you
-                choose not to do so.
-              </p>
-              <h1 id="video-demonstration">Video demonstration</h1>
-              <p>
-                <a href="https://www.youtube.com/watch?v=r1WOPfG9GS8"
-                  ><img
-                    src="https://img.youtube.com/vi/r1WOPfG9GS8/0.jpg"
-                    alt="Clickery - AUTO GUI Program"
-                /></a>
-              </p>
-              <h1 id="additional-features">Additional Features</h1>
-              <ul>
-                <li>
-                  The very last successful execution is saved at
-                  <a
-                    href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/json/history.json"
-                    ><code>assets\json\history.json</code></a
-                  >.
-                </li>
-                <li>
-                  All successful actions starting from the last
-                  <code>reset.py</code> is saved in a database, refer
-                  <a href="README.md#database">Database</a> section for details.
-                </li>
-              </ul>
-              <h1 id="screenshots">Screenshots</h1>
-              <p>
-                <img
-                  width="960"
-                  alt="homescreen"
-                  src="https://user-images.githubusercontent.com/98420006/205716839-640ca13c-61e9-4c49-8995-d77bf1d2a77f.png"
-                />
-              </p>
-              <p>
-                <img
-                  width="960"
-                  alt="working"
-                  src="https://user-images.githubusercontent.com/98420006/205962224-f0971a03-3155-4465-b6cf-b67ffd6dd8c7.png"
-                />
-              </p>
-              <h1 id="license">License</h1>
-              <h4
-                id="mit-license-license-mit-https-img-shields-io-badge-license-mit-yellow-svg-https-github-com-mzafarm-clickery-blob-main-license-"
-              >
-                MIT License
-                <a href="https://github.com/MZaFaRM/CLICKERY/blob/main/LICENSE"
-                  ><img
-                    src="https://img.shields.io/badge/License-MIT-yellow.svg"
-                    alt="License: MIT"
-                /></a>
-              </h4>
-              <p><em>Copyright (c) 2022 Muhammed Zafar M. M.</em></p>
-              <h1 id="feedback">Feedback</h1>
-              <p>
-                If you have any feedback, please reach out to me at
-                muhammedzafar.mm@gmail.com
-              </p>
-            </div>
+            <p class="text-secondary">
+              Should you wish to download <code>sqlite3</code>, you may do so
+              from the
+              <a
+                href="https://www.sqlite.org/index.html"
+                class="link-fancy link-fancy-light"
+                >official website</a
+              >. While downloading is not necessary for the proper functioning
+              of the software, certain features may not be available if you
+              choose not to do so.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">
+              Video Demonstration
+            </h1>
+            <p>
+              <a href="https://www.youtube.com/watch?v=r1WOPfG9GS8"
+                ><img
+                  src="https://img.youtube.com/vi/r1WOPfG9GS8/0.jpg"
+                  alt="Clickery - AUTO GUI Program"
+              /></a>
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">Screenshots</h1>
+            <p>
+              <img
+                width="960"
+                alt="homescreen"
+                src="https://user-images.githubusercontent.com/98420006/205716839-640ca13c-61e9-4c49-8995-d77bf1d2a77f.png"
+              />
+            </p>
+            <p>
+              <img
+                width="960"
+                alt="working"
+                src="https://user-images.githubusercontent.com/98420006/205962224-f0971a03-3155-4465-b6cf-b67ffd6dd8c7.png"
+              />
+            </p>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-right">
+            <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">
+              License & Feedback
+            </h1>
+            <h4 class="head-secondary">
+              MIT License
+              <a href="https://github.com/MZaFaRM/CLICKERY/blob/main/LICENSE"
+                ><img
+                  src="https://img.shields.io/badge/License-MIT-yellow.svg"
+                  alt="License: MIT"
+              /></a>
+            </h4>
+            <p class="text-secondary">
+              <em>Copyright (c) 2022 Muhammed Zafar M. M.</em>
+            </p>
+            <p class="text-secondary mb-5">
+              If you have any feedback, please reach out to me at
+              <code>muhammedzafar.mm@gmail.com</code>
+            </p>
           </div>
         </div>
       </div>
