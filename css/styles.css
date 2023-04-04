@@ -23,3 +23,35 @@ body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.hidden-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.highlight {
+  color: white;
+}
+
+.head {
+  font-family: 'Merriweather';
+}
+
+.sub-head {
+  font-family: 'Roboto Slab';
+}
+
+code {
+  color: white;
+  font-family: 'Source Code Pro', monospace;
+}
+
+.small-head {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  font-family: 'Fira Sans';
+}
+
+.head-secondary {
+  font-family: 'Raleway', sans-serif;
+}
