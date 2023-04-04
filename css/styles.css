@@ -46,6 +46,12 @@ code {
   font-family: 'Source Code Pro', monospace;
 }
 
+.hljs {
+  background-color: #ECF2FF !important;
+  font-size: 14px;
+  border-radius: 20px;
+}
+
 .small-head {
   margin-top: 2rem;
   margin-bottom: 3rem;
@@ -62,4 +68,13 @@ code {
 
 .indent a {
   text-indent: 0;
+}
+
+td {
+  text-align: center;
+}
+
+pre {
+  display: inline-block;
+  text-align: left;
 }
