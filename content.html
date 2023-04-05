@@ -8,27 +8,13 @@
     />
     <meta
       name="description"
-      content="A well made and handcrafted Bootstrap 5 template"
+      content="A webpage detailing the features of Clickery by Muhammed Zafar"
     />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="img/apple-touch-icon.png"
+    <link rel="icon" type="image/png" sizes="32x32" href="images/icon.png" />
+    <meta
+      name="author"
+      content="Created by: Muhammed Zafar; Inspired by: Holger Koenemann"
     />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="img/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="img/favicon-16x16.png"
-    />
-    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon.png" />
-    <meta name="author" content="Holger Koenemann" />
     <meta name="generator" content="Eleventy v2.0.0" />
     <meta name="HandheldFriendly" content="true" />
     <title>Clickery</title>
@@ -172,7 +158,7 @@
           <div class="col-12 col-lg-10 col-xl-8">
             <div class="row">
               <div class="col-12">
-                <h1 class="display-3" style="font-family: 'Merriweather'; margin-top: 5rem;">
+                <h1 class="display-3 sub-head" style="margin-top: 5rem">
                   Working <span class="fs-4">with</span><br />
                   <div class="row">
                     <div class="col-12 py-vh-2" style="text-align: center">
@@ -212,7 +198,7 @@
           </div>
         </div>
         <div class="col-12 col-lg-10 col-xl-8">
-          <div class="row d-flex align-items-start" data-aos="fade-right">
+          <div class="row d-flex align-items-start" data-aos="fade-up">
             <h2 class="h2 mt-5 border-top pt-5 sub-head mb-5">
               Getting Started
             </h2>
@@ -236,20 +222,35 @@
           </div>
         </div>
 
-        <div class="row d-flex align-items-start" data-aos="fade-right">
+        <div class="row d-flex align-items-start" data-aos="fade-up">
           <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">Mode of Input</h1>
           <p class="text-secondary indent">
-            After running the program, you will be prompted to choose the mode
-            of input.
+            After running the program, the first thing you would need to do
+            would be to choose the mode of input.
           </p>
+          <div class="row">
+            <div class="col-12 py-vh-2" style="text-align: center">
+              <img
+                src="images/mode_of_input.png"
+                width="723"
+                height="491"
+                alt="The UI shown when prompting user to choose their mode of input"
+                class="img-fluid position-relative rounded-5 shadow"
+                data-aos="zoom-up"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row d-flex align-items-start" data-aos="fade-up">
           <h2 class="head-secondary mt-5 mb-5">File Input</h2>
           <p class="text-secondary indent">
             For file input, your JSON file must be formatted in the specified
             way in order to be read by the program. It is not recommended to
             write this file from scratch; it is always better to first record
-            your actions through manual input and copy and paste them from
-            <code>history.json</code> or <code>history.db</code> later. However,
-            you can manually write a file following these guidelines if desired.
+            your actions through manual input and copy the script from
+            <code>history.json</code> or <code>history.db</code>, then later,
+            you may manually edit the thus taken scripts by following these
+            guidelines if you desire so.
           </p>
           <h6 class="head-secondary mt-5 mb-5">General Guidelines</h6>
           <p class="text-secondary indent">
@@ -327,6 +328,7 @@
               </tr>
             </tbody>
           </table>
+
           <div class="row d-flex align-items-start" data-aos="fade-right">
             <h5 class="small-head">MOVE CURSOR</h5>
             <p>
@@ -515,21 +517,22 @@
               >
             </p>
           </div>
-
-          <h2 class="head-secondary">Manual Input</h2>
-          <p>
-            To record actions using manual input, follow these instructions:
-          </p>
-          <div class="row">
-            <div class="col-12 py-vh-2" style="text-align: center">
-              <img
-                src="images/main_menu.png"
-                width="723"
-                height="491"
-                alt="abstract image"
-                class="img-fluid position-relative rounded-5 shadow"
-                data-aos="zoom-up"
-              />
+          <div class="row d-flex align-items-start" data-aos="fade-up">
+            <h2 class="head-secondary">Manual Input</h2>
+            <p>
+              To record actions using manual input, follow these instructions:
+            </p>
+            <div class="row">
+              <div class="col-12 py-vh-2" style="text-align: center">
+                <img
+                  src="images/main_menu.png"
+                  width="723"
+                  height="491"
+                  alt="main menu containing the list of all actions provided by the App"
+                  class="img-fluid position-relative rounded-5 shadow"
+                  data-aos="zoom-up"
+                />
+              </div>
             </div>
           </div>
           <div class="row d-flex align-items-start" data-aos="fade-right">
@@ -642,211 +645,273 @@
             <p class="text-secondary indent">
               To delete the last recorded action in manual input mode, input
               <code>-</code>. In the <code>Replace Action</code> section (after
-              all actions have been recorded), this action will delete the
-              element with the specified ID.
+              all actions have been recorded), however, this action will delete
+              the element with the specified ID.
             </p>
           </div>
-        </div>
+          <div class="row mt-5">
+            <div class="col-12 py-vh-2" style="text-align: center">
+              <img
+                src="images/recorded_actions.png"
+                width="723"
+                height="491"
+                alt="Sample image of recorded actions"
+                class="img-fluid position-relative rounded-5 shadow"
+                data-aos="zoom-up"
+              />
+            </div>
+          </div>
+          <p class="text-secondary mt-5 mb-5 text-center">
+            You should now see a screen resembling the above image after you
+            input
+            <code>esc</code>. After which proceed to the next section.
+          </p>
 
-        <div class="row d-flex align-items-start" data-aos="fade-right">
-          <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">
-            Post-Recording Actions
-          </h1>
-          <p class="text-secondary indent">
-            If you input <code>esc</code>, all actions up to that point will be
-            saved in
-            <a
-              href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/json/history.json"
-              class="link-fancy link-fancy-light"
-              >history.json</a
-            >. These actions can be further modified by:
-          </p>
-          <div class="row d-flex align-items-start" data-aos="fade-right">
-            <h4 class="head-secondary mt-5 mb-5">LOOP</h4>
+          <div class="row d-flex align-items-start" data-aos="fade-up">
+            <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">
+              Post-Recording Actions
+            </h1>
             <p class="text-secondary indent">
-              Requested portions of the recorded actions can be repeated any
-              number of times by entering the desired number of loops in the
-              dialogue box that appears after you input the
-              <code>ctrl</code> key.
-            </p>
-          </div>
-          <div class="row d-flex align-items-start" data-aos="fade-right">
-            <h4 class="head-secondary mt-5 mb-5">REPLACE</h4>
-            <p class="text-secondary indent">
-              An action can be replaced with another one by entering the ID of
-              the action to be replaced and the
+              If you input <code>esc</code>, all actions up to that point will
+              be saved in
               <a
-                href="guide.md#manual-input"
+                href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/json/history.json"
                 class="link-fancy link-fancy-light"
-                >call</a
+                >history.json</a
+              >. These actions can be further modified by:
+            </p>
+            <div class="row">
+              <div class="col-12 py-vh-2" style="text-align: center">
+                <img
+                  src="images/action_modif.png"
+                  width="723"
+                  height="491"
+                  alt="Menu shown to user for script modification requests"
+                  class="img-fluid position-relative rounded-5 shadow"
+                  data-aos="zoom-up"
+                />
+              </div>
+            </div>
+            <div class="row d-flex align-items-start" data-aos="fade-right">
+              <h4 class="head-secondary mt-5 mb-5">LOOP</h4>
+              <p class="text-secondary indent">
+                Requested portions of the recorded actions can be repeated any
+                number of times by entering the desired number of loops in the
+                dialogue box that appears after you input the
+                <code>ctrl</code> key.
+              </p>
+            </div>
+            <div class="row d-flex align-items-start" data-aos="fade-right">
+              <h4 class="head-secondary mt-5 mb-5">REPLACE</h4>
+              <p class="text-secondary indent">
+                An action can be replaced with another one by entering the ID of
+                the action to be replaced and the
+                <a
+                  href="guide.md#manual-input"
+                  class="link-fancy link-fancy-light"
+                  >call</a
+                >
+                of the action you would like to use as the replacement.
+              </p>
+            </div>
+            <div class="row d-flex align-items-start" data-aos="fade-right">
+              <h6 class="head-secondary mt-5">Tip:</h6>
+              <p class="text-secondary indent">
+                <em
+                  >Combining Replacing and Looping allows you to insert actions
+                  into your recorded sequence.</em
+                >
+              </p>
+            </div>
+          </div>
+          <div class="row d-flex align-items-start" data-aos="fade-up">
+            <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">Finalization</h1>
+            <p class="text-secondary">
+              After recording and modifying the actions, they can be started by
+              pressing the <code>space</code> key.
+            </p>
+            <div class="row mt-5 mb-5">
+              <div class="col-12 py-vh-2" style="text-align: center">
+                <img
+                  src="images/finalise.png"
+                  width="723"
+                  height="491"
+                  alt="Sample image of recorded actions"
+                  class="img-fluid position-relative rounded-5 shadow"
+                  data-aos="zoom-up"
+                />
+              </div>
+            </div>
+            <h4 class="head-secondary mb-5">Things to Note:</h4>
+            <ul class="hidden-list">
+              <li
+                class="text-secondary indent"
+                style="margin-left: 3rem; margin-bottom: 1rem"
               >
-              of the action you would like to use as the replacement.
+                A started execution can be exited with
+                <code>ctrl+delete</code> when terminal is not in focus.
+              </li>
+              <li
+                class="text-secondary indent"
+                style="margin-left: 3rem; margin-bottom: 1rem"
+              >
+                A started execution can be exited with
+                <code>ctrl+c</code> (Keyboard Interrupt) when terminal is in
+                focus.
+              </li>
+              <li
+                class="text-secondary indent"
+                style="margin-left: 3rem; margin-bottom: 1rem"
+              >
+                It can also be exited by moving the cursor to the corner of the
+                screen.
+              </li>
+              <li
+                class="text-secondary indent"
+                style="margin-left: 3rem; margin-bottom: 1rem"
+              >
+                Other methods commonly used for exiting a program can also be
+                used.
+              </li>
+            </ul>
+            <h3 class="head-secondary mt-5 mb-5">Saving the input</h3>
+            <p class="text-secondary indent mb-5">
+              Every successful execution from the last
+              <code>reset.py</code> is saved in the
+              <a
+                href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/database/history.db"
+                class="link-fancy link-fancy-light"
+                >assets/database/history.db</a
+              >
+              in the <code>history</code> table, while the last recorded action
+              is saved in the
+              <a
+                href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/json/history.json"
+                class="link-fancy link-fancy-light"
+                >assets/json/history.json</a
+              >.
             </p>
           </div>
           <div class="row d-flex align-items-start" data-aos="fade-right">
-            <h6 class="head-secondary">Tip:</h6>
+            <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">Development</h1>
             <p class="text-secondary indent">
-              <em
-                >Combining Replacing and Looping allows you to insert actions
-                into your recorded sequence.</em
-              >
+              This project was built with Python version
+              <a
+                href="https://www.python.org/downloads/"
+                class="link-fancy link-fancy-light"
+                >3.11.0</a
+              >. The following libraries are required to run the project:
             </p>
+            <ul class="hidden-list">
+              <li class="text-secondary indent" style="margin-left: 3rem">
+                keyboard <code>0.13.5</code>
+              </li>
+              <li class="text-secondary indent" style="margin-left: 3rem">
+                Pillow <code>9.3.0</code>
+              </li>
+              <li class="text-secondary indent" style="margin-left: 3rem">
+                PyAutoGUI <code>0.9.53</code>
+              </li>
+              <li class="text-secondary indent" style="margin-left: 3rem">
+                rich <code>12.6.0</code>
+              </li>
+              <li class="text-secondary indent" style="margin-left: 3rem">
+                tabulate <code>0.9.0</code>
+              </li>
+              <li class="text-secondary indent" style="margin-left: 3rem">
+                opencv-python <code>4.6.0.66</code>
+              </li>
+              <li class="text-secondary indent" style="margin-left: 3rem">
+                pyclean <code>2.2.0</code>
+              </li>
+            </ul>
           </div>
-        </div>
-        <div class="row d-flex align-items-start" data-aos="fade-right">
-          <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">Finalization</h1>
-          <p class="text-secondary">
-            After recording and modifying the actions, they can be started by
-            pressing the <code>space</code> key.
-          </p>
-          <h4 class="head-secondary mb-5">Things to Note:</h4>
-          <ul class="hidden-list">
-            <li
-              class="text-secondary indent"
-              style="margin-left: 3rem; margin-bottom: 1rem"
-            >
-              A started execution can be exited with
-              <code>ctrl+delete</code> when terminal is not in focus.
-            </li>
-            <li
-              class="text-secondary indent"
-              style="margin-left: 3rem; margin-bottom: 1rem"
-            >
-              A started execution can be exited with
-              <code>ctrl+c</code> (Keyboard Interrupt) when terminal is in
-              focus.
-            </li>
-            <li
-              class="text-secondary indent"
-              style="margin-left: 3rem; margin-bottom: 1rem"
-            >
-              It can also be exited by moving the cursor to the corner of the
-              screen.
-            </li>
-            <li
-              class="text-secondary indent"
-              style="margin-left: 3rem; margin-bottom: 1rem"
-            >
-              Other methods commonly used for exiting a program can also be
-              used.
-            </li>
-          </ul>
-          <h3 class="head-secondary">Saving the input</h3>
-          <p class="text-secondary indent">
-            Every successful execution from the last
-            <code>reset.py</code> is saved in the
-            <a
-              href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/database/history.db"
-              class="link-fancy link-fancy-light"
-              >assets/database/history.db</a
-            >
-            in the <code>history</code> table, while the last recorded action is
-            saved in the
-            <a
-              href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/json/history.json"
-              class="link-fancy link-fancy-light"
-              >assets/json/history.json</a
-            >.
-          </p>
-        </div>
-        <div class="row d-flex align-items-start" data-aos="fade-right">
-          <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">Development</h1>
-          <p class="text-secondary indent">
-            This project was built with Python version
-            <a
-              href="https://www.python.org/downloads/"
-              class="link-fancy link-fancy-light"
-              >3.11.0</a
-            >. The following libraries are required to run the project:
-          </p>
-          <ul>
-            <li class="text-secondary indent" style="margin-left: 3rem">
-              keyboard <code>0.13.5</code>
-            </li>
-            <li class="text-secondary indent" style="margin-left: 3rem">
-              Pillow <code>9.3.0</code>
-            </li>
-            <li class="text-secondary indent" style="margin-left: 3rem">
-              PyAutoGUI <code>0.9.53</code>
-            </li>
-            <li class="text-secondary indent" style="margin-left: 3rem">
-              rich <code>12.6.0</code>
-            </li>
-            <li class="text-secondary indent" style="margin-left: 3rem">
-              tabulate <code>0.9.0</code>
-            </li>
-            <li class="text-secondary indent" style="margin-left: 3rem">
-              opencv-python <code>4.6.0.66</code>
-            </li>
-            <li class="text-secondary indent" style="margin-left: 3rem">
-              pyclean <code>2.2.0</code>
-            </li>
-          </ul>
-          <div class="row d-flex align-items-start" data-aos="fade-right">
+          <div class="row d-flex align-items-start" data-aos="fade-up">
             <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">
               File Reference Guide
             </h1>
-            <h3 class="head-secondary">setup.py</h3>
-            <p class="text-secondary mb-5 indent">
-              This Python file is responsible for downloading and installing all
-              of the necessary libraries required to run the program
-              successfully.
-            </p>
-            <h3 class="head-secondary">reset.py</h3>
-            <p class="text-secondary mb-5 indent">
-              This Python file is used to clear various elements such as
-              history, database, pycache files, and converted images, ensuring
-              that the program is running optimally.
-            </p>
-            <h3 class="head-secondary">requirements.txt</h3>
-            <p class="text-secondary mb-5 indent">
-              This file is utilized by <code>setup.py</code> to obtain a
-              comprehensive list of the libraries required for the program to
-              function correctly.
-            </p>
-            <h3 class="head-secondary">main.py</h3>
-            <p class="text-secondary mb-5 indent">
-              This is the primary program file, which should only be executed
-              after <code>setup.py</code> has been successfully run.
-            </p>
-            <h3 class="head-secondary">sample</h3>
-            <p class="text-secondary mb-5 indent">
-              This directory contains a variety of subprogram files, including:
-            </p>
-            <h3 class="head-secondary">helpers</h3>
-            <p class="text-secondary mb-5 indent">
-              These files are responsible for managing dialogue boxes, saving
-              recorded input, and improving the clarity of dialogue boxes.
-            </p>
-            <h3 class="head-secondary">post_record</h3>
-            <p class="text-secondary mb-5 indent">
-              These files handle functions such as <code>LOOP</code> and
-              <code>REPLACE</code>
-            </p>
-            <h3 class="head-secondary">pre_record</h3>
-            <p class="text-secondary mb-5 indent">
-              These files assist in the process of recording user requests.
-            </p>
-            <h3 class="head-secondary">universal</h3>
-            <p class="text-secondary mb-5 indent">
-              This directory contains important data such as constant
-              configurations and a list of possible user requests. The typing
-              speed, clicking speed, and dragging speed for this project can be
-              modified within the
-              <a
-                href="https://github.com/MZaFaRM/CLICKERY/blob/main/sample/universal/config.py"
-                class="link-fancy link-fancy-light"
-                >sample\universal\config.py</a
-              >
-              file.
-            </p>
-            <h3 class="head-secondary">core.py</h3>
-            <p class="text-secondary mb-5 indent">
-              This is the second main file and plays a crucial role in the
-              overall functioning of the program.
-            </p>
+            <div class="row d-flex align-items-start" data-aos="fade-right">
+              <h3 class="head-secondary">setup.py</h3>
+              <p class="text-secondary mb-5 indent">
+                This Python file is responsible for downloading and installing
+                all of the necessary libraries required to run the program
+                successfully.
+              </p>
+            </div>
+            <div class="row d-flex align-items-start" data-aos="fade-right">
+              <h3 class="head-secondary">reset.py</h3>
+              <p class="text-secondary mb-5 indent">
+                This Python file is used to clear various elements such as
+                history, database, pycache files, and converted images, ensuring
+                that the program is running optimally.
+              </p>
+            </div>
+            <div class="row d-flex align-items-start" data-aos="fade-right">
+              <h3 class="head-secondary">requirements.txt</h3>
+              <p class="text-secondary mb-5 indent">
+                This file is utilized by <code>setup.py</code> to obtain a
+                comprehensive list of the libraries required for the program to
+                function correctly.
+              </p>
+            </div>
+            <div class="row d-flex align-items-start" data-aos="fade-right">
+              <h3 class="head-secondary">main.py</h3>
+              <p class="text-secondary mb-5 indent">
+                This is the primary program file, which should only be executed
+                after <code>setup.py</code> has been successfully run.
+              </p>
+            </div>
+            <div class="row d-flex align-items-start" data-aos="fade-right">
+              <h3 class="head-secondary">sample</h3>
+              <p class="text-secondary mb-5 indent">
+                This directory contains a variety of subprogram files,
+                including:
+              </p>
+            </div>
+            <div class="row d-flex align-items-start" data-aos="fade-right">
+              <h3 class="head-secondary">helpers</h3>
+              <p class="text-secondary mb-5 indent">
+                These files are responsible for managing dialogue boxes, saving
+                recorded input, and improving the clarity of dialogue boxes.
+              </p>
+            </div>
+            <div class="row d-flex align-items-start" data-aos="fade-right">
+              <h3 class="head-secondary">post_record</h3>
+              <p class="text-secondary mb-5 indent">
+                These files handle functions such as <code>LOOP</code> and
+                <code>REPLACE</code>
+              </p>
+            </div>
+            <div class="row d-flex align-items-start" data-aos="fade-right">
+              <h3 class="head-secondary">pre_record</h3>
+              <p class="text-secondary mb-5 indent">
+                These files assist in the process of recording user requests.
+              </p>
+            </div>
+            <div class="row d-flex align-items-start" data-aos="fade-right">
+              <h3 class="head-secondary">universal</h3>
+              <p class="text-secondary mb-5 indent">
+                This directory contains important data such as constant
+                configurations and a list of possible user requests. The typing
+                speed, clicking speed, and dragging speed for this project can
+                be modified within the
+                <a
+                  href="https://github.com/MZaFaRM/CLICKERY/blob/main/sample/universal/config.py"
+                  class="link-fancy link-fancy-light"
+                  >sample\universal\config.py</a
+                >
+                file.
+              </p>
+            </div>
+            <div class="row d-flex align-items-start" data-aos="fade-right">
+              <h3 class="head-secondary">core.py</h3>
+              <p class="text-secondary mb-5 indent">
+                This is the second main file and plays a crucial role in the
+                overall functioning of the program.
+              </p>
+            </div>
           </div>
-          <div class="row d-flex align-items-start" data-aos="fade-right">
+          <div class="row d-flex align-items-start" data-aos="fade-up">
             <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">Database</h1>
             <p class="text-secondary">
               This project utilizes <code>sqlite3</code> as its database to
@@ -877,7 +942,8 @@
               choose not to do so.
             </p>
           </div>
-          <div class="row d-flex align-items-start" data-aos="fade-right">
+          <!-- TODO : Video Demonstration and Screenshots -->
+          <!-- <div class="row d-flex align-items-start" data-aos="fade-right">
             <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">
               Video Demonstration
             </h1>
@@ -905,8 +971,8 @@
                 src="https://user-images.githubusercontent.com/98420006/205962224-f0971a03-3155-4465-b6cf-b67ffd6dd8c7.png"
               />
             </p>
-          </div>
-          <div class="row d-flex align-items-start" data-aos="fade-right">
+          </div> -->
+          <div class="row d-flex align-items-start" data-aos="fade-up">
             <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">
               License & Feedback
             </h1>
@@ -923,14 +989,18 @@
             </p>
             <p class="text-secondary mb-5">
               If you have any feedback, please reach out to me at
-              <code>muhammedzafar.mm@gmail.com</code>
+              <a
+                href="mailto:muhamedzafar.mm@gmail.com"
+                class="link-fancy link-fancy-light"
+                >muhammedzafar.mm@gmail.com</a
+              >
             </p>
           </div>
         </div>
       </div>
     </main>
 
-    <footer class="bg-black border-top border-dark">
+    <footer class="bg-black border-top border-dark mt-5">
       <div class="container text-center small py-vh-2 border-top border-dark">
         <p>&#169; No rights reserved</p>
         <p class="my-3">

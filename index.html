@@ -8,32 +8,27 @@
     />
     <meta
       name="description"
-      content="A well made and handcrafted Bootstrap 5 template"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="img/apple-touch-icon.png"
+      content="A webpage detailing the features of Clickery by Muhammed Zafar"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="img/favicon-32x32.png"
+      href="images/icon.png"
     />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="img/favicon-16x16.png"
+    <meta
+      name="author"
+      content="Created by: Muhammed Zafar; Inspired by: Holger Koenemann"
     />
-    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon.png" />
-    <meta name="author" content="Holger Koenemann" />
     <meta name="generator" content="Eleventy v2.0.0" />
     <meta name="HandheldFriendly" content="true" />
     <title>Clickery</title>
     <link rel="stylesheet" href="css/theme.min.css" />
     <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css"
+    />
 
     <style>
       /* inter-300 - latin */
@@ -87,6 +82,26 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -165,7 +180,7 @@
                     src="images/main.png"
                     width="2280"
                     height="1732"
-                    alt="abstract image"
+                    alt="Clickery main logo"
                     class="img-fluid rounded-5 shadow mt-3"
                     data-aos="fade-up"
                   />
@@ -210,7 +225,7 @@
             </div>
             <div>
               <p class="text-xs pb-5 text-secondary mt-3">
-                Check out the 
+                Check out the
                 <a
                   href="https://github.com/MZaFaRM/Product-web"
                   class="link-fancy link-fancy-light"
@@ -226,43 +241,27 @@
         <div class="container bg-black px-vw-5 py-vh-3 rounded-5 shadow">
           <div class="row gx-5">
             <div class="col-12 col-md-6">
-              <div class="card bg-transparent mb-5" data-aos="zoom-in-up">
-                <div class="bg-dark shadow rounded-5 p-0">
-                  <img
-                    src="images/startup.gif"
-                    width="582"
-                    height="327"
-                    alt="abstract image"
-                    class="img-fluid rounded-5 no-bottom-radius"
-                    loading="lazy"
-                  />
-                  <div class="p-5">
-                    <h2 class="fw-lighter">Startup 🏁</h2>
-                    <p class="pb-4 text-secondary">
-                      Execute `py main.py` to start the app, after completing
-                      the setup.
-                    </p>
-                    <a
-                      href="https://github.com/MZaFaRM/Clickery"
-                      class="link-fancy link-fancy-light"
-                      >Read more</a
-                    >
-                  </div>
-                </div>
+              <div class="p-5 pt-0 mt-5" data-aos="fade">
+                <span class="h4 text-secondary fw-lighter"
+                  >Working with Clickery</span
+                >
+                <h2 class="display-3 head-secondary">
+                  Here's a brief overview on how to use Clickery
+                </h2>
               </div>
 
-              <div class="card bg-transparent" data-aos="zoom-in-up">
+              <div class="card bg-transparent mb-5 mt-5" data-aos="zoom-in-up">
                 <div class="bg-dark shadow rounded-5 p-0">
                   <img
                     src="images/manual_input.gif"
                     width="582"
                     height="442"
-                    alt="abstract image"
+                    alt="a gif showing recording the script for Clickery"
                     class="img-fluid rounded-5 no-bottom-radius"
                     loading="lazy"
                   />
                   <div class="p-5">
-                    <h2 class="fw-lighter">Recording Script 🎥</h2>
+                    <h2 class="fw-lighter small-head">Recording Script 🎥</h2>
                     <p class="pb-4 text-secondary">
                       Record your actions either through manual input by
                       inserting the appropriate function call.
@@ -275,52 +274,19 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="p-5 pt-0 mt-5" data-aos="fade">
-                <span class="h4 text-secondary fw-lighter"
-                  >Working with Clickery</span
-                >
-                <h2 class="display-3">
-                  Here's a brief overview on how to use Clickery
-                </h2>
-              </div>
-              <div class="card bg-transparent mb-5 mt-5" data-aos="zoom-in-up">
-                <div class="bg-dark shadow rounded-5 p-0">
-                  <img
-                    src="images/file_input.gif"
-                    width="582"
-                    height="390"
-                    alt="abstract image"
-                    class="img-fluid rounded-5 no-bottom-radius"
-                    loading="lazy"
-                  />
-                  <div class="p-5">
-                    <h2 class="fw-lighter">Importing Script 📜</h2>
-                    <p class="pb-4 text-secondary">
-                      Or through file input by importing the file to the
-                      program.
-                    </p>
-                    <a
-                      href="https://github.com/MZaFaRM/Clickery#file-input"
-                      class="link-fancy link-fancy-light"
-                      >Read more</a
-                    >
-                  </div>
-                </div>
-              </div>
+
               <div class="card bg-transparent mb-5 mt-5" data-aos="zoom-in-up">
                 <div class="bg-dark shadow rounded-5 p-0">
                   <img
                     src="images/execute_actions.gif"
                     width="582"
                     height="390"
-                    alt="abstract image"
+                    alt="a gif showing script execution"
                     class="img-fluid rounded-5 no-bottom-radius"
                     loading="lazy"
                   />
                   <div class="p-5">
-                    <h2 class="fw-lighter">Executing Script ⚡</h2>
+                    <h2 class="fw-lighter small-head">Executing Script ⚡</h2>
                     <p class="pb-4 text-secondary">
                       After recording the actions you could either add further
                       modifications or start script execution.
@@ -333,19 +299,69 @@
                   </div>
                 </div>
               </div>
+            </div>
 
+            <div class="col-12 col-md-6">
+              <div class="card bg-transparent mb-5" data-aos="zoom-in-up">
+                <div class="bg-dark shadow rounded-5 p-0">
+                  <img
+                    src="images/startup.gif"
+                    width="582"
+                    height="327"
+                    alt="a gif showing startup ui"
+                    class="img-fluid rounded-5 no-bottom-radius"
+                    loading="lazy"
+                  />
+                  <div class="p-5">
+                    <h2 class="fw-lighter small-head">Startup 🏁</h2>
+                    <p class="pb-4 text-secondary">
+                      Execute `py main.py` to start the app, after completing
+                      the setup.
+                    </p>
+                    <a
+                      href="https://github.com/MZaFaRM/Clickery"
+                      class="link-fancy link-fancy-light"
+                      >Read more</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="card bg-transparent mb-5 mt-5" data-aos="zoom-in-up">
+                <div class="bg-dark shadow rounded-5 p-0">
+                  <img
+                    src="images/file_input.gif"
+                    width="582"
+                    height="390"
+                    alt="a gif showing importing script"
+                    class="img-fluid rounded-5 no-bottom-radius"
+                    loading="lazy"
+                  />
+                  <div class="p-5">
+                    <h2 class="fw-lighter small-head">Importing Script 📜</h2>
+                    <p class="pb-4 text-secondary">
+                      Or through file input by importing the file to the
+                      program.
+                    </p>
+                    <a
+                      href="https://github.com/MZaFaRM/Clickery#file-input"
+                      class="link-fancy link-fancy-light"
+                      >Read more</a
+                    >
+                  </div>
+                </div>
+              </div>
               <div class="card bg-transparent" data-aos="zoom-in-up">
                 <div class="bg-dark shadow rounded-5 p-0">
                   <img
                     src="images/sample_execution.gif"
                     width="582"
                     height="327"
-                    alt="abstract image"
+                    alt="a gif showing the final result of executing Clickery successfully"
                     class="img-fluid rounded-5 no-bottom-radius"
                     loading="lazy"
                   />
                   <div class="p-5">
-                    <h2 class="fw-lighter">Congrats 🎉</h2>
+                    <h2 class="fw-lighter small-head">Congrats 🎉</h2>
                     <p class="pb-4 text-secondary">
                       You have successfully recorded and executed a script
                     </p>
@@ -359,12 +375,84 @@
               </div>
             </div>
           </div>
+
+          <div class="row d-flex align-items-start mt-5" data-aos="fade-up">
+            <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">
+              Sample use-cases for Clickery
+            </h1>
+            <div
+              class="row d-flex align-items-start mb-5"
+              data-aos="fade-right"
+            >
+              <h5 class="small-head">Web scraping</h5>
+              <p class="text-secondary indent">
+                Say goodbye to the headache of navigating to a webpage, filling
+                in forms, and extracting data by hand. Clickery can automate
+                this process for you in a snap.
+              </p>
+            </div>
+            <div
+              class="row d-flex align-items-start mb-5"
+              data-aos="fade-right"
+            >
+              <h5 class="small-head">Data entry</h5>
+              <p class="text-secondary indent">
+                Copying and pasting data from one spreadsheet to another or
+                entering data into a database can be a real bore. Let Clickery
+                take care of it for you so you can focus on more important
+                things.
+              </p>
+            </div>
+            <div
+              class="row d-flex align-items-start mb-5"
+              data-aos="fade-right"
+            >
+              <h5 class="small-head">Quality assurance testing</h5>
+              <p class="text-secondary indent">
+                Don't waste your precious time clicking buttons and filling out
+                forms to test website functionality. Clickery can do it for you
+                and even verify that certain elements are present on a webpage.
+              </p>
+            </div>
+            <div
+              class="row d-flex align-items-start mb-5"
+              data-aos="fade-right"
+            >
+              <h5 class="small-head">GUI testing</h5>
+              <p class="text-secondary indent">
+                Manually clicking buttons, entering text, and checking for
+                elements in a graphical user interface is a thing of the past
+                with Clickery. Let it do the work for you!
+              </p>
+            </div>
+            <div
+              class="row d-flex align-items-start mb-5"
+              data-aos="fade-right"
+            >
+              <h5 class="small-head">Gaming</h5>
+              <p class="text-secondary indent">
+                Don't waste hours farming resources, completing quests, and
+                leveling up characters in your favorite games. Clickery can take
+                over these repetitive tasks for you and help you progress more
+                quickly.
+              </p>
+            </div>
+          </div>
+          <div class="row d-flex align-items-start mb-5" data-aos="fade-up">
+            <p class="text-secondary text-center">
+              Overall, Clickery is a game-changer in any scenario where
+              repetitive tasks need to be performed quickly and accurately. With
+              Clickery, you can say goodbye to manual intervention and hello to
+              more free time and increased productivity!
+            </p>
+          </div>
         </div>
       </div>
     </main>
 
-    <footer class="bg-black border-top border-dark">
+    <footer class="bg-black border-top border-dark mt-5">
       <div class="container text-center small py-vh-2 border-top border-dark">
+        <p>&#169; No rights reserved</p>
         <p class="my-3">
           Made with ❤️ by
           <a
@@ -372,48 +460,23 @@
             class="link-fancy link-fancy-light"
             target="_blank"
             >Muhammed Zafar</a
-            >
-          </p>
-          <p>No rights reserved<br>&#169;</p>
+          >
+        </p>
         <p id="time" class="pb-4 text-secondary my-3"></p>
       </div>
     </footer>
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/aos.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
     <script>
       AOS.init({
         duration: 800, // values from 0 to 3000, with step 50ms
       });
-    </script>
-    <script>
-      let scrollpos = window.scrollY;
-      const header = document.querySelector(".navbar");
-      const header_height = header.offsetHeight;
-
-      const add_class_on_scroll = () =>
-        header.classList.add("scrolled", "shadow-sm");
-      const remove_class_on_scroll = () =>
-        header.classList.remove("scrolled", "shadow-sm");
-
-      window.addEventListener("scroll", function () {
-        scrollpos = window.scrollY;
-
-        if (scrollpos >= header_height) {
-          add_class_on_scroll();
-        } else {
-          remove_class_on_scroll();
-        }
-
-        console.log(scrollpos);
-      });
-    </script>
-    <script>
-      const time = document.getElementById("time");
-
-      setInterval(function () {
-        time.innerHTML = new Date();
-      }, 100);
     </script>
   </body>
 </html>
