@@ -34,6 +34,10 @@
     <title>Clickery</title>
     <link rel="stylesheet" href="css/theme.min.css" />
     <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css"
+    />
 
     <style>
       /* inter-300 - latin */
@@ -115,7 +119,6 @@
     class="bg-black text-white mt-0"
     data-bs-spy="scroll"
     data-bs-target="#navScroll"
-    style="overflow-x: hidden"
   >
     <nav
       id="navScroll"
@@ -128,7 +131,11 @@
           href="index.html"
         >
           <img src="images/icon.png" height="50px" />
-          <span class="ms-md-1 mt-1 fw-bolder head">CLICKERY</span>
+          <span
+            class="ms-md-1 mt-1 fw-bolder"
+            style="font-family: 'Merriweather'"
+            >CLICKERY</span
+          >
         </a>
 
         <ul
@@ -165,7 +172,7 @@
           <div class="col-12 col-lg-10 col-xl-8">
             <div class="row">
               <div class="col-12">
-                <h1 class="display-3" style="font-family: 'Merriweather'">
+                <h1 class="display-3" style="font-family: 'Merriweather'; margin-top: 5rem;">
                   Working <span class="fs-4">with</span><br />
                   <div class="row">
                     <div class="col-12 py-vh-2" style="text-align: center">
@@ -204,18 +211,6 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-12 py-vh-2" style="text-align: center">
-            <img
-              src="images/main_menu.png"
-              width="723"
-              height="491"
-              alt="abstract image"
-              class="img-fluid position-relative rounded-5 shadow"
-              data-aos="zoom-up"
-            />
-          </div>
-        </div>
         <div class="col-12 col-lg-10 col-xl-8">
           <div class="row d-flex align-items-start" data-aos="fade-right">
             <h2 class="h2 mt-5 border-top pt-5 sub-head mb-5">
@@ -242,12 +237,12 @@
         </div>
 
         <div class="row d-flex align-items-start" data-aos="fade-right">
-          <h1 class="h1 mt-5 border-top pt-5 sub-head">Mode of Input</h1>
+          <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">Mode of Input</h1>
           <p class="text-secondary indent">
             After running the program, you will be prompted to choose the mode
             of input.
           </p>
-          <h2 class="head-secondary">File Input</h2>
+          <h2 class="head-secondary mt-5 mb-5">File Input</h2>
           <p class="text-secondary indent">
             For file input, your JSON file must be formatted in the specified
             way in order to be read by the program. It is not recommended to
@@ -256,68 +251,78 @@
             <code>history.json</code> or <code>history.db</code> later. However,
             you can manually write a file following these guidelines if desired.
           </p>
-          <h6 class="head-secondary">General Guidelines</h6>
+          <h6 class="head-secondary mt-5 mb-5">General Guidelines</h6>
           <p class="text-secondary indent">
             Your file input must be a list of dictionaries, where each
             dictionary represents an action. Each dictionary may or may not
             contain an ID.
           </p>
-          <table class="mb-5">
+          <table class="mb-5 mt-5">
             <thead>
               <tr>
-                <th>Action</th>
-                <th>Syntax</th>
+                <th class="h3 small-head">Action</th>
+                <th class="h3 small-head">Syntax</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>MOVE CURSOR</td>
                 <td>
-                  <code>{'move': {'x': 935, 'y': 697}}</code>
+                  <pre><code class="json">{'move': {'x': 935, 'y': 697}}</code></pre>
                 </td>
               </tr>
               <tr>
                 <td>LEFT CLICK</td>
-                <td><code>{'click': 'left'}</code></td>
+                <td>
+                  <pre><code class="json">{'click': 'left'}</code></pre>
+                </td>
               </tr>
               <tr>
                 <td>RIGHT CLICK</td>
-                <td><code>{'click': 'right'}</code></td>
+                <td>
+                  <pre><code class="json">{'click': 'right'}</code></pre>
+                </td>
               </tr>
               <tr>
                 <td>DRAG CURSOR</td>
                 <td>
-                  <code>{'drag': {'x': 1031, 'y': 955}}</code>
+                  <pre><code class="json">{'drag': {'x': 1031, 'y': 955}}</code></pre>
                 </td>
               </tr>
               <tr>
                 <td>ENTER TEXT</td>
                 <td>
-                  <code>{'write': 'Hello World'}</code>
+                  <pre><code class="json">{'write': 'Hello World'}</code></pre>
                 </td>
               </tr>
               <tr>
                 <td>WAIT TIME</td>
-                <td><code>{'sleep': 1}</code></td>
+                <td>
+                  <pre><code class="json">{'sleep': 1}</code></pre>
+                </td>
               </tr>
               <tr>
                 <td>WAIT FOR IMAGE</td>
                 <td>
-                  <code>{'image': 'C:/Users/images/image-to-search.png'}</code>
+                  <pre><code class="json">{'image': 'C:/Users/images/image-to-search.png'}</code></pre>
                 </td>
               </tr>
               <tr>
                 <td>WAIT FOR KEY INPUT</td>
-                <td><code>{'wait_key': 1}</code></td>
+                <td>
+                  <pre><code class="json">{'wait_key': 1}</code></pre>
+                </td>
               </tr>
               <tr>
                 <td>INSERT KEY</td>
-                <td><code>{'key': 'shift'}</code></td>
+                <td>
+                  <pre><code class="json">{'key': 'shift'}</code></pre>
+                </td>
               </tr>
               <tr>
                 <td>INSERT HOTKEY</td>
                 <td>
-                  <code>{'hotkey': ['ctrl', 'C']}</code>
+                  <pre><code class="json">{'hotkey': ['ctrl', 'C']}</code></pre>
                 </td>
               </tr>
             </tbody>
@@ -434,8 +439,8 @@
             </p>
           </div>
           <div class="row d-flex align-items-start" data-aos="fade-right">
-            <h3 class="mt-5">Example</h3>
-            <pre><code>
+            <h2 class="mt-5 mb-5 small-head">Example</h2>
+            <pre><code class="json">
               [
                 {
                   "move": { "x": 1008, "y": 863 },
@@ -477,10 +482,14 @@
                   "hotkey": ["ctrl", "x"],
                   "id": 10
                 }
-              ]</code></pre>
+              ]</code>
+            </pre>
 
-            <p class="text-secondary indent">
-              <em>Note: only json files are supported for file input</em>
+            <p class="text-secondary indent mb-5">
+              <em
+                ><code>Note :</code> Only json files are supported for file
+                input</em
+              >
             </p>
           </div>
 
@@ -488,72 +497,18 @@
           <p>
             To record actions using manual input, follow these instructions:
           </p>
-          <table>
-            <thead>
-              <tr>
-                <th>id</th>
-                <th>description</th>
-                <th>call</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>MOVE CURSOR</td>
-                <td><code>1</code></td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>LEFT CLICK</td>
-                <td><code>2</code></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>RIGHT CLICK</td>
-                <td><code>3</code></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>DRAG CURSOR</td>
-                <td><code>4</code></td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>ENTER TEXT</td>
-                <td><code>5</code></td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>WAIT TIME</td>
-                <td><code>6</code></td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td>WAIT FOR IMAGE</td>
-                <td><code>7</code></td>
-              </tr>
-              <tr>
-                <td>8</td>
-                <td>WAIT FOR KEY INPUT</td>
-                <td><code>8</code></td>
-              </tr>
-              <tr>
-                <td>9</td>
-                <td>INSERT KEY</td>
-                <td><code>9</code></td>
-              </tr>
-              <tr>
-                <td>10</td>
-                <td>INSERT HOTKEY</td>
-                <td><code>0</code></td>
-              </tr>
-              <tr>
-                <td>11</td>
-                <td>DELETE LAST ACTION</td>
-                <td><code>-</code></td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="row">
+            <div class="col-12 py-vh-2" style="text-align: center">
+              <img
+                src="images/main_menu.png"
+                width="723"
+                height="491"
+                alt="abstract image"
+                class="img-fluid position-relative rounded-5 shadow"
+                data-aos="zoom-up"
+              />
+            </div>
+          </div>
           <div class="row d-flex align-items-start" data-aos="fade-right">
             <h5 class="small-head">MOVE CURSOR</h5>
             <p class="text-secondary indent">
@@ -680,7 +635,7 @@
             <a
               href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/json/history.json"
               class="link-fancy link-fancy-light"
-              ><code>history.json</code></a
+              >history.json</a
             >. These actions can be further modified by:
           </p>
           <div class="row d-flex align-items-start" data-aos="fade-right">
@@ -760,14 +715,14 @@
             <a
               href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/database/history.db"
               class="link-fancy link-fancy-light"
-              ><code>assets/database/history.db</code></a
+              >assets/database/history.db</a
             >
             in the <code>history</code> table, while the last recorded action is
             saved in the
             <a
               href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/json/history.json"
               class="link-fancy link-fancy-light"
-              ><code>assets/json/history.json</code></a
+              >assets/json/history.json</a
             >.
           </p>
         </div>
@@ -778,7 +733,7 @@
             <a
               href="https://www.python.org/downloads/"
               class="link-fancy link-fancy-light"
-              ><code>3.11.0</code></a
+              >3.11.0</a
             >. The following libraries are required to run the project:
           </p>
           <ul>
@@ -858,7 +813,7 @@
               <a
                 href="https://github.com/MZaFaRM/CLICKERY/blob/main/sample/universal/config.py"
                 class="link-fancy link-fancy-light"
-                ><code>sample\universal\config.py</code></a
+                >sample\universal\config.py</a
               >
               file.
             </p>
@@ -878,10 +833,10 @@
               <a
                 href="https://github.com/MZaFaRM/CLICKERY/blob/main/assets/database/history.db"
                 class="link-fancy link-fancy-light"
-                ><code>assets\database\history.db</code></a
+                >assets\database\history.db</a
               >, is as follows:
             </p>
-            <pre class="mt-5 mb-5"><code>CREATE TABLE history (
+            <pre class="mt-5 mb-5"><code class="sql">CREATE TABLE history (
                   actions_id INTEGER NOT NULL,
                   JSON TEXT NOT NULL,
                   PRIMARY KEY (actions_id)
@@ -970,39 +925,15 @@
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/aos.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
     <script>
       AOS.init({
         duration: 800, // values from 0 to 3000, with step 50ms
       });
-    </script>
-    <script>
-      let scrollpos = window.scrollY;
-      const header = document.querySelector(".navbar");
-      const header_height = header.offsetHeight;
-
-      const add_class_on_scroll = () =>
-        header.classList.add("scrolled", "shadow-sm");
-      const remove_class_on_scroll = () =>
-        header.classList.remove("scrolled", "shadow-sm");
-
-      window.addEventListener("scroll", function () {
-        scrollpos = window.scrollY;
-
-        if (scrollpos >= header_height) {
-          add_class_on_scroll();
-        } else {
-          remove_class_on_scroll();
-        }
-
-        console.log(scrollpos);
-      });
-    </script>
-    <script>
-      const time = document.getElementById("time");
-
-      setInterval(function () {
-        time.innerHTML = new Date();
-      }, 100);
     </script>
   </body>
 </html>
