@@ -34,20 +34,20 @@ body {
 }
 
 .head {
-  font-family: 'Merriweather';
+  font-family: "Merriweather";
 }
 
 .sub-head {
-  font-family: 'Roboto Slab';
+  font-family: "Roboto Slab";
 }
 
 code {
   color: white;
-  font-family: 'Source Code Pro', monospace;
+  font-family: "Source Code Pro", monospace;
 }
 
 .hljs {
-  background-color: #ECF2FF !important;
+  background-color: #ecf2ff !important;
   font-size: 14px;
   border-radius: 20px;
 }
@@ -55,15 +55,15 @@ code {
 .small-head {
   margin-top: 2rem;
   margin-bottom: 3rem;
-  font-family: 'Fira Sans';
+  font-family: "Fira Sans";
 }
 
 .head-secondary {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 .indent {
-    text-indent: 2em;
+  text-indent: 2em;
 }
 
 .indent a {
@@ -77,4 +77,24 @@ td {
 pre {
   display: inline-block;
   text-align: left;
+}
+
+nav.navbar {
+  background-color: "#111111";
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
 }
