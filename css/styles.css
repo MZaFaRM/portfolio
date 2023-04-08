@@ -98,3 +98,29 @@ a:hover {
 a:active {
   text-decoration: none;
 }
+
+div.about-me p {
+  font-family: "Fira Sans";
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.name {
+  font-family: "Anton";
+  color: #ffd93d;
+}
+
+.text-secondary {
+  font-family: "Fira Sans";
+  color: #f0eeed !important;
+}
+
+.index-font {
+  color: #fec260;
+  font-family: "Anton";
+}
+
+.working-font {
+  color: #7A0BC0;
+  font-family: "Delicious Handrawn";
+}
