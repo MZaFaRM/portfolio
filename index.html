@@ -10,12 +10,7 @@
       name="description"
       content="A webpage detailing the features of Clickery by Muhammed Zafar"
     />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="images/icon.png"
-    />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/icon.png" />
     <meta
       name="author"
       content="Created by: Muhammed Zafar; Inspired by: Holger Koenemann"
@@ -23,61 +18,10 @@
     <meta name="generator" content="Eleventy v2.0.0" />
     <meta name="HandheldFriendly" content="true" />
     <title>Clickery</title>
-    <link rel="stylesheet" href="css/theme.min.css" />
-    <link rel="stylesheet" href="css/styles.css" />
     <link
       rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css"
     />
-
-    <style>
-      /* inter-300 - latin */
-      @font-face {
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 300;
-        font-display: swap;
-        src: local(""), url("fonts/inter-v12-latin-300.woff2") format("woff2"),
-          /* Chrome 26+, Opera 23+, Firefox 39+ */
-            url("fonts/inter-v12-latin-300.woff") format("woff");
-        /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-      }
-
-      /* inter-400 - latin */
-      @font-face {
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: local(""),
-          url("fonts/inter-v12-latin-regular.woff2") format("woff2"),
-          /* Chrome 26+, Opera 23+, Firefox 39+ */
-            url("fonts/inter-v12-latin-regular.woff") format("woff");
-        /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-      }
-
-      @font-face {
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 500;
-        font-display: swap;
-        src: local(""), url("fonts/inter-v12-latin-500.woff2") format("woff2"),
-          /* Chrome 26+, Opera 23+, Firefox 39+ */
-            url("fonts/inter-v12-latin-500.woff") format("woff");
-        /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-      }
-
-      @font-face {
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 700;
-        font-display: swap;
-        src: local(""), url("fonts/inter-v12-latin-700.woff2") format("woff2"),
-          /* Chrome 26+, Opera 23+, Firefox 39+ */
-            url("fonts/inter-v12-latin-700.woff") format("woff");
-        /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-      }
-    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -104,6 +48,18 @@
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/theme.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
 
   <body
@@ -112,45 +68,53 @@
     data-bs-target="#navScroll"
   >
     <nav
-      id="navScroll"
-      class="navbar navbar-dark bg-black fixed-top px-vw-5"
-      tabindex="0"
+      class="navbar navbar-expand-lg navbar-dark justify-content-between m-4"
     >
-      <div class="container d-flex justify-content-between align-items-center">
-        <a
-          class="navbar-brand pe-md-4 fs-4 col-12 col-md-auto text-center"
-          href="index.html"
+      <a class="navbar-brand fs-4 ml-4" href="index.html">
+        <img src="images/icon.png" height="50px" />
+        <span class="ms-md-1 mt-1 fw-bolder" style="font-family: 'Merriweather'"
+          >CLICKERY</span
         >
-          <img src="images/icon.png" height="50px" />
-          <span
-            class="ms-md-1 mt-1 fw-bolder"
-            style="font-family: 'Merriweather'"
-            >CLICKERY</span
-          >
-        </a>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <ul
-          class="navbar-nav mb-2 mb-lg-0 list-group list-group-horizontal ms-auto"
-        >
+      <div
+        class="collapse navbar-collapse justify-content-end"
+        id="navbarSupportedContent"
+      >
+        <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link fs-8" href="index.html" aria-label="Homepage"
-              >Home</a
+            <a
+              class="nav-link head-secondary"
+              href="index.html"
+              aria-label="Homepage"
+              >HOME</a
             >
           </li>
           <li class="nav-item">
             <a
-              class="nav-link fs-8"
+              class="nav-link head-secondary"
               href="content.html"
               aria-label="A sample content page"
-              >Docs</a
+              >DOCS</a
             >
           </li>
           <li class="nav-item">
             <a
-              class="nav-link fs-8"
+              class="nav-link head-secondary"
               href="system.html"
               aria-label="A system message page"
-              >About me</a
+              >ABOUT ME</a
             >
           </li>
         </ul>
@@ -165,9 +129,7 @@
         <div
           class="position-absolute w-100 h-100 bg-black opacity-75 top-0 start-0"
         ></div>
-        <div
-          class="container py-vh-4 position-relative mt-5 px-vw-5 text-center"
-        >
+        <div class="container position-relative mt-5 px-vw-5 text-center">
           <div
             class="w-100 position-relative bg-black text-white bg-cover d-flex align-items-center"
           >
@@ -175,7 +137,7 @@
               <div
                 class="row d-flex align-items-center position-relative justify-content-center px-0 g-5"
               >
-                <div class="col-12 col-lg-6" style="margin-top: 5rem">
+                <div class="col-12 col-lg-6">
                   <img
                     src="images/main.png"
                     width="2280"
@@ -200,12 +162,12 @@
               </h1>
             </div>
             <div class="col-12 col-xl-8">
-              <p class="lead text-secondary">
+              <p class="lead text-secondary mt-5">
                 Automate with ease; automate repetitive tasks on your computer
                 with Clickery - a Python-based automation tool.
               </p>
             </div>
-            <div class="col-12 text-center">
+            <div class="col-12 text-center mt-5">
               <a href="content.html" class="btn btn-xl btn-light raise"
                 >Get started
                 <svg
@@ -224,7 +186,7 @@
               </a>
             </div>
             <div>
-              <p class="text-xs pb-5 text-secondary mt-3">
+              <p class="text-xs pb-5 text-secondary mt-5">
                 Check out the
                 <a
                   href="https://github.com/MZaFaRM/Product-web"
@@ -237,19 +199,49 @@
         </div>
       </div>
 
-      <div class="bg-black py-vh-3">
-        <div class="container bg-black px-vw-5 py-vh-3 rounded-5 shadow">
+      <div class="bg-black">
+        <div class="container bg-black px-vw-5 rounded-5 shadow">
           <div class="row gx-5">
             <div class="col-12 col-md-6">
               <div class="p-5 pt-0 mt-5" data-aos="fade">
                 <span class="h4 text-secondary fw-lighter"
                   >Working with Clickery</span
                 >
-                <h2 class="display-3 head-secondary">
+                <h2 class="display-4 head-secondary index-font">
                   Here's a brief overview on how to use Clickery
                 </h2>
               </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="card bg-transparent mb-5" data-aos="zoom-in-up">
+                <div class="bg-dark shadow rounded-5 p-0">
+                  <img
+                    src="images/startup.gif"
+                    width="582"
+                    height="327"
+                    alt="a gif showing startup ui"
+                    class="img-fluid rounded-5 no-bottom-radius"
+                    loading="lazy"
+                  />
+                  <div class="p-5">
+                    <h2 class="fw-lighter small-head">Startup 🏁</h2>
+                    <p class="pb-4 text-secondary">
+                      Execute `py main.py` to start the app, after completing
+                      the setup.
+                    </p>
+                    <a
+                      href="https://github.com/MZaFaRM/Clickery"
+                      class="link-fancy link-fancy-light"
+                      >Read more</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
+          <div class="row gx-5">
+            <div class="col-12 col-md-6">
               <div class="card bg-transparent mb-5 mt-5" data-aos="zoom-in-up">
                 <div class="bg-dark shadow rounded-5 p-0">
                   <img
@@ -274,7 +266,38 @@
                   </div>
                 </div>
               </div>
+            </div>
 
+            <div class="col-12 col-md-6 mt-5">
+              <div class="card bg-transparent mb-5 mt-5" data-aos="zoom-in-up">
+                <div class="bg-dark shadow rounded-5 p-0">
+                  <img
+                    src="images/file_input.gif"
+                    width="582"
+                    height="390"
+                    alt="a gif showing importing script"
+                    class="img-fluid rounded-5 no-bottom-radius"
+                    loading="lazy"
+                  />
+                  <div class="p-5">
+                    <h2 class="fw-lighter small-head">Importing Script 📜</h2>
+                    <p class="pb-4 text-secondary">
+                      Or through file input by importing the file to the
+                      program.
+                    </p>
+                    <a
+                      href="https://github.com/MZaFaRM/Clickery#file-input"
+                      class="link-fancy link-fancy-light"
+                      >Read more</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row gx-5">
+            <div class="col-12 col-md-6">
               <div class="card bg-transparent mb-5 mt-5" data-aos="zoom-in-up">
                 <div class="bg-dark shadow rounded-5 p-0">
                   <img
@@ -301,57 +324,9 @@
               </div>
             </div>
 
-            <div class="col-12 col-md-6">
-              <div class="card bg-transparent mb-5" data-aos="zoom-in-up">
-                <div class="bg-dark shadow rounded-5 p-0">
-                  <img
-                    src="images/startup.gif"
-                    width="582"
-                    height="327"
-                    alt="a gif showing startup ui"
-                    class="img-fluid rounded-5 no-bottom-radius"
-                    loading="lazy"
-                  />
-                  <div class="p-5">
-                    <h2 class="fw-lighter small-head">Startup 🏁</h2>
-                    <p class="pb-4 text-secondary">
-                      Execute `py main.py` to start the app, after completing
-                      the setup.
-                    </p>
-                    <a
-                      href="https://github.com/MZaFaRM/Clickery"
-                      class="link-fancy link-fancy-light"
-                      >Read more</a
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="card bg-transparent mb-5 mt-5" data-aos="zoom-in-up">
-                <div class="bg-dark shadow rounded-5 p-0">
-                  <img
-                    src="images/file_input.gif"
-                    width="582"
-                    height="390"
-                    alt="a gif showing importing script"
-                    class="img-fluid rounded-5 no-bottom-radius"
-                    loading="lazy"
-                  />
-                  <div class="p-5">
-                    <h2 class="fw-lighter small-head">Importing Script 📜</h2>
-                    <p class="pb-4 text-secondary">
-                      Or through file input by importing the file to the
-                      program.
-                    </p>
-                    <a
-                      href="https://github.com/MZaFaRM/Clickery#file-input"
-                      class="link-fancy link-fancy-light"
-                      >Read more</a
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="card bg-transparent" data-aos="zoom-in-up">
-                <div class="bg-dark shadow rounded-5 p-0">
+            <div class="col-12 col-md-6 mt-5">
+              <div class="card bg-transparent mt-5" data-aos="zoom-in-up">
+                <div class="bg-dark shadow rounded-5 p-0 mt-5">
                   <img
                     src="images/sample_execution.gif"
                     width="582"
@@ -376,92 +351,76 @@
             </div>
           </div>
 
-          <div class="row d-flex align-items-start mt-5" data-aos="fade-up">
-            <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">
-              Sample use-cases for Clickery
-            </h1>
-            <div
-              class="row d-flex align-items-start mb-5"
-              data-aos="fade-right"
-            >
-              <h5 class="small-head">Web scraping</h5>
-              <p class="text-secondary indent">
-                Say goodbye to the headache of navigating to a webpage, filling
-                in forms, and extracting data by hand. Clickery can automate
-                this process for you in a snap.
-              </p>
-            </div>
-            <div
-              class="row d-flex align-items-start mb-5"
-              data-aos="fade-right"
-            >
-              <h5 class="small-head">Data entry</h5>
-              <p class="text-secondary indent">
-                Copying and pasting data from one spreadsheet to another or
-                entering data into a database can be a real bore. Let Clickery
-                take care of it for you so you can focus on more important
-                things.
-              </p>
-            </div>
-            <div
-              class="row d-flex align-items-start mb-5"
-              data-aos="fade-right"
-            >
-              <h5 class="small-head">Quality assurance testing</h5>
-              <p class="text-secondary indent">
-                Don't waste your precious time clicking buttons and filling out
-                forms to test website functionality. Clickery can do it for you
-                and even verify that certain elements are present on a webpage.
-              </p>
-            </div>
-            <div
-              class="row d-flex align-items-start mb-5"
-              data-aos="fade-right"
-            >
-              <h5 class="small-head">GUI testing</h5>
-              <p class="text-secondary indent">
-                Manually clicking buttons, entering text, and checking for
-                elements in a graphical user interface is a thing of the past
-                with Clickery. Let it do the work for you!
-              </p>
-            </div>
-            <div
-              class="row d-flex align-items-start mb-5"
-              data-aos="fade-right"
-            >
-              <h5 class="small-head">Gaming</h5>
-              <p class="text-secondary indent">
-                Don't waste hours farming resources, completing quests, and
-                leveling up characters in your favorite games. Clickery can take
-                over these repetitive tasks for you and help you progress more
-                quickly.
-              </p>
-            </div>
+        <div class="row d-flex align-items-start mt-5" data-aos="fade-up">
+          <h1 class="h1 mt-5 border-top pt-5 sub-head mb-5">
+            Sample use-cases for Clickery
+          </h1>
+          <div class="row d-flex align-items-start mb-5" data-aos="fade-right">
+            <h5 class="small-head">Web scraping</h5>
+            <p class="text-secondary indent">
+              Say goodbye to the headache of navigating to a webpage, filling in
+              forms, and extracting data by hand. Clickery can automate this
+              process for you in a snap.
+            </p>
           </div>
-          <div class="row d-flex align-items-start mb-5" data-aos="fade-up">
-            <p class="text-secondary text-center">
-              Overall, Clickery is a game-changer in any scenario where
-              repetitive tasks need to be performed quickly and accurately. With
-              Clickery, you can say goodbye to manual intervention and hello to
-              more free time and increased productivity!
+          <div class="row d-flex align-items-start mb-5" data-aos="fade-right">
+            <h5 class="small-head">Data entry</h5>
+            <p class="text-secondary indent">
+              Copying and pasting data from one spreadsheet to another or
+              entering data into a database can be a real bore. Let Clickery
+              take care of it for you so you can focus on more important things.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start mb-5" data-aos="fade-right">
+            <h5 class="small-head">Quality assurance testing</h5>
+            <p class="text-secondary indent">
+              Don't waste your precious time clicking buttons and filling out
+              forms to test website functionality. Clickery can do it for you
+              and even verify that certain elements are present on a webpage.
+            </p>
+          </div>
+          <div class="row d-flex align-items-start mb-5" data-aos="fade-right">
+            <h5 class="small-head">GUI testing</h5>
+            <p class="text-secondary indent">
+              Manually clicking buttons, entering text, and checking for
+              elements in a graphical user interface is a thing of the past with
+              Clickery. Let it do the work for you!
+            </p>
+          </div>
+          <div class="row d-flex align-items-start mb-5" data-aos="fade-right">
+            <h5 class="small-head">Gaming</h5>
+            <p class="text-secondary indent">
+              Don't waste hours farming resources, completing quests, and
+              leveling up characters in your favorite games. Clickery can take
+              over these repetitive tasks for you and help you progress more
+              quickly.
             </p>
           </div>
         </div>
+        <div class="row d-flex align-items-start mb-5" data-aos="fade-up">
+          <p class="text-secondary text-center">
+            Overall, Clickery is a game-changer in any scenario where repetitive
+            tasks need to be performed quickly and accurately. With Clickery,
+            you can say goodbye to manual intervention and hello to more free
+            time and increased productivity!
+          </p>
+        </div>
+      </div>
       </div>
     </main>
 
     <footer class="bg-black border-top border-dark mt-5">
       <div class="container text-center small py-vh-2 border-top border-dark">
-        <p>&#169; No rights reserved</p>
         <p class="my-3">
           Made with ❤️ by
           <a
-            href="https://github.com/MZaFaRM"
-            class="link-fancy link-fancy-light"
-            target="_blank"
-            >Muhammed Zafar</a
+          href="https://github.com/MZaFaRM"
+          class="link-fancy link-fancy-light"
+          target="_blank"
+          >Muhammed Zafar</a
           >
         </p>
+        <p class="text-secondary">Some rights reserved.<br>&#169;</p>
         <p id="time" class="pb-4 text-secondary my-3"></p>
       </div>
     </footer>
@@ -478,5 +437,20 @@
         duration: 800, // values from 0 to 3000, with step 50ms
       });
     </script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
