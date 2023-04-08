@@ -112,7 +112,7 @@ div.about-me p {
 
 .text-secondary {
   font-family: "Fira Sans";
-  color: #f0eeed !important;
+  color: #b2b2b2 !important;
 }
 
 .index-font {
@@ -121,6 +121,16 @@ div.about-me p {
 }
 
 .working-font {
-  color: #FB7813;
+  color: #fb7813;
   font-family: "Delicious Handrawn";
+}
+
+ul.hidden-list li {
+  margin-left: 3rem;
+  margin-bottom: 1rem;
+}
+
+ol.hidden-list li {
+  margin-left: 3rem;
+  margin-bottom: 1rem;
 }
