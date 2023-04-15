@@ -18,16 +18,15 @@ body {
   min-height: 100vh;
 }
 
-@media screen and (max-width: 532px) {
+@media screen and (max-width: 542px) {
   * {
     font-size: 12px;
   }
   .title-card-small {
     font-size: 10px;
-    /* transform: scale(0.6);
-    transform-origin: top left;
-    line-height: 1;
-    letter-spacing: -1px; */
+  }
+  .title-card-large {
+    font-size: 11px;
   }
 }
 
