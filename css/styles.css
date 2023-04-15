@@ -18,20 +18,26 @@ body {
   min-height: 100vh;
 }
 
-@media screen and (max-width: 832px) {
+@media screen and (max-width: 532px) {
   * {
-    font-size: 10px;
+    font-size: 12px;
+  }
+  p.prompt-output span.title-card span {
+    font-size: 9px;
   }
 }
 
 .prompt-text {
-  display: inline-block;
   margin-right: 10px;
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .prompt-input {
   display: inline-block;
   padding: 5px;
+  width: 5px;
+  margin-left: 10px;
   flex: 1 1 0;
   background-color: transparent;
   color: #f9ed69;
@@ -43,9 +49,16 @@ body {
   margin: 0;
 }
 
+.prompt-input::before {
+  content: "\A";
+  white-space: pre;
+}
+
 .prompt-taker {
   display: flex;
   align-items: center;
+  overflow: hidden;
+  flex-wrap: wrap;
 }
 
 .pre {
@@ -64,4 +77,12 @@ main {
 
 footer {
   height: 40vh;
+}
+
+#banner {
+  font-size: 16px;
+}
+
+#banner.overflow {
+  font-size: 12px;
 }

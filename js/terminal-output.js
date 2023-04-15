@@ -7,7 +7,8 @@ const titleCard = [
   "╚█████╔╝███████╗██║╚█████╔╝██║░╚██╗███████╗██║░░██║░░░██║░░░",
   "░╚════╝░╚══════╝╚═╝░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝░░░╚═╝░░░",
   "",
-  "",
+  ""]
+const mainText = [
   "Streamline your computer tasks effortlessly using Clickery, the Python-based automation tool designed to simplify repetitive processes.",
   "",
   "",
@@ -21,4 +22,4 @@ const titleCard = [
   "--",
 ];
 
-export { titleCard };
+export { titleCard, mainText };
