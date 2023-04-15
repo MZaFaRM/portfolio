@@ -1,9 +1,9 @@
-import { titleCard } from './terminal-output.js';
+import { titleCard, mainText } from "./terminal-output.js";
 
 const PromptDefault =
   convertHexToSpan("[#d79921]clickery") +
   "@" +
-  convertHexToSpan("[#98971a]https://github.com/MZaFaRM") +
+  convertHexToSpan("[#98971a]clickery-webpage") +
   "$ ~ ";
 
 const commandList = ["banner", "getting-started"];
@@ -18,7 +18,7 @@ class PromptConnector {
     this.promptIndex = 0;
     this.promptContainer = document.createElement("div");
     this.promptContainer.classList.add("prompt-container");
-    var main = document.querySelector('main');
+    var main = document.querySelector("main");
     main.appendChild(this.promptContainer);
     this.createPrompt();
   }
@@ -55,24 +55,29 @@ class PromptConnector {
       const promptInput = event.target;
       if (commandList.includes(promptInput.value)) {
         if (promptInput.value === "banner") {
+          let banner = "<span class='title-card'>";
+          for (let i = 0; i < titleCard.length; i++) {
+            banner += convertHexToSpan("[#ebdbb2]" + titleCard[i]) + "<br>";
+          }
+          banner += "</span>";
+          this.currentPromptOutput.innerHTML += banner;
+
+          for (let i = 0; i < mainText.length; i++) {
+            this.currentPromptOutput.innerHTML +=
+              convertHexToSpan("[#ebdbb2]" + mainText[i]) + "<br>";
+          }
+        } else if (promptInput.value === "getting-started") {
           for (let i = 0; i < titleCard.length; i++) {
             this.currentPromptOutput.innerHTML +=
               convertHexToSpan("[#ebdbb2]" + titleCard[i]) + "<br>";
           }
         }
-        else if (promptInput.value === "getting-started") {
-          for (let i = 0; i < titleCard.length; i++) {
-            this.currentPromptOutput.innerHTML +=
-              convertHexToSpan("[#ebdbb2]" + titleCard[i]) + "<br>";
-          }
-        }
-        // this.currentPromptOutput.classList.add("pre");
       } else {
         this.currentPromptOutput.innerHTML =
           convertHexToSpan("[#ebdbb2]clickery") +
           ": " +
           promptInput.value +
-          convertHexToSpan("[#E86A33] command not found")
+          convertHexToSpan("[#E86A33] command not found");
       }
       promptInput.disabled = true;
       this.createPrompt();
