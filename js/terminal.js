@@ -60,7 +60,7 @@ class PromptConnector {
         if (promptInput.value === "banner") {
           let banner = "";
           var screenWidth = window.innerWidth;
-          if (screenWidth > 420) {
+          if (screenWidth > 422) {
           for (let i = 0; i < titleCard.length; i++) {
             banner += convertHexToSpan("[#ebdbb2]" + titleCard[i], "title-card-large") + "<br>";
           }
