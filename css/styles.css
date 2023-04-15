@@ -20,7 +20,7 @@ body {
 
 @media screen and (max-width: 542px) {
   * {
-    font-size: 12px;
+    font-size: 14px;
   }
   .title-card-small {
     font-size: 100px;
