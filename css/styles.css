@@ -23,11 +23,16 @@ body {
     font-size: 12px;
   }
   .title-card-small {
-    font-size: 10px;
+    font-size: 100px;
   }
   .title-card-large {
     font-size: 11px;
   }
+}
+
+.title-card-small {
+  font-family: 'Nabla', cursive;
+  font-size: 50px;
 }
 
 .prompt-text {
