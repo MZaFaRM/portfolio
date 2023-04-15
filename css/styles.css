@@ -22,8 +22,12 @@ body {
   * {
     font-size: 12px;
   }
-  p.prompt-output span.title-card span {
-    font-size: 9px;
+  .title-card-small {
+    font-size: 10px;
+    /* transform: scale(0.6);
+    transform-origin: top left;
+    line-height: 1;
+    letter-spacing: -1px; */
   }
 }
 

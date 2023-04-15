@@ -8,6 +8,13 @@ const titleCard = [
   "░╚════╝░╚══════╝╚═╝░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝░░░╚═╝░░░",
   "",
   ""]
+const titleCardSmall = [
+  "",
+  "░█▀▀█ ░█─── ▀█▀ ░█▀▀█ ░█─▄▀ ░█▀▀▀ ░█▀▀█ ░█──░█ ",
+  "░█─── ░█─── ░█─ ░█─── ░█▀▄─ ░█▀▀▀ ░█▄▄▀ ░█▄▄▄█ ",
+  "░█▄▄█ ░█▄▄█ ▄█▄ ░█▄▄█ ░█─░█ ░█▄▄▄ ░█─░█ ──░█──",
+  "",
+  ""]
 const mainText = [
   "Streamline your computer tasks effortlessly using Clickery, the Python-based automation tool designed to simplify repetitive processes.",
   "",
@@ -22,4 +29,4 @@ const mainText = [
   "--",
 ];
 
-export { titleCard, mainText };
+export { titleCard, mainText, titleCardSmall };
