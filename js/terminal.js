@@ -1,24 +1,12 @@
-const PromptDefault = "PS C:\\Users\\thinkpad> ";
+import { titleCard } from './terminal-output.js';
 
-const titleCard = [
-  "[#F9ED69]               ,--,                                                               |          ",
-  "[#F9ED69]            ,---.'|                                ,--.                          - -         ",
-  "[#F9ED69]  ,----..   |   | :       ,---,   ,----..      ,--/  /|     ,---,. ,-.----.       |          ",
-  "[#F9ED69] /   /   \\  :   : |    ,`--.' |  /   /   \\  ,---,': / '   ,'  .' | \\    /  \\           ,---, ",
-  "[#F08A5D]|   :     : |   ' :    |   :  : |   :     : :   : '/ /  ,---.'   | ;   :    \\         /_ ./| ",
-  "[#F08A5D].   |  ;. / ;   ; '    :   |  ' .   |  ;. / |   '   ,   |   |   .' |   | .\\ :   ,---, |  ' : ",
-  "[#F08A5D].   ; /--`  '   | |__  |   :  | .   ; /--`  '   |  /    :   :  |-, .   : |: |  /___/ \\.  : | ",
-  "[#F08A5D];   | ;     |   | :.'| '   '  ; ;   | ;     |   ;  ;    :   |  ;/| |   |  \\ :   .  \\  \\ ,' ' ",
-  "[#B83B5E]|   : |     '   :    ; |   |  | |   : |     :   '   \\   |   :   .' |   : .  /    \\  ;  `  ,' ",
-  "[#B83B5E].   | '___  |   |  ./  '   :  ; .   | '___  |   |    '  |   |  |-, ;   | |  \\     \\  \\    '  ",
-  "[#B83B5E]'   ; : .'| ;   : ;    |   |  ' '   ; : .'| '   : |.  \\ '   :  ;/| |   | ;\\  \\     '  \\   |  ",
-  "[#B83B5E]'   | '/  : |   ,/     '   :  | '   | '/  : |   | '_\\.' |   |    \\ :   ' | \\.'      \\  ;  ;  ",
-  "[#6A2C70]|   :    /  '---'      ;   |.'  |   :    /  '   : |     |   :   .' :   : :-'         :  \\  \\ ",
-  "[#6A2C70] \\   \\ .'              '---'     \\   \\ .'   ;   |,'     |   | ,'   |   |.'            \\  ' ; ",
-  "[#6A2C70]  `---`                           `---`     '---'       `----'     `---'               `--`  ",
-];
+const PromptDefault =
+  convertHexToSpan("[#d79921]clickery") +
+  "@" +
+  convertHexToSpan("[#98971a]https://github.com/MZaFaRM") +
+  "$ ~ ";
 
-const commandList = ["banner"];
+const commandList = ["banner", "getting-started"];
 
 function convertHexToSpan(text) {
   const regex = /\[#([\dA-Fa-f]{6})\]/g; // regex to match color codes
@@ -30,7 +18,8 @@ class PromptConnector {
     this.promptIndex = 0;
     this.promptContainer = document.createElement("div");
     this.promptContainer.classList.add("prompt-container");
-    document.body.appendChild(this.promptContainer);
+    var main = document.querySelector('main');
+    main.appendChild(this.promptContainer);
     this.createPrompt();
   }
 
@@ -39,7 +28,7 @@ class PromptConnector {
     promptWrapper.classList.add("prompt-wrapper");
     const promptText = document.createElement("div");
     promptText.classList.add("prompt-text");
-    promptText.textContent = PromptDefault;
+    promptText.innerHTML = PromptDefault;
     const promptTaker = document.createElement("div");
     promptTaker.classList.add("prompt-taker");
     const promptInput = document.createElement("input");
@@ -68,16 +57,22 @@ class PromptConnector {
         if (promptInput.value === "banner") {
           for (let i = 0; i < titleCard.length; i++) {
             this.currentPromptOutput.innerHTML +=
-              convertHexToSpan(titleCard[i]) + "<br>";
+              convertHexToSpan("[#ebdbb2]" + titleCard[i]) + "<br>";
           }
         }
-        this.currentPromptOutput.classList.add("pre");
+        else if (promptInput.value === "getting-started") {
+          for (let i = 0; i < titleCard.length; i++) {
+            this.currentPromptOutput.innerHTML +=
+              convertHexToSpan("[#ebdbb2]" + titleCard[i]) + "<br>";
+          }
+        }
+        // this.currentPromptOutput.classList.add("pre");
       } else {
         this.currentPromptOutput.innerHTML =
-          convertHexToSpan("[#F7C04A]clickery") +
+          convertHexToSpan("[#ebdbb2]clickery") +
           ": " +
           promptInput.value +
-          convertHexToSpan("[#E86A33] command not found") + "<br>";
+          convertHexToSpan("[#E86A33] command not found")
       }
       promptInput.disabled = true;
       this.createPrompt();
