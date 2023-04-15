@@ -1,4 +1,4 @@
-import { titleCard, mainText } from "./terminal-output.js";
+import { titleCard, mainText, titleCardSmall } from "./terminal-output.js";
 
 const PromptDefault =
   convertHexToSpan("[#d79921]clickery") +
@@ -8,9 +8,12 @@ const PromptDefault =
 
 const commandList = ["banner", "getting-started"];
 
-function convertHexToSpan(text) {
+function convertHexToSpan(text, classes = "") {
   const regex = /\[#([\dA-Fa-f]{6})\]/g; // regex to match color codes
+  if (!classes) {
   return text.replace(regex, '<span style="color: #$1">') + "</span>";
+  }
+  return text.replace(regex, '<span style="color: #$1" class="'+ classes + '">') + "</span>";
 }
 
 class PromptConnector {
@@ -55,17 +58,23 @@ class PromptConnector {
       const promptInput = event.target;
       if (commandList.includes(promptInput.value)) {
         if (promptInput.value === "banner") {
-          let banner = "<span class='title-card'>";
+          let banner = "";
+          var screenWidth = window.innerWidth;
+          if (screenWidth > 532) {
           for (let i = 0; i < titleCard.length; i++) {
             banner += convertHexToSpan("[#ebdbb2]" + titleCard[i]) + "<br>";
           }
-          banner += "</span>";
-          this.currentPromptOutput.innerHTML += banner;
-
-          for (let i = 0; i < mainText.length; i++) {
-            this.currentPromptOutput.innerHTML +=
-              convertHexToSpan("[#ebdbb2]" + mainText[i]) + "<br>";
+        }
+        else {
+          for (let i = 0; i < titleCardSmall.length; i++) {
+            banner += convertHexToSpan("[#ebdbb2]" + titleCardSmall[i], "title-card-small") + "<br>";
           }
+        }
+          for (let i = 0; i < mainText.length; i++) {
+            banner +=
+            convertHexToSpan("[#ebdbb2]" + mainText[i]) + "<br>";
+          }
+          this.currentPromptOutput.innerHTML += banner;
         } else if (promptInput.value === "getting-started") {
           for (let i = 0; i < titleCard.length; i++) {
             this.currentPromptOutput.innerHTML +=
