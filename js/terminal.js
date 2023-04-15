@@ -56,11 +56,12 @@ class PromptConnector {
     if (event.keyCode === 13) {
       event.preventDefault();
       const promptInput = event.target;
+      promptInput.value = promptInput.value.toLowerCase()
       if (commandList.includes(promptInput.value)) {
         if (promptInput.value === "banner") {
           let banner = "";
           var screenWidth = window.innerWidth;
-          if (screenWidth > 422) {
+          if (screenWidth > 465) {
           for (let i = 0; i < titleCard.length; i++) {
             banner += convertHexToSpan("[#ebdbb2]" + titleCard[i], "title-card-large") + "<br>";
           }
