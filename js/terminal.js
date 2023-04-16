@@ -1,7 +1,6 @@
 import {
   titleCard,
   mainText,
-  titleCardSmall,
   gettingStarted,
 } from "./terminal-output.js";
 
@@ -11,7 +10,7 @@ const PromptDefault =
   convertHexToSpan("[#98971a]clickery-webpage") +
   "$ ~ ";
 
-const commandList = ["banner", "start"];
+const commandList = ["banner", "start", "help", "clear"];
 
 function convertHexToSpan(text, classes = "") {
   const regex = /\[#([\dA-Fa-f]{6})\]/g; // regex to match color codes
@@ -24,6 +23,8 @@ function convertHexToSpan(text, classes = "") {
   );
 }
 
+const initialBody = document.body.innerHTML;
+
 class PromptConnector {
   constructor() {
     this.promptIndex = 0;
@@ -32,7 +33,10 @@ class PromptConnector {
     var main = document.querySelector("main");
     main.appendChild(this.promptContainer);
     this.createPrompt();
+
+
     this.showTitleCard();
+
   }
 
   createPrompt() {
@@ -64,21 +68,10 @@ class PromptConnector {
 
   showTitleCard() {
     let banner = "";
-    var screenWidth = window.innerWidth;
-    if (screenWidth > 465) {
-      for (let i = 0; i < titleCard.length; i++) {
-        banner +=
-          convertHexToSpan("[#ebdbb2]" + titleCard[i], "title-card-large") +
-          "<br>";
-      }
-    } else {
-      for (let i = 0; i < titleCardSmall.length; i++) {
-        banner +=
-          convertHexToSpan(
-            "[#ebdbb2]" + titleCardSmall[i],
-            "title-card-small"
-          ) + "<br>";
-      }
+    this.promptInput.value = "banner"
+    for (let i = 0; i < titleCard.length; i++) {
+      banner +=
+        convertHexToSpan("[#ebdbb2]" + titleCard[i], "fancy-3d") + "<br>";
     }
     for (let i = 0; i < mainText.length; i++) {
       banner += convertHexToSpan("[#ebdbb2]" + mainText[i]) + "<br>";
@@ -96,23 +89,38 @@ class PromptConnector {
     if (event.keyCode === 13) {
       event.preventDefault();
       const promptInput = event.target;
-      promptInput.value = promptInput.value.toLowerCase();
-      if (commandList.includes(promptInput.value)) {
-        if (promptInput.value === "banner") {
+      let promptText = promptInput.value.toLowerCase();
+      if (commandList.includes(promptText)) {
+        if (promptText === "banner") {
           this.showTitleCard();
-        } else if (promptInput.value === "start") {
+        } 
+        else if (promptText === "start") {
           let HTMLOutput = "";
           for (let i = 0; i < gettingStarted.length; i++) {
             HTMLOutput +=
-              convertHexToSpan("[#ebdbb2]" + gettingStarted[i]) + "<br>";
+              convertHexToSpan(gettingStarted[i]) + "<br>";
           }
           this.currentPromptOutput.innerHTML += HTMLOutput;
         }
-      } else {
+        else if (promptText === "help") {
+          let HTMLOutput = "";
+          for (let i = 0; i < commandList.length; i++) {
+            HTMLOutput +=
+              convertHexToSpan("\t" + commandList[i]) + "<br><br>";
+          }
+          this.currentPromptOutput.innerHTML += HTMLOutput;
+        }
+        else if (promptText === "clear") {
+          document.body.innerHTML = initialBody;
+          this.promptIndex = 0;
+          const promptConnector = new PromptConnector();
+        }
+      }
+      else {
         this.currentPromptOutput.innerHTML =
           convertHexToSpan("[#ebdbb2]clickery") +
           ": " +
-          promptInput.value +
+          promptText +
           convertHexToSpan("[#E86A33] command not found");
       }
       promptInput.disabled = true;
@@ -120,15 +128,6 @@ class PromptConnector {
       this.promptIndex++;
     }
   }
-}
-
-function copyToClipboard(text) {
-  const input = document.createElement('textarea');
-  input.value = text;
-  document.body.appendChild(input);
-  input.select();
-  document.execCommand('copy');
-  document.body.removeChild(input);
 }
 
 const promptConnector = new PromptConnector();
