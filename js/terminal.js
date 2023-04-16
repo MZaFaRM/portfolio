@@ -99,7 +99,7 @@ class PromptConnector {
       promptInput.value = promptInput.value.toLowerCase();
       if (commandList.includes(promptInput.value)) {
         if (promptInput.value === "banner") {
-          showTitleCard();
+          this.showTitleCard();
         } else if (promptInput.value === "start") {
           let HTMLOutput = "";
           for (let i = 0; i < gettingStarted.length; i++) {

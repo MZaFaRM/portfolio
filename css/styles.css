@@ -126,3 +126,8 @@ a.copy-clip {
     background-position: 0 0;
   }
 }
+
+
+.prompt-output {
+  width: min(550px, 100%);
+}
