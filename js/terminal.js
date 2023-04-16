@@ -89,7 +89,7 @@ class PromptConnector {
     if (event.keyCode === 13) {
       event.preventDefault();
       const promptInput = event.target;
-      let promptText = promptInput.value.toLowerCase();
+      let promptText = promptInput.value.toLowerCase().trim();
       if (commandList.includes(promptText)) {
         if (promptText === "banner") {
           this.showTitleCard();
