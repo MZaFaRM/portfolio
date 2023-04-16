@@ -1,5 +1,6 @@
 * {
   font-size: 14px;
+  color: #ebdbb2;
 }
 
 body {
@@ -31,7 +32,7 @@ body {
 }
 
 .title-card-small {
-  font-family: 'Nabla', cursive;
+  font-family: "Nabla", cursive;
   font-size: 50px;
 }
 
@@ -74,10 +75,6 @@ body {
   white-space: pre;
 }
 
-a {
-  color: #d79921;
-}
-
 main {
   overflow: auto;
   box-sizing: border-box;
@@ -87,10 +84,45 @@ footer {
   height: 40vh;
 }
 
-#banner {
-  font-size: 16px;
+a:link {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+a:active {
+  text-decoration: none;
 }
 
-#banner.overflow {
-  font-size: 12px;
+a {
+  -webkit-animation: 1.5s highlight 1.5s 1 normal forwards;
+  animation: 1.5s highlight 1.5s 1 normal forwards;
+  background-color: none;
+  background: linear-gradient(90deg, #856015 50%, rgba(255, 255, 255, 0) 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+}
+
+a.copy-clip {
+  -webkit-animation: 1.5s highlight 1.5s 1 normal forwards;
+  animation: 1.5s highlight 1.5s 1 normal forwards;
+  background-color: none;
+  background: linear-gradient(90deg, #3C486B 50%, rgba(255, 255, 255, 0) 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+}
+
+@-webkit-keyframes highlight {
+  to {
+    background-position: 0 0;
+  }
+}
+
+@keyframes highlight {
+  to {
+    background-position: 0 0;
+  }
 }
