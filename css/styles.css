@@ -21,7 +21,7 @@ body {
 
 @media screen and (max-width: 542px) {
   * {
-    font-size: 16px;
+    font-size: 15px;
   }
   .title-card-small {
     font-size: 100px;
@@ -31,9 +31,9 @@ body {
   }
 }
 
-.title-card-small {
-  font-family: "Nabla", cursive;
-  font-size: 50px;
+.fancy-3d {
+  font-family: "Mexcellent 3D", cursive;
+  font-size: max(80px, 8vw);
 }
 
 .prompt-text {
@@ -130,4 +130,9 @@ a.copy-clip {
 
 .prompt-output {
   width: min(550px, 100%);
+  overflow: hidden;
+}
+
+input {
+  caret-shape: underscore;
 }
