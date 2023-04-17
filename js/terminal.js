@@ -112,7 +112,7 @@ class PromptConnector {
         }
         else if (promptText === "clear") {
           document.body.innerHTML = initialBody;
-          this.promptIndex = 0;
+          this.promptIndex = 1;
           const promptConnector = new PromptConnector();
         }
       }
