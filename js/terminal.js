@@ -31,10 +31,9 @@ class PromptConnector {
     this.promptContainer.classList.add("prompt-container");
     var main = document.querySelector("main");
     main.appendChild(this.promptContainer);
-    this.createPrompt();
-
     this.initialBody = document.body.innerHTML;
 
+    this.createPrompt();
     this.showTitleCard();
 
   }
@@ -112,8 +111,7 @@ class PromptConnector {
         }
         else if (promptText === "clear") {
           document.body.innerHTML = this.initialBody;
-          this.promptIndex = 0;
-          this.createPrompt();
+          this.promptIndex = -1;
         }
       }
       else {
