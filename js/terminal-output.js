@@ -1,7 +1,6 @@
 const titleCard = ["CLICKERY"];
 const mainText = [
   "",
-  "--",
   "",
   "Clickery 💻 automates your repetitive computer tasks!",
   "",
