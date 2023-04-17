@@ -23,7 +23,6 @@ function convertHexToSpan(text, classes = "") {
   );
 }
 
-const initialBody = document.body.innerHTML;
 
 class PromptConnector {
   constructor() {
@@ -34,6 +33,7 @@ class PromptConnector {
     main.appendChild(this.promptContainer);
     this.createPrompt();
 
+    this.initialBody = document.body.innerHTML;
 
     this.showTitleCard();
 
@@ -111,9 +111,9 @@ class PromptConnector {
           this.currentPromptOutput.innerHTML += HTMLOutput;
         }
         else if (promptText === "clear") {
-          document.body.innerHTML = initialBody;
-          this.promptIndex = 1;
-          const promptConnector = new PromptConnector();
+          document.body.innerHTML = this.initialBody;
+          this.promptIndex = 0;
+          this.createPrompt();
         }
       }
       else {
