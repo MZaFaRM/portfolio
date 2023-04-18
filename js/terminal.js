@@ -19,10 +19,6 @@ function convertHexToSpan(text, classes = "") {
   );
 }
 
-if (document.querySelector(".prompt-input")) {
-  console.log(document.querySelector(".prompt-input"));
-}
-
 class PromptConnector {
   constructor() {
     this.promptIndex = 0;
