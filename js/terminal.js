@@ -197,7 +197,7 @@ class PromptConnector {
 
                 }
 
-            } else if (promptText === "") {} else {
+            } else if (promptText.length == 0) {} else {
 
                 this.currentPromptOutput.innerHTML =
 
