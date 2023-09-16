@@ -1,6 +1,6 @@
 * {
   font-size: 14px;
-  color: #ebdbb2;
+  color: #ffffff;
 }
 
 p {
@@ -8,17 +8,17 @@ p {
 }
 
 body {
-  border: 1px solid white;
+  border: 1px solid #002B36;
   border-radius: 10px;
   border-width: 3px;
-  border-color: #d79921;
+  border-color: #ffffff;
   height: auto;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 20px;
   background-color: #282828 !important;
   font-family: "Cascadia Code Regular" !important;
-  color: #ebdbb2;
+  color: #839496;
 
   min-height: 100vh;
 }
@@ -54,7 +54,7 @@ body {
   margin-left: 10px;
   flex: 1 1 0;
   background-color: transparent;
-  color: #f9ed69;
+  color: #839496;
   border: none;
   outline: none;
   cursor: text;
@@ -106,7 +106,7 @@ a {
   -webkit-animation: 1.5s highlight 1.5s 1 normal forwards;
   animation: 1.5s highlight 1.5s 1 normal forwards;
   background-color: none;
-  background: linear-gradient(90deg, #856015 50%, rgba(255, 255, 255, 0) 50%);
+  background: linear-gradient(90deg, #0000 50%, rgba(255, 255, 255, 0) 50%);
   background-size: 200% 100%;
   background-position: 100% 0;
 }
