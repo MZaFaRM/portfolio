@@ -8,7 +8,7 @@ p {
 }
 
 body {
-  border: 1px solid #002B36;
+  border: 1px solid #002b36;
   border-radius: 10px;
   border-width: 3px;
   border-color: #ffffff;
@@ -39,6 +39,10 @@ body {
   font-family: "Mexcellent 3D", cursive;
   font-size: max(80px, 8vw);
   margin: auto;
+}
+
+.sub-heading {
+  font-size: max(60px, 4vw) !important;
 }
 
 .prompt-text {
@@ -102,16 +106,16 @@ a:active {
   text-decoration: none;
 }
 
-a {
+.highlight {
   -webkit-animation: 1.5s highlight 1.5s 1 normal forwards;
   animation: 1.5s highlight 1.5s 1 normal forwards;
   background-color: none;
-  background: linear-gradient(90deg, #0000 50%, rgba(255, 255, 255, 0) 50%);
+  background: linear-gradient(90deg, #5c5b5b 50%, rgba(255, 255, 255, 0) 50%);
   background-size: 200% 100%;
   background-position: 100% 0;
 }
 
-a.copy-clip {
+.highlight.copy-clip {
   -webkit-animation: 1.5s highlight 1.5s 1 normal forwards;
   animation: 1.5s highlight 1.5s 1 normal forwards;
   background-color: none;
@@ -147,6 +151,12 @@ input {
   height: auto;
   margin: 30px;
   border-radius: 50%;
+  box-shadow: 10px 10px 0px rgb(255, 255, 255);
+}
+
+.portrait:active {
+  transform: translateY(10px) translateX(10px);
+  box-shadow: none;
 }
 
 @media screen and (max-width: 542px) {
@@ -159,4 +169,46 @@ input {
   width: 5%;
   height: auto;
   margin: 10px;
+}
+
+.icon img,
+.icon p {
+  display: inline-block;
+  vertical-align: middle; /* to align them vertically centered to each other */
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  margin-top: -1px;
+  margin: 0px;
+  width: max(100px, 5vw);
+  height: max(100px, 5vw); 
+  font-size: 14px;
+  cursor: pointer;
+  background: none;
+  border: 3px solid #ffffff;
+}
+
+.cell.left {
+  border-left: none;
+}
+
+.cell.right {
+  border-right: none;
+}
+
+.cell.bottom {
+  border-bottom: none;
+}
+
+.cell.top {
+  border-top: none;
+}
+
+.tic-tac-toe-board {
+  display: grid;
+  margin: 30px;
 }
