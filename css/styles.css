@@ -3,6 +3,10 @@
   color: #ebdbb2;
 }
 
+p {
+  line-height: 1.5;
+}
+
 body {
   border: 1px solid white;
   border-radius: 10px;
@@ -12,7 +16,7 @@ body {
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 20px;
-  background-color: #282828 !important;
+  background-color: #E19898 !important;
   font-family: "Cascadia Code Regular" !important;
   color: #ebdbb2;
 
@@ -34,6 +38,7 @@ body {
 .fancy-3d {
   font-family: "Mexcellent 3D", cursive;
   font-size: max(80px, 8vw);
+  margin: auto;
 }
 
 .prompt-text {
@@ -110,7 +115,7 @@ a.copy-clip {
   -webkit-animation: 1.5s highlight 1.5s 1 normal forwards;
   animation: 1.5s highlight 1.5s 1 normal forwards;
   background-color: none;
-  background: linear-gradient(90deg, #3C486B 50%, rgba(255, 255, 255, 0) 50%);
+  background: linear-gradient(90deg, #3c486b 50%, rgba(255, 255, 255, 0) 50%);
   background-size: 200% 100%;
   background-position: 100% 0;
 }
@@ -127,12 +132,31 @@ a.copy-clip {
   }
 }
 
-
 .prompt-output {
   width: min(550px, 100%);
   overflow: hidden;
+  color: #ebdbb2;
 }
 
 input {
   caret-shape: underscore;
+}
+
+.portrait {
+  width: 50%;
+  height: auto;
+  margin: 30px;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 542px) {
+  .portrait {
+    width: 80%;
+  }
+}
+
+.icon img {
+  width: 5%;
+  height: auto;
+  margin: 10px;
 }
