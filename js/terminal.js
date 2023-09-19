@@ -1,5 +1,4 @@
-// Define a constant banner.
-const banner = "banner";
+let counter = 0;
 
 function focusWithoutScrolling(inputElement) {
   // Store the current position values.
@@ -7,8 +6,8 @@ function focusWithoutScrolling(inputElement) {
   const prevTop = inputElement.style.top;
 
   // Temporarily fix the position.
-  inputElement.style.position = 'fixed';
-  inputElement.style.top = '0px';
+  inputElement.style.position = "fixed";
+  inputElement.style.top = "0px";
 
   // Focus the element.
   inputElement.focus();
@@ -23,13 +22,17 @@ function focusWithoutScrolling(inputElement) {
 function releaseCli() {
   const outputArea = document.getElementById("cli-output");
   const commandInput = document.getElementById("cli");
+  const cliInput = document.getElementById("cli-text");
 
   // Only remove the 'id' attribute if the element exists.
+  if (cliInput) {
+    cliInput.removeAttribute("id");
+  }
   if (commandInput) {
-    commandInput.removeAttribute('id');
+    commandInput.removeAttribute("id");
   }
   if (outputArea) {
-    outputArea.removeAttribute('id');
+    outputArea.removeAttribute("id");
   }
 }
 
@@ -50,18 +53,18 @@ function setBoard() {
         throw new Error("Network response was not ok");
       }
       const content = await response.text();
-      
+
       // Append the fetched CLI content to the main container.
       mainBody.innerHTML += content;
 
       // Add event listener to the CLI input to handle user input.
       const commandInput = document.getElementById("cli");
       focusWithoutScrolling(commandInput);
+
       commandInput.addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
-
           const command = commandInput.value;
-          executeCommand(command);  // Execute the command when the Enter key is pressed.
+          executeCommand(command); // Execute the command when the Enter key is pressed.
         }
       });
     } catch (error) {
@@ -76,7 +79,7 @@ function determineFileName(command) {
   return "pages/" + command + ".html";
 }
 
-// Function to handle command execution. 
+// Function to handle command execution.
 // It fetches the corresponding content based on the command and displays it.
 function executeCommand(command) {
   if (command === "clear") {
@@ -84,8 +87,9 @@ function executeCommand(command) {
   }
 
   const fileName = determineFileName(command);
+
   const outputArea = document.getElementById("cli-output");
-  const commandInput = document.getElementById("cli");
+  const cliInput = document.getElementById("cli-text");
 
   // Fetch the content based on the command.
   fetch(fileName)
@@ -95,8 +99,8 @@ function executeCommand(command) {
       outputArea.innerHTML += content;
 
       // Disable the previous CLI input to prevent further input.
-      if (commandInput) {
-        commandInput.disabled = true;
+      if (cliInput) {
+        cliInput.innerHTML = `<div class="prompt-text"><span style="color: #15ff00">MZaFaRM</span>@<span style="color: #ffff06">home</span>$ ~ ${command}</div>`;
       }
     })
     .catch((error) => {
@@ -104,15 +108,19 @@ function executeCommand(command) {
       outputArea.innerHTML += "Error: " + error + "<br>";
     })
     .finally(() => {
-      // Regardless of whether the fetch was successful or not, 
+      // Regardless of whether the fetch was successful or not,
       // we'll always release the previous CLI and set up a new one.
       releaseCli();
       setBoard();
+      if (command === "tictactoe") {
+        counter += 1; 
+        const newGame = outputArea.querySelector('.tictactoe-board');
+        newGame.setAttribute('id', 'tictactoe-' + counter);   
+      }
+      
     });
 }
 
-// Initialize the board by setting up the first CLI input.
-setBoard();
 function clearScreen() {
   const outputArea = document.querySelector("main");
   outputArea.innerHTML = "";
@@ -120,3 +128,12 @@ function clearScreen() {
   return;
 }
 
+function initBoard() {
+  setBoard();
+  setTimeout(function () {
+    executeCommand("tictactoe");
+  }, 500);
+}
+
+// Initialize the board by setting up the first CLI input.
+initBoard();
