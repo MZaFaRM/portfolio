@@ -79,11 +79,25 @@ function determineFileName(command) {
   return "pages/" + command + ".html";
 }
 
+function sendHelp() {
+  fetch("/pages")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data); // Array of file names
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
 // Function to handle command execution.
 // It fetches the corresponding content based on the command and displays it.
 function executeCommand(command) {
   if (command === "clear") {
     return clearScreen();
+  }
+  if (command === "help") {
+    return sendHelp();
   }
 
   const fileName = determineFileName(command);
@@ -113,11 +127,10 @@ function executeCommand(command) {
       releaseCli();
       setBoard();
       if (command === "tictactoe") {
-        counter += 1; 
-        const newGame = outputArea.querySelector('.tictactoe-board');
-        newGame.setAttribute('id', 'tictactoe-' + counter);   
+        counter += 1;
+        const newGame = outputArea.querySelector(".tictactoe-board");
+        newGame.setAttribute("id", "tictactoe-" + counter);
       }
-      
     });
 }
 
@@ -131,7 +144,7 @@ function clearScreen() {
 function initBoard() {
   setBoard();
   setTimeout(function () {
-    executeCommand("tictactoe");
+    executeCommand("banner");
   }, 500);
 }
 
