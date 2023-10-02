@@ -76,7 +76,7 @@ function setBoard() {
 
 // Helper function to determine the file name based on the given command.
 function determineFileName(command) {
-  return "pages/" + command + ".html";
+  return "https://mzafarm.github.io/Portfolio/" + "pages/" + command + ".html";
 }
 
 function sendHelp() {
