@@ -1,8 +1,9 @@
 # Portfolio Website
 
-<a href="https://mzafarm.github.io/Portfolio/">WEBSITE LINK🔗</a>
-
 <img src="https://github.com/MZaFaRM/Portfolio/assets/98420006/f13a0f2f-d287-4a18-81d5-339a0fb7120b" width="400px">
+
+- <a href="https://mzafarm.github.io/Portfolio/">Website Link</a>🔗
+
 
 This is a simple portfolio site built with HTML, CSS, and a bit of JavaScript. Nothing too fancy, just a place where I showcase my work and talk a bit about myself, and do note that it's still a work in progress.
 
@@ -28,8 +29,6 @@ If you want to have a look at this on your machine:
 
 ## Got Any Suggestions?
 
-If you think something could be improved or if you spot a bug, feel free to send over a pull request or open an issue. I'm always open to feedback and collaboration.
+If you think something could be improved or if you spot a bug, feel free to send over a pull request or open an issue. I'm always open to feedback and collaboration, especially since this isn't the finished project.
 
 Thanks for checking out my portfolio code!
-
-This version aims to be more in line with a genuine, everyday conversational style. Adjust as needed to fit your personal voice and the specifics of your project.
