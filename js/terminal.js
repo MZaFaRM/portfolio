@@ -1,5 +1,9 @@
 let counter = 0;
 
+const username = "MZaFaRM"; // Replace with your GitHub username
+const repo = "Portfolio"; // Replace with your repository name
+const path = "pages/";
+
 function focusWithoutScrolling(inputElement) {
   // Store the current position values.
   const prevPosition = inputElement.style.position;
@@ -76,6 +80,21 @@ function setBoard() {
 
 // Helper function to determine the file name based on the given command.
 function determineFileName(command) {
+  const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Files in the directory:", data);
+      // Process the file list as needed
+      for (file in data) {
+        if (file.name== (command + ".html")  && file.name != "cli-window.html") {
+          break;
+        }
+        throw error("Invalid Command, run help to list all possible commands");
+      }
+    })
+
   return "https://mzafarm.github.io/Portfolio/" + "pages/" + command + ".html";
 }
 
