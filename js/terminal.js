@@ -1,8 +1,15 @@
 let counter = 0;
 
-const username = "MZaFaRM"; // Replace with your GitHub username
-const repo = "Portfolio"; // Replace with your repository name
-const path = "pages/";
+const commands = ["banner", "projects", "tictactoe", "whoami", "help", "repo"];
+
+const commandDescription = {
+  help: "List all commands",
+  repo: "Get project repo link",
+  banner: "Show the project banner page",
+  projects: "List of my projects",
+  tictactoe: "Play a game of tictactoe",
+  whoami: "About me page",
+};
 
 function focusWithoutScrolling(inputElement) {
   // Store the current position values.
@@ -46,8 +53,8 @@ async function setBoard() {
     // Fetch the main container where we will add the CLI content.
     let mainBody = document.querySelector("main");
 
-    // Determine the file name to fetch for the CLI window.
-    let cli = determineFileName("cli-window");
+    // fetch the CLI window.
+    let cli = "pages/cli-window.html";
 
     // Fetch the CLI window content.
     const response = await fetch(cli);
@@ -76,83 +83,73 @@ async function setBoard() {
 }
 
 // Helper function to determine the file name based on the given command.
-async function determineFileName(command) {
-  const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
-
-  return fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      for (let file of data) {
-        if (
-          file.name === command + ".html" &&
-          file.name !== "cli-window.html"
-        ) {
-          return `https://mzafarm.github.io/Portfolio/pages/${command}.html`;
-        }
-      }
-      throw new Error(
-        "Invalid Command, run help to list all possible commands"
-      );
-    })
-    .catch((error) => {
-      console.error(error.message);
-      return null; // or handle the error as required
-    });
-}
-
-function sendHelp() {
-  fetch("/pages")
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data); // Array of file names
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+function determineFileName(command) {
+  if (!commands.includes(command)) {
+    throw new Error(`${command}: command not found`);
+  }
+  return `https://mzafarm.github.io/Portfolio/pages/${command}.html`;
+  // return `pages/${command}.html`;
 }
 
 // Function to handle command execution.
 // It fetches the corresponding content based on the command and displays it.
 function executeCommand(command) {
-  if (command === "clear") {
-    return clearScreen();
-  }
-  if (command === "help") {
-    return sendHelp();
+  let outputArea = document.getElementById("cli-output");
+  let cliInput = document.getElementById("cli-text");
+
+  if (cliInput) {
+    cliInput.innerHTML = saveUserInput(command);
   }
 
-  const fileName = determineFileName(command).then(() => {
-    const outputArea = document.getElementById("cli-output");
-    const cliInput = document.getElementById("cli-text");
+  function handleError(error) {
+    outputArea.innerHTML += "<br>mzafarm: " + error.message + "<br><br>";
+    postExecutionCleanup();
+  }
 
-    // Fetch the content based on the command.
+  function postExecutionCleanup() {
+    releaseCli();
+    setBoard();
+  }
+
+  try {
+    if (command === "clear") {
+      clearScreen();
+      postExecutionCleanup();
+      return;
+    } else if (command === "help") {
+      outputArea.innerHTML += `<br><span style="color: white">Available commands:</span><br>--<br><br>`;
+      for (const cmd of commands) {
+        outputArea.innerHTML += `<span style="color: white">${cmd}</span>: ${commandDescription[cmd]}<br>`;
+      }
+      outputArea.innerHTML += `<br>`;
+      postExecutionCleanup();
+      return;
+    } else if (command === "repo") {
+      outputArea.innerHTML += `--<br><span style="color: white"><a class="highlight" href="https://github.com/MZaFaRM/Portfolio">Repository link 🔗</a></span><br>--<br>`;
+      postExecutionCleanup();
+      return;
+    }
+
+    const fileName = determineFileName(command);
     fetch(fileName)
       .then((response) => response.text())
       .then((content) => {
-        // Display the fetched content.
         outputArea.innerHTML += content;
-
-        // Disable the previous CLI input to prevent further input.
-        if (cliInput) {
-          cliInput.innerHTML = `<div class="prompt-text"><span style="color: #15ff00">MZaFaRM</span>@<span style="color: #ffff06">home</span>$ ~ ${command}</div>`;
-        }
-      })
-      .catch((error) => {
-        // Display the error in the output area.
-        outputArea.innerHTML += "Error: " + error + "<br>";
-      })
-      .finally(() => {
-        // Regardless of whether the fetch was successful or not,
-        // we'll always release the previous CLI and set up a new one.
-        releaseCli();
-        setBoard();
         if (command === "tictactoe") {
           counter += 1;
           const newGame = outputArea.querySelector(".tictactoe-board");
           newGame.setAttribute("id", "tictactoe-" + counter);
         }
-      });
-  });
+        postExecutionCleanup();
+      })
+      .catch(handleError);
+  } catch (error) {
+    handleError(error);
+  }
+
+  function saveUserInput(command) {
+    return `<div class="prompt-text"><span style="color: #15ff00">MZaFaRM</span>@<span style="color: #ffff06">home</span>$ ~ ${command}</div>`;
+  }
 }
 
 function clearScreen() {
