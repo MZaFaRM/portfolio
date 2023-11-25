@@ -41,61 +41,63 @@ function releaseCli() {
 }
 
 // Function to set up the CLI input interface on the page.
-function setBoard() {
-  // Fetch the main container where we will add the CLI content.
-  let mainBody = document.querySelector("main");
+async function setBoard() {
+  try {
+    // Fetch the main container where we will add the CLI content.
+    let mainBody = document.querySelector("main");
 
-  // Determine the file name to fetch for the CLI window.
-  let cli = determineFileName("cli-window");
+    // Determine the file name to fetch for the CLI window.
+    let cli = determineFileName("cli-window");
 
-  // Use async function within to handle asynchronous fetch operations.
-  (async () => {
-    try {
-      // Fetch the CLI window content.
-      const response = await fetch(cli);
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const content = await response.text();
-
-      // Append the fetched CLI content to the main container.
-      mainBody.innerHTML += content;
-
-      // Add event listener to the CLI input to handle user input.
-      const commandInput = document.getElementById("cli");
-      focusWithoutScrolling(commandInput);
-
-      commandInput.addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-          const command = commandInput.value;
-          executeCommand(command); // Execute the command when the Enter key is pressed.
-        }
-      });
-    } catch (error) {
-      // Log errors for debugging purposes.
-      console.error("Error:", error);
+    // Fetch the CLI window content.
+    const response = await fetch(cli);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
     }
-  })();
+    const content = await response.text();
+
+    // Append the fetched CLI content to the main container.
+    mainBody.innerHTML += content;
+
+    // Add event listener to the CLI input to handle user input.
+    const commandInput = document.getElementById("cli");
+    focusWithoutScrolling(commandInput);
+
+    commandInput.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        const command = commandInput.value;
+        executeCommand(command); // Execute the command when the Enter key is pressed.
+      }
+    });
+  } catch (error) {
+    // Log errors for debugging purposes.
+    console.error("Error:", error);
+  }
 }
 
 // Helper function to determine the file name based on the given command.
-function determineFileName(command) {
+async function determineFileName(command) {
   const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
 
-  fetch(url)
+  return fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log("Files in the directory:", data);
-      // Process the file list as needed
-      for (file in data) {
-        if (file.name== (command + ".html")  && file.name != "cli-window.html") {
-          break;
+      for (let file of data) {
+        if (
+          file.name === command + ".html" &&
+          file.name !== "cli-window.html"
+        ) {
+          return `https://mzafarm.github.io/Portfolio/pages/${command}.html`;
         }
-        throw error("Invalid Command, run help to list all possible commands");
       }
+      throw new Error(
+        "Invalid Command, run help to list all possible commands"
+      );
     })
-
-  return "https://mzafarm.github.io/Portfolio/" + "pages/" + command + ".html";
+    .catch((error) => {
+      console.error(error.message);
+      return null; // or handle the error as required
+    });
 }
 
 function sendHelp() {
@@ -119,38 +121,38 @@ function executeCommand(command) {
     return sendHelp();
   }
 
-  const fileName = determineFileName(command);
+  const fileName = determineFileName(command).then(() => {
+    const outputArea = document.getElementById("cli-output");
+    const cliInput = document.getElementById("cli-text");
 
-  const outputArea = document.getElementById("cli-output");
-  const cliInput = document.getElementById("cli-text");
+    // Fetch the content based on the command.
+    fetch(fileName)
+      .then((response) => response.text())
+      .then((content) => {
+        // Display the fetched content.
+        outputArea.innerHTML += content;
 
-  // Fetch the content based on the command.
-  fetch(fileName)
-    .then((response) => response.text())
-    .then((content) => {
-      // Display the fetched content.
-      outputArea.innerHTML += content;
-
-      // Disable the previous CLI input to prevent further input.
-      if (cliInput) {
-        cliInput.innerHTML = `<div class="prompt-text"><span style="color: #15ff00">MZaFaRM</span>@<span style="color: #ffff06">home</span>$ ~ ${command}</div>`;
-      }
-    })
-    .catch((error) => {
-      // Display the error in the output area.
-      outputArea.innerHTML += "Error: " + error + "<br>";
-    })
-    .finally(() => {
-      // Regardless of whether the fetch was successful or not,
-      // we'll always release the previous CLI and set up a new one.
-      releaseCli();
-      setBoard();
-      if (command === "tictactoe") {
-        counter += 1;
-        const newGame = outputArea.querySelector(".tictactoe-board");
-        newGame.setAttribute("id", "tictactoe-" + counter);
-      }
-    });
+        // Disable the previous CLI input to prevent further input.
+        if (cliInput) {
+          cliInput.innerHTML = `<div class="prompt-text"><span style="color: #15ff00">MZaFaRM</span>@<span style="color: #ffff06">home</span>$ ~ ${command}</div>`;
+        }
+      })
+      .catch((error) => {
+        // Display the error in the output area.
+        outputArea.innerHTML += "Error: " + error + "<br>";
+      })
+      .finally(() => {
+        // Regardless of whether the fetch was successful or not,
+        // we'll always release the previous CLI and set up a new one.
+        releaseCli();
+        setBoard();
+        if (command === "tictactoe") {
+          counter += 1;
+          const newGame = outputArea.querySelector(".tictactoe-board");
+          newGame.setAttribute("id", "tictactoe-" + counter);
+        }
+      });
+  });
 }
 
 function clearScreen() {
@@ -161,11 +163,9 @@ function clearScreen() {
 }
 
 function initBoard() {
-  setBoard();
-  setTimeout(function () {
+  setBoard().then(() => {
     executeCommand("banner");
-  }, 500);
+  });
 }
-
 // Initialize the board by setting up the first CLI input.
 initBoard();
