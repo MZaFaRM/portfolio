@@ -1,4 +1,4 @@
-import { SimpleCommands, tictactoe } from "./commands.js";
+import { SimpleCommands, FileCommands } from "./commands.js";
 
 export const commandDescription = {
   help: "List all commands",
@@ -100,21 +100,21 @@ function postExecutionCleanup() {
 // Function to handle command execution.
 // It fetches the corresponding content based on the command and displays it.
 function executeCommand(command) {
-  command = command.toLowerCase().trim();
   let outputArea = document.getElementById("cli-output");
   let cliInput = document.getElementById("cli-text");
 
   if (cliInput) {
     cliInput.innerHTML = saveUserInput(command);
   }
-
-  const commandHandler = new SimpleCommands(outputArea);
+  command = command.toLowerCase().trim();
+  let commandHandler = new SimpleCommands(outputArea);
 
   try {
     if (commandHandler.executeCommand(command)) {
       postExecutionCleanup();
       return;
     } else if (command === "clear") {
+      outputArea = document.querySelector("main");
       outputArea.innerHTML = "";
       setBoard();
       return;
@@ -125,7 +125,10 @@ function executeCommand(command) {
       .then((response) => response.text())
       .then((content) => {
         outputArea.innerHTML += content;
-        tictactoe(command, outputArea);
+
+        const fileCommandHandler = new FileCommands(outputArea);
+        if (fileCommandHandler.executeCommand(command)) {
+        }
         postExecutionCleanup();
       })
       .catch(handleError);
@@ -134,7 +137,10 @@ function executeCommand(command) {
   }
 
   function saveUserInput(command) {
-    return `<div class="prompt-text"><span style="color: #15ff00">MZaFaRM</span>@<span style="color: #ffff06">home</span>$ ~ ${command}</div>`;
+    return `
+      <div class="prompt-text">
+        <span style="color: #15ff00">MZaFaRM</span>@<span style="color: #ffff06">home</span>$ ~ ${command}
+      </div>`;
   }
   function handleError(error) {
     outputArea.innerHTML += "<br>mzafarm: " + error.message + "<br><br>";

@@ -52,11 +52,14 @@ export class SimpleCommands {
   }
 }
 
-export function tictactoe(command, outputArea) {
-  if (command === "tictactoe") {
-    tictactoeGamesCounter += 1;
-    const newGame = outputArea.querySelector(".tictactoe-board");
-    newGame.setAttribute("id", "tictactoe-" + tictactoeGamesCounter);
+export class FileCommands {
+  executeCommand(command) {
+    if (command === "tictactoe") {
+      tictactoeGamesCounter += 1;
+      const newGame = outputArea.querySelector(".tictactoe-board");
+      newGame.setAttribute("id", "tictactoe-" + tictactoeGamesCounter);
+      return true
+    }
+    return false
   }
-  return true;
 }
