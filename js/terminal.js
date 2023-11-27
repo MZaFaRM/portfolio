@@ -1,6 +1,6 @@
 let counter = 0;
 
-const commands = ["banner", "projects", "tictactoe", "whoami", "help", "repo"];
+const commands = ["banner", "projects", "tictactoe", "whoami", "help", "repo", "clear"];
 
 const commandDescription = {
   help: "List all commands",
@@ -9,6 +9,7 @@ const commandDescription = {
   projects: "List of my projects",
   tictactoe: "Play a game of tictactoe",
   whoami: "About me page",
+  clear: "To clean the terminal",
 };
 
 function focusWithoutScrolling(inputElement) {
@@ -87,8 +88,8 @@ function determineFileName(command) {
   if (!commands.includes(command)) {
     throw new Error(`${command}: command not found`);
   }
-  return `https://mzafarm.github.io/Portfolio/pages/${command}.html`;
-  // return `pages/${command}.html`;
+  // return `https://mzafarm.github.io/Portfolio/pages/${command}.html`;
+  return `pages/${command}.html`;
 }
 
 // Function to handle command execution.
@@ -114,7 +115,6 @@ function executeCommand(command) {
   try {
     if (command === "clear") {
       clearScreen();
-      postExecutionCleanup();
       return;
     } else if (command === "help") {
       outputArea.innerHTML += `<br><span style="color: white">Available commands:</span><br>--<br><br>`;
@@ -161,7 +161,7 @@ function clearScreen() {
 
 function initBoard() {
   setBoard().then(() => {
-    executeCommand("banner");
+    executeCommand("projects");
   });
 }
 // Initialize the board by setting up the first CLI input.
