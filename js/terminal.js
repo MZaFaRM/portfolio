@@ -100,6 +100,7 @@ function postExecutionCleanup() {
 // Function to handle command execution.
 // It fetches the corresponding content based on the command and displays it.
 function executeCommand(command) {
+  command = command.toLowerCase().trim();
   let outputArea = document.getElementById("cli-output");
   let cliInput = document.getElementById("cli-text");
 
