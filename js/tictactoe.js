@@ -1,4 +1,5 @@
 let games = [];
+export let tictactoeGamesCounter = 0;
 
 class Game {
   constructor(cell) {
@@ -27,13 +28,12 @@ function makeMove(cell, index) {
     if (game.isGameOver) {
       continue;
     }
-    console.log(game);
     refreshGame(game);
   }
 
   const newGame = getGame(cell);
   let game = games.find((game) => game.id === newGame.id);
-  
+
   if (!game) {
     game = new Game(cell);
     games.push(game);
@@ -45,9 +45,6 @@ function makeMove(cell, index) {
 
   game.cells[index].textContent = game.currentPlayer;
   game.board[index] = game.currentPlayer;
-  console.log(game.cells[index]);
-  console.log(game.cells[index].textContent);
-  console.log(game.board[index]); 
 
   if (checkWinner(game.board)) {
     game.messageBox.textContent = game.currentPlayer + " Wins!";

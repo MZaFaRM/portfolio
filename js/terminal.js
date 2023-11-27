@@ -1,8 +1,6 @@
-let counter = 0;
+import { SimpleCommands, tictactoe } from "./commands.js";
 
-const commands = ["banner", "projects", "tictactoe", "whoami", "help", "repo", "clear"];
-
-const commandDescription = {
+export const commandDescription = {
   help: "List all commands",
   repo: "Get project repo link",
   banner: "Show the project banner page",
@@ -11,6 +9,8 @@ const commandDescription = {
   whoami: "About me page",
   clear: "To clean the terminal",
 };
+
+export const commands = Object.keys(commandDescription);
 
 function focusWithoutScrolling(inputElement) {
   // Store the current position values.
@@ -49,7 +49,7 @@ function releaseCli() {
 }
 
 // Function to set up the CLI input interface on the page.
-async function setBoard() {
+export async function setBoard() {
   try {
     // Fetch the main container where we will add the CLI content.
     let mainBody = document.querySelector("main");
@@ -92,6 +92,11 @@ function determineFileName(command) {
   return `pages/${command}.html`;
 }
 
+function postExecutionCleanup() {
+  releaseCli();
+  setBoard();
+}
+
 // Function to handle command execution.
 // It fetches the corresponding content based on the command and displays it.
 function executeCommand(command) {
@@ -102,31 +107,15 @@ function executeCommand(command) {
     cliInput.innerHTML = saveUserInput(command);
   }
 
-  function handleError(error) {
-    outputArea.innerHTML += "<br>mzafarm: " + error.message + "<br><br>";
-    postExecutionCleanup();
-  }
-
-  function postExecutionCleanup() {
-    releaseCli();
-    setBoard();
-  }
+  const commandHandler = new SimpleCommands(outputArea);
 
   try {
-    if (command === "clear") {
-      clearScreen();
-      return;
-    } else if (command === "help") {
-      outputArea.innerHTML += `<br><span style="color: white">Available commands:</span><br>--<br><br>`;
-      for (const cmd of commands) {
-        outputArea.innerHTML += `<span style="color: white">${cmd}</span>: ${commandDescription[cmd]}<br>`;
-      }
-      outputArea.innerHTML += `<br>`;
+    if (commandHandler.executeCommand(command)) {
       postExecutionCleanup();
       return;
-    } else if (command === "repo") {
-      outputArea.innerHTML += `--<br><span style="color: white"><a class="highlight" href="https://github.com/MZaFaRM/Portfolio">Repository link 🔗</a></span><br>--<br>`;
-      postExecutionCleanup();
+    } else if (command === "clear") {
+      outputArea.innerHTML = "";
+      setBoard();
       return;
     }
 
@@ -135,11 +124,7 @@ function executeCommand(command) {
       .then((response) => response.text())
       .then((content) => {
         outputArea.innerHTML += content;
-        if (command === "tictactoe") {
-          counter += 1;
-          const newGame = outputArea.querySelector(".tictactoe-board");
-          newGame.setAttribute("id", "tictactoe-" + counter);
-        }
+        tictactoe(command, outputArea);
         postExecutionCleanup();
       })
       .catch(handleError);
@@ -150,13 +135,10 @@ function executeCommand(command) {
   function saveUserInput(command) {
     return `<div class="prompt-text"><span style="color: #15ff00">MZaFaRM</span>@<span style="color: #ffff06">home</span>$ ~ ${command}</div>`;
   }
-}
-
-function clearScreen() {
-  const outputArea = document.querySelector("main");
-  outputArea.innerHTML = "";
-  setBoard();
-  return;
+  function handleError(error) {
+    outputArea.innerHTML += "<br>mzafarm: " + error.message + "<br><br>";
+    postExecutionCleanup();
+  }
 }
 
 function initBoard() {
