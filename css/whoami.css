@@ -1,0 +1,66 @@
+.portrait {
+  width: 50%;
+  height: auto;
+  margin: 30px;
+  border-radius: 50%;
+  box-shadow: 10px 10px 0px rgb(255, 255, 255);
+}
+
+.portrait:active {
+  transform: translateY(10px) translateX(10px);
+  box-shadow: none;
+}
+
+@media screen and (max-width: 542px) {
+  .portrait {
+    width: 80%;
+  }
+}
+
+.icon img {
+  width: 20px;
+  height: auto;
+  margin: 10px;
+}
+
+.icon img,
+.icon p {
+  display: inline-block;
+  vertical-align: middle; /* to align them vertically centered to each other */
+}
+
+.row {
+  display: flex;
+}
+
+#signature {
+  font-family: "Modelista Signature";
+  font-size: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: solid 3px rgba(0, 255, 0, 0.75);
+  animation: animated-text 4s steps(29, end) 1s 1 normal both,
+    animated-cursor 600ms steps(29, end) infinite;
+}
+
+/* text animation */
+
+@keyframes animated-text {
+  from {
+    width: 0;
+  }
+  to {
+    width: 300px;
+  }
+}
+
+/* cursor animations */
+
+@keyframes animated-cursor {
+  from {
+    border-right-color: rgba(0, 255, 0, 0.75);
+  }
+  to {
+    border-right-color: transparent;
+  }
+}

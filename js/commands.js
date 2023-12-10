@@ -11,13 +11,17 @@ export class SimpleCommands {
     if (/^help/.test(command)) {
       this.outputArea += `
       <br>
-          <span style="color: white" class="sub-heading fancy-3d">
-              All Commands
-          </span>
-      <br>
-          --
-      <br>
-          <br>`;
+          <span style="color: white">
+              <span class="sub-heading fancy-3d">
+                  Commands
+              </span>
+              <br>
+              
+                  <br>
+                      Type a command and press enter.  
+                  <br>
+              <br>
+          </span>`;
       return this.listStuff(commandDescription);
     } else if (/^repo/.test(command)) {
       return this.outputArea + this.sendRepo();
@@ -45,17 +49,22 @@ export class SimpleCommands {
 
   listStuff(map) {
     let keys = Object.keys(map);
+    let tableHtml = '<table style="color: white;">';
+
     for (let key of keys) {
-      this.outputArea += `
-                                <span style="color: white">
-                                    ${key}
-                                </span>
-                                    : ${map[key]}
-                            <br>
-                        <br>`;
+      tableHtml += `
+            <tr>
+                <td>${key}&nbsp;</td>
+                <td>${map[key]}</td>
+            </tr>`;
     }
+
+    tableHtml += "</table><br>";
+
+    this.outputArea += tableHtml;
     return this.outputArea;
   }
+
   sendRepo(outputArea) {
     return `
               <br>

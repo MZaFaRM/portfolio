@@ -1,0 +1,31 @@
+.cell {
+  margin-top: -1px;
+  margin: 0px;
+  width: max(100px, 5vw);
+  height: max(100px, 5vw);
+  font-size: 14px;
+  cursor: pointer;
+  background: none;
+  border: 3px solid #ffffff;
+}
+
+.cell.left {
+  border-left: none;
+}
+
+.cell.right {
+  border-right: none;
+}
+
+.cell.bottom {
+  border-bottom: none;
+}
+
+.cell.top {
+  border-top: none;
+}
+
+.tic-tac-toe-board {
+  display: grid;
+  margin: 30px;
+}

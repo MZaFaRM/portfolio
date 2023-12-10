@@ -39,39 +39,44 @@ body {
   font-family: "Mexcellent 3D", cursive;
   font-size: max(80px, 8vw);
   margin: auto;
+  word-break: break-all;
 }
 
 .sub-heading {
   font-size: max(60px, 4vw) !important;
 }
 
-.prompt-text {
-  margin-right: 10px;
-  display: inline-block;
-  white-space: nowrap;
+code.glow {
+  background: 50% 100% / 50% 50% no-repeat
+    radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: glow 3000ms linear infinite 2000ms;
 }
 
-.prompt-input {
-  display: inline-block;
-  padding: 5px;
-  width: 5px;
-  margin-left: 10px;
-  flex: 1 1 0;
-  background-color: transparent;
-  color: #ffffff;
-  border: none;
-  outline: none;
-  cursor: text;
-  font-family: "Cascadia Code Regular" !important;
-  padding: 0;
-  margin: 0;
+code.reveal.glow {
+  background: 50% 100% / 50% 50% no-repeat
+    radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: reveal 3000ms ease-in-out forwards 200ms,
+    glow 3000ms linear infinite 2000ms;
 }
 
-.prompt-taker {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  flex-wrap: wrap;
+@keyframes reveal {
+  80% {
+    letter-spacing: 2px;
+  }
+  100% {
+    background-size: 300% 300%;
+    letter-spacing: 0px;
+  }
+}
+@keyframes glow {
+  40% {
+    text-shadow: 0 0 8px #fff;
+  }
 }
 
 .pre {
@@ -131,79 +136,17 @@ a:active {
   }
 }
 
-.prompt-output {
-  /* width: min(550px, 100%); */
-  overflow: hidden;
-  color: #ebdbb2;
-}
-
 input {
   caret-shape: underscore;
 }
 
-.portrait {
-  width: 50%;
-  height: auto;
-  margin: 30px;
-  border-radius: 50%;
-  box-shadow: 10px 10px 0px rgb(255, 255, 255);
+table {
+  color: white;
+  border-collapse: collapse;
 }
 
-.portrait:active {
-  transform: translateY(10px) translateX(10px);
-  box-shadow: none;
-}
-
-@media screen and (max-width: 542px) {
-  .portrait {
-    width: 80%;
-  }
-}
-
-.icon img {
-  width: 20px;
-  height: auto;
-  margin: 10px;
-}
-
-.icon img,
-.icon p {
-  display: inline-block;
-  vertical-align: middle; /* to align them vertically centered to each other */
-}
-
-.row {
-  display: flex;
-}
-
-.cell {
-  margin-top: -1px;
-  margin: 0px;
-  width: max(100px, 5vw);
-  height: max(100px, 5vw);
-  font-size: 14px;
-  cursor: pointer;
-  background: none;
-  border: 3px solid #ffffff;
-}
-
-.cell.left {
-  border-left: none;
-}
-
-.cell.right {
-  border-right: none;
-}
-
-.cell.bottom {
-  border-bottom: none;
-}
-
-.cell.top {
-  border-top: none;
-}
-
-.tic-tac-toe-board {
-  display: grid;
-  margin: 30px;
+td {
+  vertical-align: top;
+  text-align: left;
+  padding: 5px;
 }

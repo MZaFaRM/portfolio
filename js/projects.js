@@ -5,22 +5,16 @@ export class Projects {
                         <br>
                             <span style="color: white">
                                 <span class="sub-heading fancy-3d">
-                                    My projects 
+                                    My Projects 
                                 </span>
                                 <br>
-                                
-                                    <br>
-                                        Type <code>projects &lt;project name&gt;</code> 
-                                        command to get more information about a project.    
-                                    <br>
-                                <br>
-                                --
-                                    <br>
-                                        Eg: <code>projects dataforge</code>  
-                                    <br>
-                                    <br>
-                                        --
-                                    <br>
+                                  <br>
+                                      Type <code class="glow">projects &lt;project name&gt;</code> 
+                                      command to get more information about a project.    
+                                  <br>
+                                  <br>
+                                      Eg: <code class="glow">projects dataforge</code>  
+                                  <br>
                                 <br>
                             </span>`;
   }
