@@ -4,6 +4,7 @@ export const commandDescription = {
   help: "List all commands",
   repo: "Get project repo link",
   banner: "Show the project banner page",
+  resume: "Download my resume",
   projects: "List of my projects",
   tictactoe: "Play a game of tictactoe",
   whoami: "About me page",

@@ -1,28 +1,40 @@
 export class Projects {
-    constructor(content) {
+  constructor(content) {
     this.content = content;
     this.outputArea = `
                         <br>
                             <span style="color: white">
-                                My projects:
-                            </span>
-                        <br>
-                            --
-                        <br>
-                            <br>`;
+                                <span class="sub-heading fancy-3d">
+                                    My projects 
+                                </span>
+                                <br>
+                                
+                                    <br>
+                                        Type <code>projects &lt;project name&gt;</code> 
+                                        command to get more information about a project.    
+                                    <br>
+                                <br>
+                                --
+                                    <br>
+                                        Eg: <code>projects dataforge</code>  
+                                    <br>
+                                    <br>
+                                        --
+                                    <br>
+                                <br>
+                            </span>`;
   }
   async getProject(projectName) {
     const projects = await this.getProjects();
-    if (projects.some(project => project.projectId === projectName)) {
+    if (projects.some((project) => project.projectId === projectName)) {
       let project = this.content.querySelector(
         ".frames .project.hidden#" + projectName
       );
       project.classList.remove("hidden");
       this.outputArea = project.outerHTML;
-      return this.outputArea
-    }
-    else {
-        throw new Error(`Project not found ${projectName}`)
+      return this.outputArea;
+    } else {
+      throw new Error(`Project not found ${projectName}`);
     }
   }
 

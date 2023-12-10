@@ -11,8 +11,8 @@ export class SimpleCommands {
     if (/^help/.test(command)) {
       this.outputArea += `
       <br>
-          <span style="color: white">
-              Available commands:
+          <span style="color: white" class="sub-heading fancy-3d">
+              All Commands
           </span>
       <br>
           --
@@ -21,6 +21,23 @@ export class SimpleCommands {
       return this.listStuff(commandDescription);
     } else if (/^repo/.test(command)) {
       return this.outputArea + this.sendRepo();
+    } else if (/^resume/.test(command)) {
+      this.outputArea += `
+                          <br>
+                              <span style="color: white" class="sub-heading fancy-3d">
+                                  Resume
+                              </span>
+                          <br>
+                          <br>
+                            <a 
+                              href="other/Muhammed Zafar Resume.pdf"
+                              download style="color: white" 
+                              class="highlight">
+                              Click here to download!
+                            </a>
+                          <br>
+                          <br>`;
+      return this.outputArea;
     } else {
       return false;
     }
@@ -41,15 +58,21 @@ export class SimpleCommands {
   }
   sendRepo(outputArea) {
     return `
-            --
-                <br>
-                    <span style="color: white">
-                        <a class="highlight" href="https://github.com/MZaFaRM/Portfolio" target="_blank">
-                            Repository link 🔗
-                        </a>
-                    </span>
-                <br>
-            --`;
+              <br>
+                  <span style="color: white" class="sub-heading fancy-3d">
+                      Repository
+                  </span>
+              <br>
+              <br>
+                <a 
+                  href="https://github.com/MZaFaRM/Portfolio"
+                  target="_blank"
+                  style="color: white" 
+                  class="highlight">
+                  Click here to redirect!
+                </a>
+              <br>
+              <br>`;
   }
 }
 
