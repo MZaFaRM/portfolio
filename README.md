@@ -2,11 +2,7 @@
 
 - <a href="https://mzafarm.github.io/Portfolio/">Website Link</a>🔗
 
-This is a simple portfolio site built with HTML, CSS, and a bit of JavaScript. Nothing too fancy, just a place where I showcase my work and talk a bit about myself.
-
-## What's in Here
-
-Literally just my portfolio
+My portfolio website built with HTML, CSS, and a JavaScript. Nothing too fancy, just a place where I showcase my work and talk a bit about myself.
 
 ## Got Any Suggestions?
 
