@@ -1,5 +1,4 @@
 let games = [];
-export let tictactoeGamesCounter = 0;
 
 class Game {
   constructor(cell) {
@@ -10,6 +9,26 @@ class Game {
     this.isGameOver = false;
     this.cells = this.game.querySelectorAll(".cell");
     this.messageBox = this.game.parentNode.querySelector("#message");
+  }
+}
+
+export class TicTacToeGameCounter {
+  static instance = null;
+
+  constructor() {
+    if (TicTacToeGameCounter.instance) {
+      return TicTacToeGameCounter.instance;
+    }
+    this.counter = 0;
+    TicTacToeGameCounter.instance = this;
+  }
+
+  incrementCounter() {
+    this.counter += 1;
+  }
+
+  getCurrentCount() {
+    return this.counter;
   }
 }
 

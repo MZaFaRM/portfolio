@@ -132,7 +132,7 @@ a:active {
 }
 
 .prompt-output {
-  width: min(550px, 100%);
+  /* width: min(550px, 100%); */
   overflow: hidden;
   color: #ebdbb2;
 }
@@ -161,7 +161,7 @@ input {
 }
 
 .icon img {
-  width: 5%;
+  width: 20px;
   height: auto;
   margin: 10px;
 }
@@ -180,7 +180,7 @@ input {
   margin-top: -1px;
   margin: 0px;
   width: max(100px, 5vw);
-  height: max(100px, 5vw); 
+  height: max(100px, 5vw);
   font-size: 14px;
   cursor: pointer;
   background: none;

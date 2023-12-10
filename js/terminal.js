@@ -85,11 +85,12 @@ export async function setBoard() {
 
 // Helper function to determine the file name based on the given command.
 function determineFileName(command) {
-  if (!commands.includes(command)) {
-    throw new Error(`${command}: command not found`);
+  let formattedCommand = command.match(/^\w+/)[0]
+  if (!commands.includes(formattedCommand)) {
+    throw new Error(`${formattedCommand}: command not found`);
   }
   // return `https://mzafarm.github.io/Portfolio/pages/${command}.html`;
-  return `pages/${command}.html`;
+  return `pages/${formattedCommand}.html`;
 }
 
 function postExecutionCleanup() {
@@ -99,58 +100,55 @@ function postExecutionCleanup() {
 
 // Function to handle command execution.
 // It fetches the corresponding content based on the command and displays it.
-function executeCommand(command) {
+async function executeCommand(command) {
   let outputArea = document.getElementById("cli-output");
   let cliInput = document.getElementById("cli-text");
 
   if (cliInput) {
     cliInput.innerHTML = saveUserInput(command);
   }
-  command = command.toLowerCase().trim();
-  let commandHandler = new SimpleCommands(outputArea);
+  let formattedCommand = command.toLowerCase().trim();
+  let commandHandler = new SimpleCommands();
 
   try {
-    if (commandHandler.executeCommand(command)) {
+    let isSimpleCommand = await commandHandler.executeCommand(formattedCommand)
+    if (isSimpleCommand) {
+      outputArea.innerHTML += isSimpleCommand;
       postExecutionCleanup();
       return;
-    } else if (command === "clear") {
+    } else if (formattedCommand === "clear") {
       outputArea = document.querySelector("main");
       outputArea.innerHTML = "";
       setBoard();
       return;
     }
+    const fileName = determineFileName(formattedCommand);
+    let response = await fetch(fileName);
+    let content = await response.text();
 
-    const fileName = determineFileName(command);
-    fetch(fileName)
-      .then((response) => response.text())
-      .then((content) => {
-        outputArea.innerHTML += content;
-
-        const fileCommandHandler = new FileCommands(outputArea);
-        if (fileCommandHandler.executeCommand(command)) {
-        }
-        postExecutionCleanup();
-      })
-      .catch(handleError);
-  } catch (error) {
-    handleError(error);
-  }
-
-  function saveUserInput(command) {
-    return `
-      <div class="prompt-text">
-        <span style="color: #15ff00">MZaFaRM</span>@<span style="color: #ffff06">home</span>$ ~ ${command}
-      </div>`;
-  }
-  function handleError(error) {
-    outputArea.innerHTML += "<br>mzafarm: " + error.message + "<br><br>";
+    const fileCommandHandler = new FileCommands(content);
+    outputArea.innerHTML += await fileCommandHandler.executeCommand(formattedCommand);
     postExecutionCleanup();
+  } 
+  catch (error) {
+    handleError(error, outputArea);
   }
+}
+
+function saveUserInput(command) {
+  return `
+    <div class="prompt-text">
+      <span style="color: #15ff00">MZaFaRM</span>@<span style="color: #ffff06">home</span>$ ~ ${command}
+    </div>`;
+}
+function handleError(error, outputArea) {
+  outputArea.innerHTML += "<br>mzafarm: " + error.message + "<br><br>";
+  postExecutionCleanup();
 }
 
 function initBoard() {
   setBoard().then(() => {
-    executeCommand("projects");
+    executeCommand("banner");
   });
 }
 // Initialize the board by setting up the first CLI input.
