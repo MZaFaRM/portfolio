@@ -1,3 +1,5 @@
+import { suggestCommand } from "./scripts.js";
+
 export class Projects {
   constructor(content) {
     this.content = content;
@@ -5,7 +7,7 @@ export class Projects {
                         <br>
                             <span style="color: white">
                                 <span class="sub-heading fancy-3d">
-                                    My Projects 
+                                    Projects 
                                 </span>
                                 <br>
                                   <br>
@@ -28,7 +30,17 @@ export class Projects {
       this.outputArea = project.outerHTML;
       return this.outputArea;
     } else {
-      throw new Error(`Project not found ${projectName}`);
+      const projectElements = this.content.querySelectorAll(
+        ".frames .project.hidden"
+      );
+      let projectIds = Object(Array.from(projectElements, (element) => element.id));
+      const suggestion = suggestCommand(projectName, projectIds);
+
+      let error = `${projectName}: project not found `;
+      if (suggestion) {
+        error += `; did you mean: <code class="glow">${suggestion}</code>?`;
+      }
+      throw new Error(error);
     }
   }
 

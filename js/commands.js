@@ -1,6 +1,7 @@
 import { commandDescription } from "./terminal.js";
 import { TicTacToeGameCounter } from "./tictactoe.js";
 import { Projects } from "./projects.js";
+import { generatePlaceholder } from "./scripts.js";
 
 export class SimpleCommands {
   constructor() {
@@ -9,6 +10,8 @@ export class SimpleCommands {
 
   async executeCommand(command) {
     if (/^help/.test(command)) {
+      // Called to break the constant "Try "help" message once help is used
+      generatePlaceholder(true);
       this.outputArea += `
       <br>
           <span style="color: white">

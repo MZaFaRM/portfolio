@@ -1,14 +1,15 @@
 import { SimpleCommands, FileCommands } from "./commands.js";
+import { generatePlaceholder, suggestCommand } from "./scripts.js";
 
 export const commandDescription = {
-  help: "List all commands",
-  repo: "Get project repo link",
-  banner: "Show the project banner page",
-  resume: "Download my resume",
-  projects: "List of my projects",
-  tictactoe: "Play a game of tictactoe",
-  whoami: "About me page",
-  clear: "To clean the terminal",
+  help: "get all commands",
+  repo: "get project repo link",
+  banner: "show the project banner",
+  resume: "download my resume",
+  projects: "get all of my projects",
+  tictactoe: "play a game of tictactoe",
+  whoami: "get the aboutme page",
+  clear: "clean the terminal",
 };
 
 export const commands = Object.keys(commandDescription);
@@ -78,6 +79,8 @@ export async function setBoard() {
         executeCommand(command); // Execute the command when the Enter key is pressed.
       }
     });
+
+    document.getElementById("cli").placeholder = generatePlaceholder();
   } catch (error) {
     // Log errors for debugging purposes.
     console.error("Error:", error);
@@ -86,9 +89,14 @@ export async function setBoard() {
 
 // Helper function to determine the file name based on the given command.
 function determineFileName(command) {
-  let formattedCommand = command.match(/^\w+/)[0]
+  let formattedCommand = command.match(/^\w+/)[0];
   if (!commands.includes(formattedCommand)) {
-    throw new Error(`${formattedCommand}: command not found`);
+    const suggestion = suggestCommand(formattedCommand, commands);
+    let error = `${formattedCommand}: command not found`;
+    if (suggestion) {
+      error += `; did you mean: <code class="glow">${suggestion}</code>?`;
+    }
+    throw new Error(error);
   }
   // return `https://mzafarm.github.io/Portfolio/pages/${command}.html`;
   return `pages/${formattedCommand}.html`;
@@ -112,7 +120,7 @@ async function executeCommand(command) {
   let commandHandler = new SimpleCommands();
 
   try {
-    let isSimpleCommand = await commandHandler.executeCommand(formattedCommand)
+    let isSimpleCommand = await commandHandler.executeCommand(formattedCommand);
     if (isSimpleCommand) {
       outputArea.innerHTML += isSimpleCommand;
       postExecutionCleanup();
@@ -128,10 +136,11 @@ async function executeCommand(command) {
     let content = await response.text();
 
     const fileCommandHandler = new FileCommands(content);
-    outputArea.innerHTML += await fileCommandHandler.executeCommand(formattedCommand);
+    outputArea.innerHTML += await fileCommandHandler.executeCommand(
+      formattedCommand
+    );
     postExecutionCleanup();
-  } 
-  catch (error) {
+  } catch (error) {
     handleError(error, outputArea);
   }
 }
