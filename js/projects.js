@@ -36,7 +36,7 @@ export class Projects {
       let projectIds = Object(Array.from(projectElements, (element) => element.id));
       const suggestion = suggestCommand(projectName, projectIds);
 
-      let error = `${projectName}: project not found `;
+      let error = `${projectName}: project not found`;
       if (suggestion) {
         error += `; did you mean: <code class="glow">${suggestion}</code>?`;
       }
