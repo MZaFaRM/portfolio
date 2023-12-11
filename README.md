@@ -2,14 +2,16 @@
 
 - <a href="https://mzafarm.github.io/Portfolio/">Website Link</a>🔗
 
-This is a simple portfolio site built with HTML, CSS, and a bit of JavaScript. Nothing too fancy, just a place where I showcase my work and talk a bit about myself.
+My portfolio website built with HTML, CSS, and a JavaScript. Nothing too fancy, just a place where I showcase my work and talk a bit about myself.
 
-## What's in Here
+# Things I learned
 
-Literally just my portfolio
+- HTML, CSS, JS
+- The need for Typescript
+- The levenshtein Distance algorithm
 
 ## Got Any Suggestions?
 
-If you think something could be improved or if you spot a bug, feel free to send over a pull request or open an issue. I'm always open to feedback and collaboration, especially since this isn't the finished project.
+If you think something could be improved or if you spot a bug, feel free to send over a pull request or open an issue. I'm always open to feedback and collaboration.
 
 Thanks for checking out my portfolio's repo!
