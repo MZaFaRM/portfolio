@@ -1,6 +1,10 @@
 # Portfolio Website
 
-- <a href="https://mzafarm.github.io/portfolio/">Website Link</a>🔗
+![image](https://github.com/MZaFaRM/portfolio/assets/98420006/cd71bc18-6f91-4c63-aab2-50a62205c625)
+
+<p align="center">
+  <trong><a href="https://mzafarm.github.io/portfolio/">WEBSITE LINK</a></strong>
+</p>
 
 My portfolio website built with HTML, CSS, and a JavaScript. Nothing too fancy, just a place where I showcase my work and talk a bit about myself.
 
