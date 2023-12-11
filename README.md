@@ -6,6 +6,6 @@ My portfolio website built with HTML, CSS, and a JavaScript. Nothing too fancy, 
 
 ## Got Any Suggestions?
 
-If you think something could be improved or if you spot a bug, feel free to send over a pull request or open an issue. I'm always open to feedback and collaboration, especially since this isn't the finished project.
+If you think something could be improved or if you spot a bug, feel free to send over a pull request or open an issue. I'm always open to feedback and collaboration.
 
 Thanks for checking out my portfolio's repo!
