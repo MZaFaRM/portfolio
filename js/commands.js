@@ -52,17 +52,17 @@ export class SimpleCommands {
 
   listStuff(map) {
     let keys = Object.keys(map);
-    let tableHtml = '<table style="color: white;">';
+    let tableHtml = `<table style="color: white;">`;
 
     for (let key of keys) {
       tableHtml += `
             <tr>
-                <td>${key}&nbsp;</td>
+                <td><code class="glow">${key}</code>&nbsp;</td>
                 <td>${map[key]}</td>
             </tr>`;
     }
 
-    tableHtml += "</table><br>";
+    tableHtml += `</table><br>`;
 
     this.outputArea += tableHtml;
     return this.outputArea;

@@ -46,8 +46,9 @@ export class Projects {
 
   async listProjects() {
     let projectsArray = await this.getProjects();
+    const projectTag = `<span class="hidden">projects </span>`
     return projectsArray.reduce((obj, project) => {
-      obj[project.projectId] = project.description;
+      obj[`${projectTag}${project.projectId}`] = project.description;
       return obj;
     }, {});
   }

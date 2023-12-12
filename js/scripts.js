@@ -1,4 +1,5 @@
-import { commands } from "./terminal.js";
+import { Projects } from "./projects.js";
+import { commands, executeCommand } from "./terminal.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const photo = document.getElementById("clickable-photo");
@@ -100,4 +101,12 @@ export function generatePlaceholder(shouldReset = false) {
 }
 
 
-
+// Makes glowing items clickable
+document.body.addEventListener('click', async function(event) {
+  if (event.target.matches('code.glow')) {
+    executeCommand(event.target.textContent);
+    if (event.target.classList.contains("reveal")) {
+      event.target.classList.remove("reveal");
+  }
+  }
+});

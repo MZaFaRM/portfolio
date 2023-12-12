@@ -14,21 +14,22 @@ export const commandDescription = {
 
 export const commands = Object.keys(commandDescription);
 
-function focusWithoutScrolling(inputElement) {
-  // Store the current position values.
-  const prevPosition = inputElement.style.position;
-  const prevTop = inputElement.style.top;
+function smoothFocus(inputElement) {
+  // Get the bounding rectangle of the inputElement
+  const elementRect = inputElement.getBoundingClientRect();
+  const absoluteElementTop = elementRect.top + window.pageYOffset;
+  const middle = absoluteElementTop - window.innerHeight / 2;
 
-  // Temporarily fix the position.
-  inputElement.style.position = "fixed";
-  inputElement.style.top = "0px";
+  // Smoothly scroll to the inputElement
+  window.scrollTo({
+    top: middle,
+    behavior: "smooth",
+  });
 
-  // Focus the element.
-  inputElement.focus();
-
-  // Restore the previous position values.
-  inputElement.style.position = prevPosition;
-  inputElement.style.top = prevTop;
+  // Set a timeout to focus the element after the scrolling ends
+  setTimeout(() => {
+    inputElement.focus();
+  }, 400); // Adjust the timeout duration as needed
 }
 
 // Function to remove the ID attributes from the CLI and its output area.
@@ -71,7 +72,7 @@ export async function setBoard() {
 
     // Add event listener to the CLI input to handle user input.
     const commandInput = document.getElementById("cli");
-    focusWithoutScrolling(commandInput);
+    smoothFocus(commandInput);
 
     commandInput.addEventListener("keydown", function (event) {
       if (event.key === "Enter") {
@@ -89,34 +90,58 @@ export async function setBoard() {
 
 // Helper function to determine the file name based on the given command.
 function determineFileName(command) {
-  let formattedCommand = command.match(/^\w+/)[0];
-  if (!commands.includes(formattedCommand)) {
-    const suggestion = suggestCommand(formattedCommand, commands);
-    let error = `${formattedCommand}: command not found`;
-    if (suggestion) {
-      error += `; did you mean: <code class="glow">${suggestion}</code>?`;
+  // Match the first word, even if it starts with quotes
+  let formattedCommand = command.match(/^\S+/);
+
+  // Check if the command is not found or not in the list of commands
+  if (!formattedCommand || !commands.includes(formattedCommand[0])) {
+    // Handle null formattedCommand
+    let commandName = formattedCommand ? formattedCommand[0] : "Unknown Command";
+    let error = `${commandName}: command not found`;
+
+    // Only suggest a command if formattedCommand is not null
+    if (formattedCommand) {
+      const suggestion = suggestCommand(formattedCommand[0], commands);
+      if (suggestion) {
+        error += `; did you mean: <code class="glow">${suggestion}</code>?`;
+      }
     }
+
     throw new Error(error);
   }
-  // return `https://mzafarm.github.io/Portfolio/pages/${command}.html`;
-  return `pages/${formattedCommand}.html`;
+
+  return `pages/${formattedCommand[0]}.html`;
 }
+
 
 function postExecutionCleanup() {
   releaseCli();
   setBoard();
 }
 
+function sanitizeCommand(command) {
+  // Replace special characters with their escaped counterparts
+  const escapedCommand = command
+    .replace(/[\\"']/g, "\\$&")
+    .replace(/[\r\n]+/g, " ")
+    .replace(/[%<>]/g, "");
+
+  // Trim leading and trailing whitespace
+  return escapedCommand.trim();
+}
+
 // Function to handle command execution.
 // It fetches the corresponding content based on the command and displays it.
-async function executeCommand(command) {
+export async function executeCommand(command) {
   let outputArea = document.getElementById("cli-output");
   let cliInput = document.getElementById("cli-text");
 
+  let formattedCommand = sanitizeCommand(command);
+  
   if (cliInput) {
-    cliInput.innerHTML = saveUserInput(command);
+    cliInput.innerHTML = saveUserInput(formattedCommand);
   }
-  let formattedCommand = command.toLowerCase().trim();
+  formattedCommand = formattedCommand.toLowerCase().trim();
   let commandHandler = new SimpleCommands();
 
   try {
