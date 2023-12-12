@@ -39,7 +39,8 @@ body {
   font-family: "Mexcellent 3D", cursive;
   font-size: max(80px, 8vw);
   margin: auto;
-  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
   hyphens: auto;
 }
 
