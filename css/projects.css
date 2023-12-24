@@ -1,3 +1,26 @@
 .hidden {
-    display: none;
+  display: none;
+}
+
+.image {
+    align-items: center;
+}
+
+.project-img {
+  width: 50%;
+  height: auto;
+  margin: 30px;
+  border-radius: 2%;
+  box-shadow: 5px 5px 5px rgb(0, 0, 0);
+}
+
+.project-img:active {
+  transform: translateY(10px) translateX(10px);
+  box-shadow: none;
+}
+
+@media screen and (max-width: 542px) {
+  .project-img {
+    width: 80%;
+  }
 }
