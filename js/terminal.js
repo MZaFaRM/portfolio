@@ -17,7 +17,7 @@ export const commands = Object.keys(commandDescription);
 function smoothFocus(inputElement) {
   // Get the bounding rectangle of the inputElement
   const elementRect = inputElement.getBoundingClientRect();
-  const absoluteElementTop = elementRect.top + window.pageYOffset;
+  const absoluteElementTop = elementRect.top + window.scrollY;
   const middle = absoluteElementTop - window.innerHeight / 2;
 
   // Smoothly scroll to the inputElement
@@ -96,7 +96,9 @@ function determineFileName(command) {
   // Check if the command is not found or not in the list of commands
   if (!formattedCommand || !commands.includes(formattedCommand[0])) {
     // Handle null formattedCommand
-    let commandName = formattedCommand ? formattedCommand[0] : "Unknown Command";
+    let commandName = formattedCommand
+      ? formattedCommand[0]
+      : "Unknown Command";
     let error = `${commandName}: command not found`;
 
     // Only suggest a command if formattedCommand is not null
@@ -113,10 +115,9 @@ function determineFileName(command) {
   return `pages/${formattedCommand[0]}.html`;
 }
 
-
-function postExecutionCleanup() {
+async function postExecutionCleanup() {
   releaseCli();
-  setBoard();
+  await setBoard();
 }
 
 function sanitizeCommand(command) {
@@ -137,7 +138,7 @@ export async function executeCommand(command) {
   let cliInput = document.getElementById("cli-text");
 
   let formattedCommand = sanitizeCommand(command);
-  
+
   if (cliInput) {
     cliInput.innerHTML = saveUserInput(formattedCommand);
   }
@@ -148,12 +149,12 @@ export async function executeCommand(command) {
     let isSimpleCommand = await commandHandler.executeCommand(formattedCommand);
     if (isSimpleCommand) {
       outputArea.innerHTML += isSimpleCommand;
-      postExecutionCleanup();
+      await postExecutionCleanup();
       return;
     } else if (formattedCommand === "clear") {
       outputArea = document.querySelector("main");
       outputArea.innerHTML = "";
-      setBoard();
+      await setBoard();
       return;
     }
     const fileName = determineFileName(formattedCommand);
@@ -164,9 +165,9 @@ export async function executeCommand(command) {
     outputArea.innerHTML += await fileCommandHandler.executeCommand(
       formattedCommand
     );
-    postExecutionCleanup();
+    await postExecutionCleanup();
   } catch (error) {
-    handleError(error, outputArea);
+    await handleError(error, outputArea);
   }
 }
 
@@ -176,15 +177,20 @@ function saveUserInput(command) {
       <span style="color: #15ff00">MZaFaRM</span>@<span style="color: #ffff06">home</span>$ ~ ${command}
     </div>`;
 }
-function handleError(error, outputArea) {
+async function handleError(error, outputArea) {
   outputArea.innerHTML += "<br>mzafarm: " + error.message + "<br><br>";
-  postExecutionCleanup();
+  await postExecutionCleanup();
 }
 
-function initBoard() {
-  setBoard().then(() => {
-    executeCommand("banner");
-  });
+async function initBoard() {
+  await setBoard();
+  await executeCommand("banner");
+
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has("command")) {
+    await executeCommand(urlParams.get("command"));
+  }
 }
+
 // Initialize the board by setting up the first CLI input.
 initBoard();
