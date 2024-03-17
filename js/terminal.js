@@ -187,8 +187,11 @@ async function initBoard() {
   await executeCommand("banner");
 
   const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.has("command")) {
-    await executeCommand(urlParams.get("command"));
+  if (urlParams.has("commands")) {
+    const commands = urlParams.get("commands").split(",");
+    for (const command of commands) {
+      await executeCommand(command.trim());
+    }
   }
 }
 
