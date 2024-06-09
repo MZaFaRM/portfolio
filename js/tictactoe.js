@@ -26,7 +26,8 @@ export class Game {
 
     if (this.AIPlayer === X) {
       const move = this.minimax(this.board);
-      this.gameBoard.querySelectorAll(".cell")[move].textContent = this.AIPlayer;
+      this.gameBoard.querySelectorAll(".cell")[move].textContent =
+        this.AIPlayer;
       this.board[move] = this.AIPlayer;
     }
     console.log(this.gameBoard);
@@ -244,9 +245,12 @@ export function makeMove(cell, index) {
       return;
     } else {
       const move = game.minimax(game.board);
-      gameHTML.querySelectorAll(".cell")[move].textContent = game.AIPlayer;
-      game.board[move] = game.AIPlayer;
-      markEndGame(game, gameHTML);
+      // Setting some artificial delay because the AI is too fast
+      setTimeout(() => {
+        gameHTML.querySelectorAll(".cell")[move].textContent = game.AIPlayer;
+        game.board[move] = game.AIPlayer;
+        markEndGame(game, gameHTML);
+      }, 500);
     }
   }
 }
