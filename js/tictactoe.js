@@ -212,9 +212,10 @@ function getGame(cell) {
 function markEndGame(game, gameHTML) {
   // Check if the game is over
   // and display the winner or a draw message
-  if (game.winner(game.board)) {
+  const winner = game.winner(game.board);
+  if (winner) {
     gameHTML.parentNode.querySelector("#message").textContent =
-      game.currentPlayer + " Wins!";
+      winner + " Wins!";
     game.isGameOver = true;
     return true;
   } else if (game.board.every((cell) => cell !== null)) {
