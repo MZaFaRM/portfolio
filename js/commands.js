@@ -141,7 +141,7 @@ export class FileCommands extends SimpleCommands {
     gameCounter.incrementCounter();
     const newGameBoard = this.contentPointer.querySelector(".tictactoe-board");
     newGameBoard.setAttribute("id", "tictactoe-" + gameCounter.getCurrentCount());
-    const newGameData = new Game(newGameBoard);
+    const newGameData = new Game(this.contentPointer);
 
     this.outputArea += this.contentPointer.documentElement.innerHTML;
 

@@ -6,8 +6,9 @@ let currentPlayer = X;
 let games = [];
 
 export class Game {
-  constructor(gameBoard) {
-    this.id = gameBoard.id;
+  constructor(gameTemplate) {
+    this.gameBoard = gameTemplate.querySelector(".tictactoe-board");
+    this.id = this.gameBoard.id;
     this.board = Array(9).fill(null);
     this.currentPlayer = currentPlayer;
 
@@ -24,8 +25,13 @@ export class Game {
     this.isGameOver = false;
 
     if (this.AIPlayer === X) {
-      this.minimax();
+      const move = this.minimax(this.board);
+      this.gameBoard.querySelectorAll(".cell")[move].textContent = this.AIPlayer;
+      this.board[move] = this.AIPlayer;
     }
+    console.log(this.gameBoard);
+    gameTemplate.querySelector("#ai").innerHTML = this.AIPlayer;
+    gameTemplate.querySelector("#player").innerHTML = this.currentPlayer;
 
     games.push(this);
   }
@@ -55,7 +61,7 @@ export class Game {
   }
 
   terminal(board) {
-    if (!winner(board) && board.flat().some((box) => box === EMPTY)) {
+    if (!this.winner(board) && board.flat().some((cell) => cell == EMPTY)) {
       return false;
     } else {
       return true;
@@ -63,7 +69,7 @@ export class Game {
   }
 
   utility(board) {
-    const winPlayer = winner(board);
+    const winPlayer = this.winner(board);
     if (winPlayer === X) {
       return 1;
     } else if (winPlayer === O) {
@@ -73,61 +79,65 @@ export class Game {
     }
   }
 
-  player(board) {
-    const flatBoard = board.flat();
-    const xCount = flatBoard.filter((cell) => cell === X).length;
-    const oCount = flatBoard.filter((cell) => cell === O).length;
-    return xCount > oCount ? O : X;
-  }
-
   actions(board) {
     const actions = new Set();
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < 3; j++) {
-        if (board[i][j] === EMPTY) {
-          actions.add([i, j]);
-        }
+    for (let i = 0; i < 9; i++) {
+      if (board[i] === EMPTY) {
+        actions.add(i);
       }
     }
     return actions;
   }
 
+  player(board) {
+    const xCount = board.flat().filter((cell) => cell === X).length;
+    const oCount = board.flat().filter((cell) => cell === O).length;
+
+    if (xCount === oCount) {
+      return X;
+    } else {
+      return O;
+    }
+  }
+
   result(board, action) {
     const newBoard = JSON.parse(JSON.stringify(board)); // Deep copy of the board
-    const currentPlayer = player(newBoard);
-    const [x, y] = action;
+    const currentPlayer = this.player(newBoard);
 
-    if (newBoard[x][y] !== EMPTY) {
+    if (newBoard[action] !== EMPTY) {
       throw new Error("A player has already made this move!");
-    } else if (x < 0 || x > 2 || y < 0 || y > 2) {
+    } else if (action < 0 || action > 8) {
       throw new Error("Invalid move given");
     } else {
-      newBoard[x][y] = currentPlayer;
+      newBoard[action] = currentPlayer;
       return newBoard;
     }
   }
 
   minimax(board) {
-    if (terminal(board)) {
+    if (this.terminal(board)) {
       return null;
     }
 
-    const currentPlayer = player(board);
     if (board.flat().every((box) => box === EMPTY)) {
-      return [Math.floor(Math.random() * 3), Math.floor(Math.random() * 3)];
+      return Math.floor(Math.random() * 9);
     }
-    if (currentPlayer === X) {
-      return Array.from(actions(board)).reduce(
+    if (this.AIPlayer === X) {
+      // AI will try to maximize the value of the board by selecting
+      // the action with the highest value from all the possible actions
+      return Array.from(this.actions(board)).reduce(
         (bestAction, action) => {
-          const value = minValue(result(board, action));
+          const value = this.minValue(this.result(board, action));
           return value > bestAction.value ? { action, value } : bestAction;
         },
         { action: null, value: -Infinity }
       ).action;
-    } else if (currentPlayer === O) {
-      return Array.from(actions(board)).reduce(
+    } else if (this.AIPlayer === O) {
+      // AI will try to minimize the value of the board by selecting
+      // the action with the lowest value from all the possible actions
+      return Array.from(this.actions(board)).reduce(
         (bestAction, action) => {
-          const value = maxValue(result(board, action));
+          const value = this.maxValue(this.result(board, action));
           return value < bestAction.value ? { action, value } : bestAction;
         },
         { action: null, value: Infinity }
@@ -136,12 +146,12 @@ export class Game {
   }
 
   maxValue(board, alpha = -Infinity, beta = Infinity) {
-    if (terminal(board)) {
-      return utility(board);
+    if (this.terminal(board)) {
+      return this.utility(board);
     } else {
       let v = -Infinity;
-      for (let move of actions(board)) {
-        v = Math.max(v, minValue(result(board, move), alpha, beta));
+      for (let move of this.actions(board)) {
+        v = Math.max(v, this.minValue(this.result(board, move), alpha, beta));
         alpha = Math.max(alpha, v);
         if (beta <= alpha) {
           break;
@@ -155,12 +165,12 @@ export class Game {
   }
 
   minValue(board, alpha = -Infinity, beta = Infinity) {
-    if (terminal(board)) {
-      return utility(board);
+    if (this.terminal(board)) {
+      return this.utility(board);
     } else {
       let v = Infinity;
-      for (let move of actions(board)) {
-        v = Math.min(v, maxValue(result(board, move), alpha, beta));
+      for (let move of this.actions(board)) {
+        v = Math.min(v, this.maxValue(this.result(board, move), alpha, beta));
         beta = Math.min(beta, v);
         if (beta <= alpha) {
           break;
@@ -198,6 +208,21 @@ function getGame(cell) {
   return cell.parentNode.parentNode;
 }
 
+function markEndGame(game, gameHTML) {
+  // Check if the game is over
+  // and display the winner or a draw message
+  if (game.winner(game.board)) {
+    gameHTML.parentNode.querySelector("#message").textContent =
+      game.currentPlayer + " Wins!";
+    game.isGameOver = true;
+    return true;
+  } else if (game.board.every((cell) => cell !== null)) {
+    gameHTML.parentNode.querySelector("#message").textContent = "It's a draw!";
+    game.isGameOver = true;
+    return true;
+  }
+}
+
 export function makeMove(cell, index) {
   const newGame = getGame(cell);
   let game = games.find((game) => game.id === newGame.id);
@@ -212,19 +237,17 @@ export function makeMove(cell, index) {
 
     game.board[index] = game.currentPlayer;
 
-    if (game.winner(game.board)) {
-      gameHTML.parentNode.querySelector("#message").textContent =
-        game.currentPlayer + " Wins!";
-      game.isGameOver = true;
+    // Check if the game is over
+    // else let the AI make a move
+    // and check & display if the game is over
+    if (markEndGame(game, gameHTML)) {
       return;
-    } else if (game.board.every((cell) => cell !== null)) {
-      gameHTML.parentNode.querySelector("#message").textContent =
-        "It's a draw!";
-      game.isGameOver = true;
-      return;
+    } else {
+      const move = game.minimax(game.board);
+      gameHTML.querySelectorAll(".cell")[move].textContent = game.AIPlayer;
+      game.board[move] = game.AIPlayer;
+      markEndGame(game, gameHTML);
     }
-
-    game.currentPlayer = game.currentPlayer === "X" ? "O" : "X";
   }
 }
 

@@ -37,7 +37,7 @@ body {
 
 .fancy-3d {
   font-family: "Mexcellent 3D", cursive;
-  font-size: max(80px, 8vw);
+  font-size: max(80px, 6vw);
   margin: auto;
   word-break: break-word;
   overflow-wrap: break-word;
@@ -46,6 +46,10 @@ body {
 
 .sub-heading {
   font-size: max(60px, 4vw) !important;
+}
+
+.caption-body {
+  font-size: max(45px, 3vw) !important;
 }
 
 code.glow {
