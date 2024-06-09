@@ -146,6 +146,16 @@ export async function executeCommand(command) {
   let commandHandler = new SimpleCommands();
 
   try {
+    // Commands are of two types - simple commands and file commands.
+    // Simple commands are handled by the SimpleCommands class.
+    //        - Simple commands are commands that do not require any additional content.
+    //        - Examples include 'help', 'repo', 'banner', etc.  
+    //        - Simple commands are defined in the commandDescription object.
+    // File commands are handled by the FileCommands class.
+    //        - File commands are commands that require additional content.
+    //        - Examples include 'tictactoe', 'projects', 'whoami', etc.
+    //        - The content for file commands is stored in the pages directory.
+    //        - File commands are defined in the determineFileName function.
     let isSimpleCommand = await commandHandler.executeCommand(formattedCommand);
     if (isSimpleCommand) {
       outputArea.innerHTML += isSimpleCommand;
@@ -168,6 +178,7 @@ export async function executeCommand(command) {
     await postExecutionCleanup();
   } catch (error) {
     await handleError(error, outputArea);
+    throw error;
   }
 }
 

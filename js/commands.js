@@ -1,9 +1,11 @@
 import { commandDescription } from "./terminal.js";
-import { TicTacToeGameCounter } from "./tictactoe.js";
+import { TicTacToeGameCounter, Game } from "./tictactoe.js";
 import { Projects } from "./projects.js";
 import { generatePlaceholder } from "./scripts.js";
 
 export class SimpleCommands {
+  // SimpleCommands class is used to handle commands that do not require additional content
+  // Examples include 'help', 'repo', 'resume', etc.
   constructor() {
     this.outputArea = "";
   }
@@ -89,6 +91,9 @@ export class SimpleCommands {
 }
 
 export class FileCommands extends SimpleCommands {
+  // FileCommands class extends SimpleCommands class
+  // It is used to handle commands that require additional content
+  // Examples include 'tictactoe', 'projects', 'whoami', etc.
   constructor(content) {
     super();
 
@@ -128,11 +133,18 @@ export class FileCommands extends SimpleCommands {
   }
 
   handleTicTacToe() {
+    // Function call and other initializations are done by the html's boxes
+    // which fetches the game and plays on it
+    // This function is just to create a new game, it doesn't initialize the game
+    // But only sets up the game board
     const gameCounter = new TicTacToeGameCounter();
     gameCounter.incrementCounter();
-    const newGame = this.contentPointer.querySelector(".tictactoe-board");
-    newGame.setAttribute("id", "tictactoe-" + gameCounter.getCurrentCount());
+    const newGameBoard = this.contentPointer.querySelector(".tictactoe-board");
+    newGameBoard.setAttribute("id", "tictactoe-" + gameCounter.getCurrentCount());
+    const newGameData = new Game(newGameBoard);
+
     this.outputArea += this.contentPointer.documentElement.innerHTML;
+
     return this.outputArea;
   }
 }
