@@ -26,10 +26,14 @@ function smoothFocus(inputElement) {
     behavior: "smooth",
   });
 
-  // Set a timeout to focus the element after the scrolling ends
-  setTimeout(() => {
-    inputElement.focus();
-  }, 400); // Adjust the timeout duration as needed
+  document.addEventListener("keypress", (event) => {
+    if (
+      event.key.match(/^[a-zA-Z]$/) &&
+      !(inputElement === document.activeElement)
+    ) {
+      inputElement.focus();
+    }
+  });
 }
 
 // Function to remove the ID attributes from the CLI and its output area.
