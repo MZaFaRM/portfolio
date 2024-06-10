@@ -234,6 +234,10 @@ export function makeMove(cell, index) {
       return;
     }
 
+    if (game.player(game.board) !== game.currentPlayer) {
+      return;
+    }
+
     const gameHTML = document.getElementById(game.id);
     gameHTML.querySelectorAll(".cell")[index].textContent = game.currentPlayer;
 

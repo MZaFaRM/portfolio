@@ -52,7 +52,7 @@ export class Projects {
       return obj;
     }, {});
   }
-
+  
   async getProjects() {
     try {
       const projectElements = this.content.querySelectorAll(".frames .project");

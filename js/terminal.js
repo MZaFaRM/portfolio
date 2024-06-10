@@ -73,11 +73,41 @@ export async function setBoard() {
     // Add event listener to the CLI input to handle user input.
     const commandInput = document.getElementById("cli");
     smoothFocus(commandInput);
+    const promptSuggest = document.getElementById("prompt-suggest");
 
-    commandInput.addEventListener("keydown", function (event) {
+    commandInput.addEventListener("input", (event) => {
+      if (commandInput.value === "") {
+        promptSuggest.innerText = "";
+        return;
+      } else {
+        for (const command of commands) {
+          if (command.startsWith(commandInput.value.toLowerCase())) {
+            promptSuggest.innerHTML = `<span style="color: transparent" id="user-text">${commandInput.value.trim()}</span>${command.slice(
+              commandInput.value.length
+            )}`; // Show the suggested command after the commandInput.value
+            return;
+          }
+        }
+        promptSuggest.innerText = "";
+      }
+    });
+
+    commandInput.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         const command = commandInput.value;
         executeCommand(command); // Execute the command when the Enter key is pressed.
+      } else if (event.key === "Tab") {
+        event.preventDefault();
+        commandInput.value = promptSuggest.innerText;
+        promptSuggest.innerText = "";
+      }
+    });
+
+    commandInput.addEventListener("click", (event) => {
+      if (promptSuggest.innerText) {
+        commandInput.value = promptSuggest.innerText;
+        promptSuggest.innerText = "";
+        executeCommand(commandInput.value);
       }
     });
 
@@ -149,7 +179,7 @@ export async function executeCommand(command) {
     // Commands are of two types - simple commands and file commands.
     // Simple commands are handled by the SimpleCommands class.
     //        - Simple commands are commands that do not require any additional content.
-    //        - Examples include 'help', 'repo', 'banner', etc.  
+    //        - Examples include 'help', 'repo', 'banner', etc.
     //        - Simple commands are defined in the commandDescription object.
     // File commands are handled by the FileCommands class.
     //        - File commands are commands that require additional content.
@@ -178,7 +208,6 @@ export async function executeCommand(command) {
     await postExecutionCleanup();
   } catch (error) {
     await handleError(error, outputArea);
-    throw error;
   }
 }
 

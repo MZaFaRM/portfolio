@@ -6,12 +6,18 @@
           >home</span
         >$ ~
       </div>
-      <input
-        type="text"
-        class="prompt-input"
-        id="cli"
-        placeholder="Try 'help'..."
-      />
+      <div class="input-box">
+        <p id="prompt-suggest">
+          <span style="color: transparent" id="user-text"></span>
+        </p>
+        <input
+          type="text"
+          class="prompt-input"
+          id="cli"
+          placeholder="Try 'help'..."
+          autocomplete="off"
+        />
+      </div>
     </div>
     <div class="prompt-output" id="cli-output">
       <!-- Here's where the output gets printed -->

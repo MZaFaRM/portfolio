@@ -13,7 +13,6 @@
 .prompt-input {
   display: inline-block;
   padding: 5px;
-  width: 5px;
   margin-left: 10px;
   flex: 1 1 0;
   background-color: transparent;
@@ -24,6 +23,18 @@
   font-family: "Cascadia Code Regular" !important;
   padding: 0;
   margin: 0;
+  position: relative;
+  height: 22.5px !important;
+}
+
+#prompt-suggest {
+  background-color: transparent;
+  color: #ffffff;
+  font-family: "Cascadia Code Regular" !important;
+  position: absolute;
+  z-index: -1; /* Lower z-index */
+  margin: 0;
+  flex: 1;
 }
 
 .prompt-taker {
@@ -31,4 +42,11 @@
   align-items: center;
   overflow: hidden;
   flex-wrap: wrap;
+}
+
+.input-box {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
 }
