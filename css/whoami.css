@@ -33,25 +33,13 @@
   display: flex;
 }
 
-#signature {
+.signature {
   font-family: "Modelista Signature";
   font-size: 40px;
   white-space: nowrap;
   overflow: hidden;
   border-right: solid 3px rgba(0, 255, 0, 0.75);
-  animation: animated-text 4s steps(29, end) 1s 1 normal both,
-    animated-cursor 600ms steps(29, end) infinite;
-}
-
-/* text animation */
-
-@keyframes animated-text {
-  from {
-    width: 0;
-  }
-  to {
-    width: 300px;
-  }
+  animation: animated-cursor 600ms steps(29, end) infinite;
 }
 
 /* cursor animations */

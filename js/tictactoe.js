@@ -30,7 +30,7 @@ export class Game {
         this.AIPlayer;
       this.board[move] = this.AIPlayer;
     }
-    console.log(this.gameBoard);
+
     gameTemplate.querySelector("#ai").innerHTML = this.AIPlayer;
     gameTemplate.querySelector("#player").innerHTML = this.currentPlayer;
 

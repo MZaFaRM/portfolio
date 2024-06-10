@@ -99,11 +99,15 @@ export async function setBoard() {
     commandInput.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         const command = commandInput.value;
-        executeCommand(command); // Execute the command when the Enter key is pressed.
+        if (command) {
+          executeCommand(command); // Execute the command when the Enter key is pressed.
+        }
       } else if (event.key === "Tab") {
         event.preventDefault();
-        commandInput.value = promptSuggest.innerText;
-        promptSuggest.innerText = "";
+        if (promptSuggest.innerText) {
+          commandInput.value = promptSuggest.innerText;
+          promptSuggest.innerText = "";
+        }
       }
     });
 

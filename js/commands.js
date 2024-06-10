@@ -110,7 +110,7 @@ export class FileCommands extends SimpleCommands {
     } else if (/^banner/.test(command)) {
       return this.outputArea + this.content;
     } else if (/^whoami/.test(command)) {
-      return this.outputArea + this.content;
+      return await this.handleWHoAmI();
     } else {
       return false;
     }
@@ -140,11 +140,37 @@ export class FileCommands extends SimpleCommands {
     const gameCounter = new TicTacToeGameCounter();
     gameCounter.incrementCounter();
     const newGameBoard = this.contentPointer.querySelector(".tictactoe-board");
-    newGameBoard.setAttribute("id", "tictactoe-" + gameCounter.getCurrentCount());
+    newGameBoard.setAttribute(
+      "id",
+      "tictactoe-" + gameCounter.getCurrentCount()
+    );
     const newGameData = new Game(this.contentPointer);
 
     this.outputArea += this.contentPointer.documentElement.innerHTML;
 
     return this.outputArea;
+  }
+
+  handleWHoAmI() {
+    this.intervalId = setInterval(() => {
+      const data = "Muhammed Zafar MM";
+      const signatures = document.querySelectorAll(".signature");
+
+      signatures.forEach((signature) => {
+        if (signature.innerText.length < data.length) {
+          let letterIndex = signature.innerText.length;
+
+          while (data[letterIndex] === " ") {
+            letterIndex++;
+          }
+          signature.innerText += data.slice(
+            signature.innerText.length,
+            letterIndex + 1
+          );
+        }
+      });
+    }, 250);
+
+    return this.outputArea + this.content;
   }
 }
