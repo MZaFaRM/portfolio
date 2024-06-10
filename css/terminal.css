@@ -29,7 +29,8 @@
 
 #prompt-suggest {
   background-color: transparent;
-  color: #ffffff;
+  color: lightgray;
+  opacity: 0.5;
   font-family: "Cascadia Code Regular" !important;
   position: absolute;
   z-index: -1; /* Lower z-index */
