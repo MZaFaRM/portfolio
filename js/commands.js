@@ -94,9 +94,11 @@ export class FileCommands extends SimpleCommands {
   // FileCommands class extends SimpleCommands class
   // It is used to handle commands that require additional content
   // Examples include 'tictactoe', 'projects', 'whoami', etc.
+
+  // Static variable to store intervalIds to clear them later
+  static intervalIds = [];
   constructor(content) {
     super();
-
     const parser = new DOMParser();
     this.contentPointer = parser.parseFromString(content, "text/html");
     this.content = content;
@@ -151,10 +153,19 @@ export class FileCommands extends SimpleCommands {
     return this.outputArea;
   }
 
+  static clearIntervals(signatures) {
+    for (let i = 0; i < signatures.length; i++) {
+      if (signatures[i].innerText === "Muhammed Zafar MM") {
+        clearInterval(FileCommands.intervalIds[i]);
+      }
+    }
+  }
+
   handleWHoAmI() {
-    this.intervalId = setInterval(() => {
+    const intervalId = setInterval(() => {
       const data = "Muhammed Zafar MM";
       const signatures = document.querySelectorAll(".signature");
+      FileCommands.clearIntervals(signatures);
 
       signatures.forEach((signature) => {
         if (signature.innerText.length < data.length) {
@@ -170,7 +181,7 @@ export class FileCommands extends SimpleCommands {
         }
       });
     }, 250);
-
+    FileCommands.intervalIds.push(intervalId);
     return this.outputArea + this.content;
   }
 }
