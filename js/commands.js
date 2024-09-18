@@ -120,7 +120,7 @@ export class FileCommands extends SimpleCommands {
 
   async handleProjects(command) {
     let projectListing = new Projects(this.contentPointer);
-    let projectSpecification = command.match(/^projects (\w+)/);
+    let projectSpecification = command.match(/^projects (.+)/);
     if (projectSpecification) {
       this.outputArea = await projectListing.getProject(
         projectSpecification[1]
