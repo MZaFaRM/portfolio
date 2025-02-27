@@ -39,7 +39,7 @@ export class SimpleCommands {
                           <br>
                           <br>
                             <a 
-                              href="other/Muhammed Zafar Resume.pdf"
+                              href="https://docs.google.com/document/d/1RGvgfufNKBGRyRrKwfn89TncH84hvWEhF_tjKZbYNxU/edit?usp=drivesdk"
                               download style="color: white" 
                               class="highlight">
                               Click here to download!
