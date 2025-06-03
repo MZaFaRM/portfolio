@@ -1,6 +1,6 @@
 # Portfolio Website
 
-![image](https://github.com/MZaFaRM/portfolio/assets/98420006/cd71bc18-6f91-4c63-aab2-50a62205c625)
+![Home](https://github.com/user-attachments/assets/d4514c21-86c6-4dc7-9677-41e844cf5d63)
 
 My portfolio website built with HTML, CSS, and a JavaScript. Nothing too fancy, just a place where I showcase my work and talk a bit about myself.
 
