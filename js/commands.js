@@ -11,7 +11,7 @@ export class SimpleCommands {
   }
 
   async executeCommand(command) {
-    if (/^help/.test(command)) {
+    if (/^help/i.test(command)) {
       // Called to break the constant "Try "help" message once help is used
       generatePlaceholder(true);
       this.outputArea += `
@@ -28,9 +28,9 @@ export class SimpleCommands {
               <br>
           </span>`;
       return this.listStuff(commandDescription);
-    } else if (/^repo/.test(command)) {
+    } else if (/^repo/i.test(command)) {
       return this.outputArea + this.sendRepo();
-    } else if (/^resume/.test(command)) {
+    } else if (/^resume/i.test(command)) {
       this.outputArea += `
                           <br>
                               <span style="color: white" class="sub-heading fancy-3d">
@@ -105,13 +105,13 @@ export class FileCommands extends SimpleCommands {
   }
 
   async executeCommand(command) {
-    if (/^tictactoe/.test(command)) {
+    if (/^tictactoe/i.test(command)) {
       return this.handleTicTacToe();
-    } else if (/^projects/.test(command)) {
+    } else if (/^projects/i.test(command)) {
       return await this.handleProjects(command);
-    } else if (/^banner/.test(command)) {
+    } else if (/^banner/i.test(command)) {
       return this.outputArea + this.content;
-    } else if (/^whoami/.test(command)) {
+    } else if (/^whoami/i.test(command)) {
       return await this.handleWHoAmI();
     } else {
       return false;

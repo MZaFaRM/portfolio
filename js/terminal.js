@@ -180,7 +180,7 @@ export async function executeCommand(command) {
 	if (cliInput) {
 		cliInput.innerHTML = saveUserInput(formattedCommand);
 	}
-	formattedCommand = formattedCommand.toLowerCase().trim();
+	formattedCommand = formattedCommand.trim();
 	let commandHandler = new SimpleCommands();
 
 	try {
