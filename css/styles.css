@@ -1,158 +1,162 @@
 * {
-  font-size: 14px;
-  color: #ffffff;
+	font-size: 14px;
+	color: #ffffff;
 }
 
 p {
-  line-height: 1.5;
+	line-height: 1.5;
 }
 
 body {
-  border: 1px solid #002b36;
-  border-radius: 10px;
-  border-width: 3px;
-  border-color: #ffffff;
-  height: auto;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 20px;
-  background-color: #282828 !important;
-  font-family: "Cascadia Code Regular" !important;
-  color: #839496;
+	border: 1px solid #002b36;
+	border-radius: 10px;
+	border-width: 3px;
+	border-color: #ffffff;
+	height: auto;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	background-color: #282828;
+	font-family: "Fira Code";
+	color: #839496;
 
-  min-height: 100vh;
+	min-height: 100vh;
 }
 
 @media screen and (max-width: 542px) {
-  * {
-    font-size: 15px;
-  }
-  .title-card-small {
-    font-size: 100px;
-  }
-  .title-card-large {
-    font-size: 11px;
-  }
+	* {
+		font-size: 14px;
+	}
+	.title-card-small {
+		font-size: 100px;
+	}
+	.title-card-large {
+		font-size: 11px;
+	}
+}
+
+.frames {
+	container-type: inline-size;
 }
 
 .fancy-3d {
-  font-family: "Mexcellent 3D", cursive;
-  font-size: max(80px, 6vw);
-  margin: auto;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
+	font-family: "Mexcellent 3D", cursive;
+	font-size: min(20cqw, 130px);
+	margin: auto;
+	word-break: break-word;
+	overflow-wrap: break-word;
+	hyphens: auto;
 }
 
 .sub-heading {
-  font-size: max(60px, 4vw) !important;
+	font-size: max(60px, 4vw);
 }
 
 .caption-body {
-  font-size: max(45px, 3vw) !important;
+	font-size: max(45px, 3vw);
 }
 
 code.glow {
-  background: 50% 100% / 50% 50% no-repeat
-    radial-gradient(ellipse at bottom, #fff, transparent, transparent);
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: glow 3000ms linear infinite 2000ms;
+	background: 50% 100% / 50% 50% no-repeat
+		radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+	-webkit-background-clip: text;
+	background-clip: text;
+	animation: glow 3000ms linear infinite 2000ms;
 }
 
 code.reveal.glow {
-  background: 50% 100% / 50% 50% no-repeat
-    radial-gradient(ellipse at bottom, #fff, transparent, transparent);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: reveal 3000ms ease-in-out forwards 200ms,
-    glow 3000ms linear infinite 2000ms;
+	background: 50% 100% / 50% 50% no-repeat
+		radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	animation: reveal 3000ms ease-in-out forwards 200ms,
+		glow 3000ms linear infinite 2000ms;
 }
 
 @keyframes reveal {
-  80% {
-    letter-spacing: 2px;
-  }
-  100% {
-    background-size: 300% 300%;
-    letter-spacing: 0px;
-  }
+	80% {
+		letter-spacing: 2px;
+	}
+	100% {
+		background-size: 300% 300%;
+		letter-spacing: 0px;
+	}
 }
 @keyframes glow {
-  40% {
-    text-shadow: 0 0 8px #fff;
-  }
+	40% {
+		text-shadow: 0 0 8px #fff;
+	}
 }
 
 .pre {
-  margin: auto;
-  white-space: pre;
+	margin: auto;
+	white-space: pre;
 }
 
 main {
-  overflow: auto;
-  box-sizing: border-box;
+	overflow: auto;
+	box-sizing: border-box;
 }
 
 footer {
-  height: 40vh;
+	height: 40vh;
 }
 
 a:link {
-  text-decoration: none;
+	text-decoration: none;
 }
 a:visited {
-  text-decoration: none;
+	text-decoration: none;
 }
 a:hover {
-  text-decoration: none;
+	text-decoration: none;
 }
 a:active {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .highlight {
-  -webkit-animation: 1.5s highlight 1.5s 1 normal forwards;
-  animation: 1.5s highlight 1.5s 1 normal forwards;
-  background-color: none;
-  background: linear-gradient(90deg, #5c5b5b 50%, rgba(255, 255, 255, 0) 50%);
-  background-size: 200% 100%;
-  background-position: 100% 0;
+	-webkit-animation: 1.5s highlight 1.5s 1 normal forwards;
+	animation: 1.5s highlight 1.5s 1 normal forwards;
+	background-color: none;
+	background: linear-gradient(90deg, #5c5b5b 50%, rgba(255, 255, 255, 0) 50%);
+	background-size: 200% 100%;
+	background-position: 100% 0;
 }
 
 .highlight.copy-clip {
-  -webkit-animation: 1.5s highlight 1.5s 1 normal forwards;
-  animation: 1.5s highlight 1.5s 1 normal forwards;
-  background-color: none;
-  background: linear-gradient(90deg, #3c486b 50%, rgba(255, 255, 255, 0) 50%);
-  background-size: 200% 100%;
-  background-position: 100% 0;
+	-webkit-animation: 1.5s highlight 1.5s 1 normal forwards;
+	animation: 1.5s highlight 1.5s 1 normal forwards;
+	background-color: none;
+	background: linear-gradient(90deg, #3c486b 50%, rgba(255, 255, 255, 0) 50%);
+	background-size: 200% 100%;
+	background-position: 100% 0;
 }
 
 @-webkit-keyframes highlight {
-  to {
-    background-position: 0 0;
-  }
+	to {
+		background-position: 0 0;
+	}
 }
 
 @keyframes highlight {
-  to {
-    background-position: 0 0;
-  }
+	to {
+		background-position: 0 0;
+	}
 }
 
 input {
-  caret-shape: underscore;
+	caret-shape: underscore;
 }
 
 table {
-  color: white;
-  border-collapse: collapse;
+	color: white;
+	border-collapse: collapse;
 }
 
 td {
-  vertical-align: top;
-  text-align: left;
-  padding: 5px;
+	vertical-align: top;
+	text-align: left;
+	padding: 5px;
 }

@@ -132,7 +132,10 @@ function determineFileName(command) {
 	let formattedCommand = command.match(/^\S+/);
 
 	// Check if the command is not found or not in the list of commands
-	if (!formattedCommand || !commands.includes(formattedCommand[0])) {
+	if (
+		!formattedCommand ||
+		!commands.includes(formattedCommand[0].toLowerCase())
+	) {
 		// Handle null formattedCommand
 		let commandName = formattedCommand
 			? formattedCommand[0]
@@ -150,7 +153,7 @@ function determineFileName(command) {
 		throw new Error(error);
 	}
 
-	return `pages/${formattedCommand[0]}.html`;
+	return `pages/${formattedCommand[0].toLowerCase()}.html`;
 }
 
 async function postExecutionCleanup() {
