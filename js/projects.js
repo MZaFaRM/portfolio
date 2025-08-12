@@ -4,8 +4,7 @@ export class Projects {
 	constructor(content) {
 		this.content = content;
 		this.outputArea = `
-                        <br>
-                            <span style="color: white">
+                            <span>
                                 <span class="sub-heading fancy-3d">
                                     Projects 
                                 </span>

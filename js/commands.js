@@ -15,8 +15,7 @@ export class SimpleCommands {
 			// Called to break the constant "Try "help" message once help is used
 			generatePlaceholder(true);
 			this.outputArea += `
-      <br>
-          <span style="color: white">
+          <span>
               <span class="sub-heading fancy-3d">
                   Commands
               </span>
@@ -32,17 +31,21 @@ export class SimpleCommands {
 			return this.outputArea + this.sendRepo();
 		} else if (/^resume/i.test(command)) {
 			this.outputArea += `
-                          <br>
-                              <span style="color: white" class="sub-heading fancy-3d">
+                              <span class="sub-heading fancy-3d">
                                   Resume
                               </span>
                           <br>
                           <br>
                             <a 
                               href="https://docs.google.com/document/d/1RGvgfufNKBGRyRrKwfn89TncH84hvWEhF_tjKZbYNxU/edit?usp=drivesdk"
-                              download style="color: white" 
                               class="highlight">
-                              Click here to download!
+                              🔗 Google Docs
+                            </a>
+                          |
+                            <a 
+                              href="https://docs.google.com/document/d/1RGvgfufNKBGRyRrKwfn89TncH84hvWEhF_tjKZbYNxU/export?format=pdf"
+                              class="highlight">
+                              🔗 Download Link
                             </a>
                           <br>
                           <br>`;
@@ -72,8 +75,7 @@ export class SimpleCommands {
 
 	sendRepo(outputArea) {
 		return `
-              <br>
-                  <span style="color: white" class="sub-heading fancy-3d">
+                  <span class="sub-heading fancy-3d">
                       Repository
                   </span>
               <br>
@@ -81,7 +83,7 @@ export class SimpleCommands {
                 <a 
                   href="https://github.com/MZaFaRM/Portfolio"
                   target="_blank"
-                  style="color: white" 
+                  
                   class="highlight">
                   Click here to redirect!
                 </a>

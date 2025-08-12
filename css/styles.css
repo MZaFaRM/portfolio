@@ -1,6 +1,6 @@
 * {
 	font-size: 14px;
-	color: #ffffff;
+	color: #e6e0b4;
 }
 
 p {
@@ -8,18 +8,18 @@ p {
 }
 
 body {
-	border: 1px solid #002b36;
+	background-color: #001318;
+}
+
+#window {
+	border: 3px solid #83785a;
 	border-radius: 10px;
-	border-width: 3px;
-	border-color: #ffffff;
 	height: auto;
 	padding-left: 20px;
 	padding-right: 20px;
 	padding-top: 20px;
 	background-color: #282828;
 	font-family: "Fira Code";
-	color: #839496;
-
 	min-height: 100vh;
 }
 
@@ -49,7 +49,7 @@ body {
 }
 
 .sub-heading {
-	font-size: max(60px, 4vw);
+	font-size: min(12cqw, 98px);
 }
 
 .caption-body {
@@ -58,7 +58,7 @@ body {
 
 code.glow {
 	background: 50% 100% / 50% 50% no-repeat
-		radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+		radial-gradient(ellipse at bottom, #bead72, transparent, transparent);
 	-webkit-background-clip: text;
 	background-clip: text;
 	animation: glow 3000ms linear infinite 2000ms;
@@ -66,7 +66,7 @@ code.glow {
 
 code.reveal.glow {
 	background: 50% 100% / 50% 50% no-repeat
-		radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+		radial-gradient(ellipse at bottom, #bead72, transparent, transparent);
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
@@ -151,7 +151,6 @@ input {
 }
 
 table {
-	color: white;
 	border-collapse: collapse;
 }
 

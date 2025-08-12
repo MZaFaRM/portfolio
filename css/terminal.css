@@ -10,13 +10,13 @@
 	white-space: nowrap;
 }
 
-.prompt-input {
+#prompt-input {
 	display: inline-block;
 	padding: 5px;
 	margin-left: 10px;
 	flex: 1 1 0;
 	background-color: transparent;
-	color: #ffffff;
+	color: #e6e0b4;
 	border: none;
 	outline: none;
 	cursor: text;
@@ -25,17 +25,25 @@
 	margin: 0;
 	position: relative;
 	height: 22.5px;
+
+	cursor: pointer;
+}
+
+#prompt-input::placeholder {
+	font-family: "Cal Sans";
 }
 
 #prompt-suggest {
 	background-color: transparent;
-	color: lightgray;
+	color: #bead72;
 	opacity: 0.5;
 	font-family: "Cal Sans";
 	position: absolute;
-	z-index: -1; /* Lower z-index */
+	z-index: 1;
+	pointer-events: none;
 	margin: 0;
 	flex: 1;
+	position: 0;
 }
 
 .prompt-taker {
@@ -50,4 +58,8 @@
 	flex: 1;
 	overflow: hidden;
 	position: relative;
+}
+
+.glow {
+	cursor: pointer;
 }

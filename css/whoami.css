@@ -15,16 +15,17 @@
 	.portrait {
 		width: 80%;
 	}
+
 }
 
-.icon img {
-	width: 20px;
+.social-media img {
+	width: 30px;
 	height: auto;
 	margin: 10px;
 }
 
-.icon img,
-.icon p {
+.social-media img,
+.social-media p {
 	display: inline-block;
 	vertical-align: middle; /* to align them vertically centered to each other */
 }
@@ -39,17 +40,18 @@
 	white-space: nowrap;
 	overflow: hidden;
 	line-height: 100px;
-	border-right: solid 3px rgba(0, 255, 0, 0.75);
-	animation: animated-cursor 600ms steps(29, end) infinite;
+  margin: 0;
+	/* border-right: solid 3px rgba(0, 255, 0, 0.75); */
+	/* animation: animated-cursor 600ms steps(29, end) infinite; */
 }
 
 /* cursor animations */
 
-@keyframes animated-cursor {
+/* @keyframes animated-cursor {
 	from {
 		border-right-color: rgba(0, 255, 0, 0.75);
 	}
 	to {
 		border-right-color: transparent;
 	}
-}
+} */

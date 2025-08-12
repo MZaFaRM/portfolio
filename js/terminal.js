@@ -40,7 +40,7 @@ function smoothFocus(inputElement) {
 // This is done to ensure we can add a new CLI input without conflicting IDs.
 function releaseCli() {
 	const outputArea = document.getElementById("cli-output");
-	const commandInput = document.getElementById("cli");
+	const commandInput = document.getElementById("prompt-input");
 	const cliInput = document.getElementById("cli-text");
 
 	// Only remove the 'id' attribute if the element exists.
@@ -75,7 +75,7 @@ export async function setBoard() {
 		mainBody.innerHTML += content;
 
 		// Add event listener to the CLI input to handle user input.
-		const commandInput = document.getElementById("cli");
+		const commandInput = document.getElementById("prompt-input");
 		smoothFocus(commandInput);
 		const promptSuggest = document.getElementById("prompt-suggest");
 
@@ -86,7 +86,7 @@ export async function setBoard() {
 			} else {
 				for (const command of commands) {
 					if (command.startsWith(commandInput.value.toLowerCase())) {
-						promptSuggest.innerHTML = `<span style="color: transparent" id="user-text">${commandInput.value.trim()}</span>${command.slice(
+						promptSuggest.innerHTML = `<span id="user-text" style="color: transparent">${commandInput.value.trim()}</span>${command.slice(
 							commandInput.value.length
 						)}`; // Show the suggested command after the commandInput.value
 						return;
@@ -100,7 +100,7 @@ export async function setBoard() {
 			if (event.key === "Enter") {
 				const command = commandInput.value;
 				if (command) {
-					executeCommand(command); // Execute the command when the Enter key is pressed.
+					executeCommand(command);
 				}
 			} else if (event.key === "Tab") {
 				event.preventDefault();
@@ -119,7 +119,8 @@ export async function setBoard() {
 			}
 		});
 
-		document.getElementById("cli").placeholder = generatePlaceholder();
+		document.getElementById("prompt-input").placeholder =
+			generatePlaceholder();
 	} catch (error) {
 		// Log errors for debugging purposes.
 		console.error("Error:", error);
@@ -226,9 +227,11 @@ export async function executeCommand(command) {
 
 function saveUserInput(command) {
 	return `
-    <div class="prompt-text">
-      <span style="color: #15ff00">MZaFaRM</span>@<span style="color: #ffff06">home</span>$ ~ ${command}
-    </div>`;
+      <div class="prompt-text" style="font-weight: bold;">
+        <span style="color: #89944c">MZaFaRM</span>@<span style="color: #bead72"
+          >home</span
+        >$ ~ ${command}
+      </div>`;
 }
 async function handleError(error, outputArea) {
 	outputArea.innerHTML += "<br>mzafarm: " + error.message + "<br><br>";
