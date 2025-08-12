@@ -5,7 +5,7 @@ import { generatePlaceholder } from "./scripts.js";
 
 export class SimpleCommands {
 	// SimpleCommands class is used to handle commands that do not require additional content
-	// Examples include 'help', 'repo', 'resume', etc.
+	// Examples include 'help', 'repo', etc.
 	constructor() {
 		this.outputArea = "";
 	}
@@ -29,27 +29,6 @@ export class SimpleCommands {
 			return this.listStuff(commandDescription);
 		} else if (/^repo/i.test(command)) {
 			return this.outputArea + this.sendRepo();
-		} else if (/^resume/i.test(command)) {
-			this.outputArea += `
-                              <span class="sub-heading fancy-3d">
-                                  Resume
-                              </span>
-                          <br>
-                          <br>
-                            <a 
-                              href="https://docs.google.com/document/d/1RGvgfufNKBGRyRrKwfn89TncH84hvWEhF_tjKZbYNxU/edit?usp=drivesdk"
-                              class="highlight">
-                              🔗 Google Docs
-                            </a>
-                          |
-                            <a 
-                              href="https://docs.google.com/document/d/1RGvgfufNKBGRyRrKwfn89TncH84hvWEhF_tjKZbYNxU/export?format=pdf"
-                              class="highlight">
-                              🔗 Download Link
-                            </a>
-                          <br>
-                          <br>`;
-			return this.outputArea;
 		} else {
 			return false;
 		}
