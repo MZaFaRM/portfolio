@@ -1,5 +1,6 @@
 .portrait {
 	height: 400px;
+	border-radius: 5%;
 }
 
 .portrait:active {
@@ -10,6 +11,12 @@
 @media screen and (max-width: 542px) {
 	.portrait {
 		height: 200px;
+	}
+
+	.portrait-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 }
 
