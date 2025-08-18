@@ -146,10 +146,6 @@ a:active {
 	}
 }
 
-input {
-	caret-shape: underscore;
-}
-
 table {
 	border-collapse: collapse;
 }

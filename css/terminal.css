@@ -20,7 +20,7 @@
 	border: none;
 	outline: none;
 	cursor: text;
-	font-family: "Cal Sans";
+	font-family: "Fira Code";
 	padding: 0;
 	margin: 0;
 	position: relative;
@@ -29,15 +29,11 @@
 	cursor: pointer;
 }
 
-#prompt-input::placeholder {
-	font-family: "Cal Sans";
-}
-
 #prompt-suggest {
 	background-color: transparent;
 	color: #bead72;
 	opacity: 0.5;
-	font-family: "Cal Sans";
+	font-family: "Fira Code";
 	position: absolute;
 	z-index: 1;
 	pointer-events: none;
@@ -62,4 +58,8 @@
 
 .glow {
 	cursor: pointer;
+}
+
+code {
+	font-family: 'Fira Code';
 }
