@@ -4,10 +4,16 @@
 	color: #ebdbb2;
 }
 
+.prompt-container {
+	margin-bottom: 10px;
+}
+
 .prompt-text {
 	margin-right: 10px;
-	display: inline-block;
+	display: flex;
+	flex: 1;
 	white-space: nowrap;
+	flex-direction: column;
 }
 
 #prompt-input {
@@ -20,7 +26,7 @@
 	border: none;
 	outline: none;
 	cursor: text;
-	font-family: "Fira Code";
+	font-family: var(--primary-font-family);
 	padding: 0;
 	margin: 0;
 	position: relative;
@@ -33,7 +39,7 @@
 	background-color: transparent;
 	color: var(--primary-text-color);
 	opacity: 0.5;
-	font-family: "Fira Code";
+	font-family: var(--primary-font-family);
 	position: absolute;
 	z-index: 1;
 	pointer-events: none;
@@ -45,13 +51,13 @@
 .prompt-taker {
 	display: flex;
 	align-items: center;
-	overflow: hidden;
 	flex-wrap: wrap;
 }
 
 .input-box {
 	display: flex;
 	flex: 1;
+	padding-left: 5px;
 	overflow: hidden;
 	position: relative;
 }
@@ -60,6 +66,28 @@
 	cursor: pointer;
 }
 
+.prompt-line-top {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	flex: 1;
+}
+
+.prompt-line-bottom {
+	margin-top: 5px;
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	flex: 1;
+}
+
+.fill-line {
+	flex: 1;
+	border-bottom: 2px dashed var(--primary-text-color);
+	margin: 0 4px;
+	opacity: 0.4;
+}
+
 code {
-	font-family: "Fira Code";
+	font-family: var(--primary-font-family);
 }

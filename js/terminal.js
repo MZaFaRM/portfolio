@@ -31,6 +31,7 @@ function smoothFocus(inputElement) {
 			!(inputElement === document.activeElement)
 		) {
 			inputElement.focus();
+			inputElement.value += event.key;
 		}
 	});
 }
@@ -181,7 +182,7 @@ export async function executeCommand(command) {
 	let formattedCommand = cleanUserCommand(command);
 
 	if (cliInput) {
-		cliInput.innerHTML = saveUserInput(formattedCommand);
+		saveUserInput(formattedCommand);
 	}
 	formattedCommand = formattedCommand.trim();
 	let commandHandler = new SimpleCommands();
@@ -223,15 +224,20 @@ export async function executeCommand(command) {
 }
 
 function saveUserInput(command) {
-	return `
-      <div class="prompt-text" style="font-weight: bold;">
-        <span style="color: #89944c">MZaFaRM</span>@<span style="color: var(--primary-text-color)"
-          >home</span
-        >$ ~ ${command}
-      </div>`;
+	const promptContainers =
+		document.getElementsByClassName("prompt-container");
+	const currentPrompt = promptContainers[promptContainers.length - 1];
+	const inputBox = currentPrompt.querySelector(".input-box");
+	inputBox.innerHTML = `<span style="color: var(--primary-text-color)">${command}</span>`;
 }
+
 async function handleError(error, outputArea) {
 	outputArea.innerHTML += "<br>mzafarm: " + error.message + "<br><br>";
+	const promptContainers =
+		document.getElementsByClassName("prompt-container");
+	const currentPrompt = promptContainers[promptContainers.length - 1];
+	currentPrompt.querySelector(".prompt-tag").classList.add("hidden");
+	currentPrompt.querySelector(".error-prompt-tag").classList.remove("hidden");
 	await postExecutionCleanup();
 }
 

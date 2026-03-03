@@ -1,6 +1,13 @@
 :root {
 	--primary-bg-color: #242730;
 	--primary-text-color: #bbc2cf;
+
+	--primary-font-family: "Fira Code" monospace;
+}
+
+@font-face {
+	font-family: "Fira Code";
+	src: url("../fonts/FiraCodeNerdFont-Regular.ttf") format("truetype");
 }
 
 * {
