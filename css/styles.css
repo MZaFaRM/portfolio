@@ -1,6 +1,8 @@
 :root {
 	--primary-bg-color: #242730;
 	--primary-text-color: #bbc2cf;
+	--error-text-color: #ff665cc0;
+	--ok-text-color: #7bc275c0;
 
 	--primary-font-family: "Fira Code" monospace;
 }

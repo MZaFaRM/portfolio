@@ -25,8 +25,8 @@ function levenshteinDistance(a, b) {
 					matrix[i - 1][j - 1] + 1, // substitution
 					Math.min(
 						matrix[i][j - 1] + 1, // insertion
-						matrix[i - 1][j] + 1
-					)
+						matrix[i - 1][j] + 1,
+					),
 				); // deletion
 			}
 		}

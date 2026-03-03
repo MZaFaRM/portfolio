@@ -1,7 +1,7 @@
 .prompt-output {
 	/* width: min(550px, 100%); */
 	overflow: hidden;
-	color: #ff665cc0;
+	color: var(--error-text-color);
 }
 
 .prompt-container {
@@ -22,17 +22,28 @@
 	margin-left: 10px;
 	flex: 1 1 0;
 	background-color: transparent;
-	color: #e6e0b4;
+	color: var(--primary-text-color);
 	border: none;
 	outline: none;
 	cursor: text;
 	font-family: var(--primary-font-family);
+	font-weight: 600;
 	padding: 0;
 	margin: 0;
 	position: relative;
 	height: 22.5px;
 
 	cursor: pointer;
+}
+
+#prompt-input.unknown-command {
+	color: var(--error-text-color);
+	font-weight: 800;
+}
+
+#prompt-input.known-command {
+	color: var(--ok-text-color);
+	font-weight: 800;
 }
 
 #prompt-suggest {
@@ -46,6 +57,16 @@
 	margin: 0;
 	flex: 1;
 	position: 0;
+}
+
+.prompt-tag {
+	color: var(--ok-text-color);
+	font-weight: 800;
+}
+
+.error-prompt-tag {
+	color: var(--error-text-color);
+	font-weight: 800;
 }
 
 .prompt-taker {

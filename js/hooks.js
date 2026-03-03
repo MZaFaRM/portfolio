@@ -21,10 +21,25 @@ export function getIdleTime() {
 	return idleTime;
 }
 
-setInterval(() => {
-	document.querySelector(".idle").textContent = `idle ${getIdleTime()}`;
-}, 1000);
+function getBrowser() {
+	const ua = navigator.userAgent;
+	const browser = (() => {
+		if (ua.includes("Edg")) return "Edge";
+		if (ua.includes("Chrome")) return "Chrome";
+		if (ua.includes("Firefox")) return "Firefox";
+		if (ua.includes("Safari")) return "Safari";
+		return "Unknown";
+	})();
+
+	return `󰛳 ${browser}`;
+}
+
+const browser = getBrowser();
 
 setInterval(() => {
+	document.querySelector(".idle").textContent = `idle ${getIdleTime()}`;
 	document.querySelector(".clock").textContent = getCurrentTime();
+	document.querySelectorAll(".browser").forEach((el) => {
+		el.textContent = browser;
+	});
 }, 1000);

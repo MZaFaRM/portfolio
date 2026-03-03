@@ -1,4 +1,4 @@
-import { SimpleCommands, FileCommands } from "./commands.js";
+import { FileCommands, SimpleCommands } from "./commands.js";
 import { getCurrentTime } from "./hooks.js";
 import { generatePlaceholder, suggestCommand } from "./scripts.js";
 
@@ -81,12 +81,22 @@ export async function setBoard() {
 		const promptSuggest = document.getElementById("prompt-suggest");
 
 		commandInput.addEventListener("input", (event) => {
-			if (commandInput.value === "") {
+			const userCommand = commandInput.value
+				.toLowerCase()
+				.trim()
+				.split(" ")[0];
+
+			if (userCommand === "") {
+				commandInput.classList.remove("unknown-command");
+				commandInput.classList.remove("known-command");
 				promptSuggest.innerText = "";
 				return;
 			} else {
 				for (const command of commands) {
-					if (command.startsWith(commandInput.value.toLowerCase())) {
+					if (command.startsWith(userCommand)) {
+						commandInput.classList.remove("unknown-command");
+						commandInput.classList.add("known-command");
+
 						promptSuggest.innerHTML = `<span id="user-text" style="color: transparent">${commandInput.value.trim()}</span>${command.slice(
 							commandInput.value.length,
 						)}`; // Show the suggested command after the commandInput.value
@@ -94,6 +104,9 @@ export async function setBoard() {
 					}
 				}
 				promptSuggest.innerText = "";
+				commandInput.classList.add("unknown-command");
+				commandInput.classList.remove("known-command");
+				return;
 			}
 		});
 
@@ -231,6 +244,7 @@ function saveUserInput(command) {
 	const inputBox = currentPrompt.querySelector(".input-box");
 	inputBox.innerHTML = `<span style="color: var(--primary-text-color)">${command}</span>`;
 	currentPrompt.querySelector(".idle").classList.remove("idle");
+
 	const clockElement = currentPrompt.querySelector(".clock");
 	if (clockElement) {
 		clockElement.innerHTML = getCurrentTime();
