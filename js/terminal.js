@@ -86,7 +86,7 @@ export async function setBoard() {
 				for (const command of commands) {
 					if (command.startsWith(commandInput.value.toLowerCase())) {
 						promptSuggest.innerHTML = `<span id="user-text" style="color: transparent">${commandInput.value.trim()}</span>${command.slice(
-							commandInput.value.length
+							commandInput.value.length,
 						)}`; // Show the suggested command after the commandInput.value
 						return;
 					}
@@ -197,9 +197,8 @@ export async function executeCommand(command) {
 		//        - Examples include 'tictactoe', 'projects', 'whoami', etc.
 		//        - The content for file commands is stored in the pages directory.
 		//        - File commands are defined in the determineFileName function.
-		let isSimpleCommand = await commandHandler.executeCommand(
-			formattedCommand
-		);
+		let isSimpleCommand =
+			await commandHandler.executeCommand(formattedCommand);
 		if (isSimpleCommand) {
 			outputArea.innerHTML += isSimpleCommand;
 			await postExecutionCleanup();
@@ -215,9 +214,8 @@ export async function executeCommand(command) {
 		let content = await response.text();
 
 		const fileCommandHandler = new FileCommands(content);
-		outputArea.innerHTML += await fileCommandHandler.executeCommand(
-			formattedCommand
-		);
+		outputArea.innerHTML +=
+			await fileCommandHandler.executeCommand(formattedCommand);
 		await postExecutionCleanup();
 	} catch (error) {
 		await handleError(error, outputArea);
@@ -227,7 +225,7 @@ export async function executeCommand(command) {
 function saveUserInput(command) {
 	return `
       <div class="prompt-text" style="font-weight: bold;">
-        <span style="color: #89944c">MZaFaRM</span>@<span style="color: #bead72"
+        <span style="color: #89944c">MZaFaRM</span>@<span style="color: var(--primary-text-color)"
           >home</span
         >$ ~ ${command}
       </div>`;
