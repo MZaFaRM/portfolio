@@ -1,4 +1,5 @@
 import { SimpleCommands, FileCommands } from "./commands.js";
+import { getCurrentTime } from "./hooks.js";
 import { generatePlaceholder, suggestCommand } from "./scripts.js";
 
 export const commandDescription = {
@@ -229,15 +230,26 @@ function saveUserInput(command) {
 	const currentPrompt = promptContainers[promptContainers.length - 1];
 	const inputBox = currentPrompt.querySelector(".input-box");
 	inputBox.innerHTML = `<span style="color: var(--primary-text-color)">${command}</span>`;
+	currentPrompt.querySelector(".idle").classList.remove("idle");
+	const clockElement = currentPrompt.querySelector(".clock");
+	if (clockElement) {
+		clockElement.innerHTML = getCurrentTime();
+		clockElement.classList.remove("clock");
+	}
 }
 
 async function handleError(error, outputArea) {
-	outputArea.innerHTML += "<br>mzafarm: " + error.message + "<br><br>";
+	outputArea.innerHTML += "<br>error: " + error.message + "<br><br>";
 	const promptContainers =
 		document.getElementsByClassName("prompt-container");
 	const currentPrompt = promptContainers[promptContainers.length - 1];
-	currentPrompt.querySelector(".prompt-tag").classList.add("hidden");
-	currentPrompt.querySelector(".error-prompt-tag").classList.remove("hidden");
+	currentPrompt.querySelectorAll(".prompt-tag").forEach((elem) => {
+		elem.classList.add("hidden");
+	});
+	currentPrompt.querySelectorAll(".error-prompt-tag").forEach((elem) => {
+		elem.classList.remove("hidden");
+	});
+
 	await postExecutionCleanup();
 }
 

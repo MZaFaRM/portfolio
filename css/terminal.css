@@ -1,7 +1,7 @@
 .prompt-output {
 	/* width: min(550px, 100%); */
 	overflow: hidden;
-	color: #ebdbb2;
+	color: #ff665cc0;
 }
 
 .prompt-container {
@@ -90,4 +90,14 @@
 
 code {
 	font-family: var(--primary-font-family);
+}
+
+.idle-styles {
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-left: 10px;
+	font-weight: 800;
+	border-radius: 1px;
+	background-color: var(--primary-text-color);
+	color: var(--primary-bg-color);
 }
