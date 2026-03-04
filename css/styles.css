@@ -23,6 +23,12 @@
 	color: var(--primary-text-color);
 }
 
+@media screen and (min-width: 460px) {
+	* {
+		font-size: 16px;
+	}
+}
+
 p {
 	line-height: 1.5;
 }
@@ -43,6 +49,14 @@ body {
 	min-height: 100vh;
 }
 
+@media screen and (max-width: 460px) {
+	#window {
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-top: 10px;
+	}
+}
+
 @media screen and (max-width: 542px) {
 	* {
 		font-size: 14px;
@@ -61,11 +75,23 @@ body {
 
 .fancy-3d {
 	font-family: var(--fancy-font-family);
-	font-size: min(20cqw, 130px);
+	font-size: 130px;
 	margin: auto;
 	word-break: break-word;
 	overflow-wrap: break-word;
 	hyphens: auto;
+}
+
+@media screen and (max-width: 740px) {
+	.fancy-3d {
+		font-size: 100px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.fancy-3d {
+		font-size: 50px;
+	}
 }
 
 .sub-heading {
@@ -167,12 +193,9 @@ a:active {
 
 @-webkit-keyframes highlight {
 	to {
-		bac{
+		background-position: 0 0;
 		transform: none;
 		text-shadow: none;
-	}
-}
-kground-position: 0 0;
 	}
 }
 
@@ -190,4 +213,41 @@ td {
 	vertical-align: top;
 	text-align: left;
 	padding: 5px;
+}
+
+.xxs-hidden {
+	display: block;
+}
+@media (min-width: 350px) {
+	.xxs-hidden {
+		display: none;
+	}
+}
+
+.xs-hidden {
+	display: block;
+}
+@media (min-width: 460px) {
+	.xs-hidden {
+		display: none;
+	}
+}
+
+/* always hide, show at breakpoint */
+.xxs-show {
+	display: none;
+}
+@media (min-width: 350px) {
+	.xxs-show {
+		display: block;
+	}
+}
+
+.xs-show {
+	display: none;
+}
+@media (min-width: 460px) {
+	.xs-show {
+		display: block;
+	}
 }

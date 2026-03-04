@@ -107,7 +107,10 @@ export function getBrowser() {
 		return "Unknown";
 	})();
 
-	return ` |${browser}`;
+	return {
+		browser: `${browser}`,
+		browserVerbose: ` |${browser}`,
+	};
 }
 
-export const browser = getBrowser();
+export const { browser, browserVerbose } = getBrowser();

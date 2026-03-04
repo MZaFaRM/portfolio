@@ -1,6 +1,11 @@
 import { FileCommands, SimpleCommands } from "./commands.js";
 import { getCurrentTime, getUptime } from "./hooks.js";
-import { browser, generatePlaceholder, suggestCommand } from "./scripts.js";
+import {
+	browser,
+	browserVerbose,
+	generatePlaceholder,
+	suggestCommand,
+} from "./scripts.js";
 
 export const commandDescription = {
 	help: "get all commands",
@@ -79,8 +84,23 @@ export async function setBoard() {
 		const browserElement = mainBody.querySelector("#browser");
 		browserElement.textContent = browser;
 		browserElement.removeAttribute("id");
+
+		const browserVerboseElement =
+			mainBody.querySelector("#browser-verbose");
+		browserVerboseElement.textContent = browserVerbose;
+		browserVerboseElement.removeAttribute("id");
+
+		const { verbose: uptimeVerbose, compact: uptimeCompact } = getUptime();
 		const uptimeElement = mainBody.querySelector("#uptime");
-		uptimeElement.textContent = `up ${getUptime()}`;
+		uptimeElement.textContent = uptimeCompact;
+		const uptimeVerboseElement = mainBody.querySelector("#uptime-verbose");
+		uptimeVerboseElement.textContent = uptimeVerbose;
+
+		const { verbose: timeVerbose, compact: timeCompact } = getCurrentTime();
+		const clockElement = mainBody.querySelector("#clock");
+		clockElement.textContent = timeCompact;
+		const clockVerboseElement = mainBody.querySelector("#clock-verbose");
+		clockVerboseElement.textContent = timeVerbose;
 
 		// Add event listener to the CLI input to handle user input.
 		const commandInput = document.getElementById("prompt-input");
@@ -251,12 +271,9 @@ function saveUserInput(command) {
 	const inputBox = currentPrompt.querySelector(".input-box");
 	inputBox.innerHTML = `<span style="color: var(--primary-text-color)">${command}</span>`;
 	currentPrompt.querySelector("#uptime").removeAttribute("id");
-
-	const clockElement = currentPrompt.querySelector("#clock");
-	if (clockElement) {
-		clockElement.innerHTML = getCurrentTime();
-		clockElement.removeAttribute("id");
-	}
+	currentPrompt.querySelector("#uptime-verbose").removeAttribute("id");
+	currentPrompt.querySelector("#clock").removeAttribute("id");
+	currentPrompt.querySelector("#clock-verbose").removeAttribute("id");
 }
 
 async function handleError(error, outputArea) {

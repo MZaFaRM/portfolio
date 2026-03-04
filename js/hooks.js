@@ -1,24 +1,28 @@
 export function getCurrentTime() {
-	return new Date().toLocaleTimeString("en-US", {
+	const time = new Date().toLocaleTimeString("en-US", {
 		hour: "2-digit",
 		minute: "2-digit",
 		second: "2-digit",
-		hour12: true,
+		hour12: false,
 	});
+	return { verbose: `at ${time}`, compact: `${time}` };
 }
 
 export function getUptime() {
 	const uptime = performance.now();
+
 	const minutes = Math.floor(uptime / 60000);
 	const seconds = Math.floor((uptime % 60000) / 1000);
 
-	let uptimeTime;
+	let verbose;
 	if (minutes > 0) {
-		uptimeTime = `${minutes}m ${seconds}s`;
+		verbose = `up ${minutes}m ${seconds}s`;
 	} else {
-		uptimeTime = `${seconds}s`;
+		verbose = `up ${seconds}s`;
 	}
-	return uptimeTime;
+
+	const compact = `${Math.floor(uptime / 1000)}s`;
+	return { verbose, compact };
 }
 
 const glitchGroups = [
@@ -128,6 +132,10 @@ randomFlicker();
 randomGlitch();
 
 setInterval(() => {
-	document.querySelector("#uptime").textContent = `up ${getUptime()}`;
-	document.querySelector("#clock").textContent = getCurrentTime();
+	const { verbose: uptimeVerbose, compact: uptimeCompact } = getUptime();
+	document.querySelector("#uptime-verbose").textContent = uptimeVerbose;
+	document.querySelector("#uptime").textContent = uptimeCompact;
+	const { verbose: timeVerbose, compact: timeCompact } = getCurrentTime();
+	document.querySelector("#clock-verbose").textContent = timeVerbose;
+	document.querySelector("#clock").textContent = timeCompact;
 }, 1000);

@@ -3,15 +3,17 @@
 		<div class="prompt-taker" id="cli-text">
 			<div class="prompt-text" style="font-weight: bold">
 				<div class="prompt-line-top">
-					<span>╭─ <span id="browser" class="browser"></span></span>
-					<span id="uptime" class="uptime">up 0s</span>~
+					╭─
+					<span id="browser" class="browser xxs-hidden"></span>
+					<span id="browser-verbose" class="browser xxs-show"></span>
+					<span id="uptime" class="uptime xs-hidden"></span>
+					<span id="uptime-verbose" class="uptime xs-show"></span>~
 					<span class="fill-line"></span>
-					<span
-						><span class="prompt-tag">ok</span
-						><span class="error-prompt-tag hidden">err</span> at
-						<span id="clock" class="clock">00:00:00 AM</span>
-						─╮</span
-					>
+					<span class="prompt-tag">ok</span>
+					<span class="error-prompt-tag hidden">err</span>
+					<span id="clock" class="clock xs-hidden"></span>
+					<span id="clock-verbose" class="clock xs-show"></span>
+					─╮
 				</div>
 				<div class="prompt-line-bottom">
 					╰─<span style="color: #89944c"
