@@ -36,8 +36,8 @@ jobs:
 
             - name: Push to build
               run: |
-                  git config user.name "github-actions"
-                  git config user.email "actions@github.com"
+                  git config user.email "bot@mzafarm.github.io"
+                  git config user.name "GitHub-Actions-Bot"
                   git add -A
                   git commit -m "chore: minified assets" || exit 0
                   git push origin HEAD:build
