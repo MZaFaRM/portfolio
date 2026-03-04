@@ -40,4 +40,4 @@ jobs:
                   git config user.name "GitHub-Actions-Bot"
                   git add -A
                   git commit -m "chore: minified assets" || exit 0
-                  git push origin HEAD:build
+                  git push origin HEAD:build --force
