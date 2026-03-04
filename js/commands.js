@@ -38,7 +38,7 @@ export class SimpleCommands {
 		for (let key of keys) {
 			tableHtml += `
             <tr>
-                <td><code class="clickable">${key}</code>&nbsp;</td>
+                <td><span class="clickable">${key}</span>&nbsp;</td>
                 <td>${map[key]}</td>
             </tr>`;
 		}

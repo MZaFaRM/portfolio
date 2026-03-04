@@ -7,11 +7,11 @@ export class Projects {
 											<div>
 												<p class="sub-heading fancy-3d flicker">Projects_</p>
 												<p>
-													Type <code class="clickable">projects &lt;project name&gt;</code>
+													Type <span class="clickable">projects &lt;project name&gt;</span>
 													command to get more information about a project.
 													<br />
 													<br />
-													Eg: <code class="clickable">projects dataforge</code>
+													Eg: <span class="clickable">projects dataforge</span>
 													<br />
 													<br />
 												</p>
@@ -45,7 +45,7 @@ export class Projects {
 
 			let error = `${projectName}: project not found`;
 			if (suggestion) {
-				error += `; did you mean: <code class="clickable"><span class="hidden">projects </span>${suggestion}</code>?`;
+				error += `; did you mean: <span class="clickable"><span class="hidden">projects </span>${suggestion}</span>?`;
 			}
 			throw new Error(error);
 		}

@@ -53,3 +53,26 @@
 		text-align: center;
 	}
 }
+
+@keyframes heartbeat {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	10% {
+		opacity: 0.4;
+	}
+	20% {
+		opacity: 1;
+	}
+	30% {
+		opacity: 0.4;
+	}
+	40% {
+		opacity: 1;
+	}
+}
+
+.heartbeat {
+	animation: heartbeat 2s linear infinite;
+}

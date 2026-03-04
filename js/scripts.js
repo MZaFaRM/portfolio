@@ -89,11 +89,8 @@ export function generatePlaceholder(shouldReset = false) {
 
 // Makes clickableing items clickable
 document.body.addEventListener("click", async function (event) {
-	if (event.target.matches("code.clickable")) {
+	if (event.target.matches(".clickable")) {
 		executeCommand(event.target.textContent);
-		if (event.target.classList.contains("reveal")) {
-			event.target.classList.remove("reveal");
-		}
 	}
 });
 

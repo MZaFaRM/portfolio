@@ -56,7 +56,7 @@ const glitchGroups = [
 
 function randomGlitch() {
 	document.querySelectorAll(".glitch").forEach((el) => {
-		if (Math.random() > 0.5) return;
+		if (Math.random() > 0.7) return;
 
 		const current = el.textContent;
 		const currentChars = [...current];
