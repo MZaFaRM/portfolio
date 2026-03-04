@@ -7,8 +7,12 @@ on:
 jobs:
     minify:
         runs-on: ubuntu-latest
+        permissions:
+            contents: write
         steps:
             - uses: actions/checkout@v6
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Setup Node
               uses: actions/setup-node@v6
