@@ -188,7 +188,7 @@ function determineFileName(command) {
 		if (formattedCommand) {
 			const suggestion = suggestCommand(formattedCommand[0], commands);
 			if (suggestion) {
-				error += `; did you mean: <code class="glow">${suggestion}</code>?`;
+				error += `; did you mean: <code class="clickable">${suggestion}</code>?`;
 			}
 		}
 

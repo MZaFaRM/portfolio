@@ -87,9 +87,9 @@ export function generatePlaceholder(shouldReset = false) {
 	}
 }
 
-// Makes glowing items clickable
+// Makes clickableing items clickable
 document.body.addEventListener("click", async function (event) {
-	if (event.target.matches("code.glow")) {
+	if (event.target.matches("code.clickable")) {
 		executeCommand(event.target.textContent);
 		if (event.target.classList.contains("reveal")) {
 			event.target.classList.remove("reveal");
@@ -112,7 +112,5 @@ export function getBrowser() {
 		browserVerbose: ` |${browser}`,
 	};
 }
-
-
 
 export const { browser, browserVerbose } = getBrowser();

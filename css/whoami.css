@@ -1,18 +1,20 @@
 .portrait {
 	height: 400px;
-	border-radius: 5%;
-}
-
-.portrait:active {
-	transform: translateY(10px) translateX(10px);
-	box-shadow: none;
 }
 
 @media screen and (max-width: 542px) {
 	.portrait {
-		height: 200px;
+		height: 300px;
 	}
 
+	.portrait-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+@media screen and (max-width: 888px) {
 	.portrait-container {
 		display: flex;
 		justify-content: center;
@@ -37,23 +39,17 @@
 }
 
 .signature {
-	font-family: "Amiri Quran";
+	font-family: "Reem Kufi";
 	font-size: 40px;
 	white-space: nowrap;
 	overflow: hidden;
 	line-height: 100px;
 	margin: 0;
-	/* border-right: solid 3px rgba(0, 255, 0, 0.75); */
-	/* animation: animated-cursor 600ms steps(29, end) infinite; */
+	text-align: left;
 }
 
-/* cursor animations */
-
-/* @keyframes animated-cursor {
-	from {
-		border-right-color: rgba(0, 255, 0, 0.75);
+@media screen and (max-width: 888px) {
+	.signature {
+		text-align: center;
 	}
-	to {
-		border-right-color: transparent;
-	}
-} */
+}

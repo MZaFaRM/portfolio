@@ -5,13 +5,13 @@ export class Projects {
 		this.content = content;
 		this.outputArea = `
 											<div>
-												<p class="sub-heading fancy-3d glitch flicker">Projects_</p>
+												<p class="sub-heading fancy-3d flicker">Projects_</p>
 												<p>
-													Type <code class="glow">projects &lt;project name&gt;</code>
+													Type <code class="clickable">projects &lt;project name&gt;</code>
 													command to get more information about a project.
 													<br />
 													<br />
-													Eg: <code class="glow">projects dataforge</code>
+													Eg: <code class="clickable">projects dataforge</code>
 													<br />
 													<br />
 												</p>
@@ -45,7 +45,7 @@ export class Projects {
 
 			let error = `${projectName}: project not found`;
 			if (suggestion) {
-				error += `; did you mean: <code class="glow"><span class="hidden">projects </span>${suggestion}</code>?`;
+				error += `; did you mean: <code class="clickable"><span class="hidden">projects </span>${suggestion}</code>?`;
 			}
 			throw new Error(error);
 		}

@@ -102,7 +102,7 @@ body {
 	font-size: max(45px, 3vw);
 }
 
-code.glow {
+code.clickable {
 	background: 50% 100% / 50% 50% no-repeat
 		radial-gradient(
 			ellipse at bottom,
@@ -115,7 +115,7 @@ code.glow {
 	animation: glow 3000ms linear infinite 2000ms;
 }
 
-code.reveal.glow {
+code.reveal.clickable {
 	background: 50% 100% / 50% 50% no-repeat
 		radial-gradient(
 			ellipse at bottom,

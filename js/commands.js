@@ -16,7 +16,7 @@ export class SimpleCommands {
 			generatePlaceholder(true);
 			this.outputArea += `
           <div>
-              <p class="sub-heading fancy-3d glitch flicker">
+              <p class="sub-heading fancy-3d flicker">
 								commands_
               </p>
               <p>
@@ -38,7 +38,7 @@ export class SimpleCommands {
 		for (let key of keys) {
 			tableHtml += `
             <tr>
-                <td><code class="glow">${key}</code>&nbsp;</td>
+                <td><code class="clickable">${key}</code>&nbsp;</td>
                 <td>${map[key]}</td>
             </tr>`;
 		}
@@ -51,7 +51,7 @@ export class SimpleCommands {
 
 	sendRepo(outputArea) {
 		return `
-                  <span class="sub-heading fancy-3d glitch flicker">
+                  <span class="sub-heading fancy-3d glitch">
                       Repository
                   </span>
               <br>
