@@ -1,6 +1,6 @@
 import { FileCommands, SimpleCommands } from "./commands.js";
 import { getCurrentTime } from "./hooks.js";
-import { generatePlaceholder, suggestCommand } from "./scripts.js";
+import { browser, generatePlaceholder, suggestCommand } from "./scripts.js";
 
 export const commandDescription = {
 	help: "get all commands",
@@ -74,6 +74,10 @@ export async function setBoard() {
 
 		// Append the fetched CLI content to the main container.
 		mainBody.innerHTML += content;
+
+		const browserElement = mainBody.querySelector("#browser");
+		browserElement.textContent = browser;
+		browserElement.removeAttribute("id");
 
 		// Add event listener to the CLI input to handle user input.
 		const commandInput = document.getElementById("prompt-input");
@@ -243,12 +247,12 @@ function saveUserInput(command) {
 	const currentPrompt = promptContainers[promptContainers.length - 1];
 	const inputBox = currentPrompt.querySelector(".input-box");
 	inputBox.innerHTML = `<span style="color: var(--primary-text-color)">${command}</span>`;
-	currentPrompt.querySelector(".idle").classList.remove("idle");
+	currentPrompt.querySelector("#idle").removeAttribute("id");
 
-	const clockElement = currentPrompt.querySelector(".clock");
+	const clockElement = currentPrompt.querySelector("#clock");
 	if (clockElement) {
 		clockElement.innerHTML = getCurrentTime();
-		clockElement.classList.remove("clock");
+		clockElement.removeAttribute("id");
 	}
 }
 

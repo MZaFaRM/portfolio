@@ -96,3 +96,18 @@ document.body.addEventListener("click", async function (event) {
 		}
 	}
 });
+
+export function getBrowser() {
+	const ua = navigator.userAgent;
+	const browser = (() => {
+		if (ua.includes("Edg")) return "Edge";
+		if (ua.includes("Chrome")) return "Chrome";
+		if (ua.includes("Firefox")) return "Firefox";
+		if (ua.includes("Safari")) return "Safari";
+		return "Unknown";
+	})();
+
+	return ` |${browser}`;
+}
+
+export const browser = getBrowser();
