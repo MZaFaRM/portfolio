@@ -16,7 +16,7 @@ export class SimpleCommands {
 			generatePlaceholder(true);
 			this.outputArea += `
           <div>
-              <p class="sub-heading fancy-3d">
+              <p class="sub-heading fancy-3d glitch flicker">
 								commands_
               </p>
               <p>
@@ -51,7 +51,7 @@ export class SimpleCommands {
 
 	sendRepo(outputArea) {
 		return `
-                  <span class="sub-heading fancy-3d">
+                  <span class="sub-heading fancy-3d glitch flicker">
                       Repository
                   </span>
               <br>

@@ -55,7 +55,7 @@ const glitchGroups = [
 ];
 
 function randomGlitch() {
-	document.querySelectorAll(".fancy-3d").forEach((el) => {
+	document.querySelectorAll(".glitch").forEach((el) => {
 		if (Math.random() > 0.5) return;
 
 		const current = el.textContent;
@@ -105,7 +105,7 @@ function randomGlitch() {
 }
 
 function randomFlicker() {
-	document.querySelectorAll(".fancy-3d").forEach((el) => {
+	document.querySelectorAll(".flicker").forEach((el) => {
 		el.style.opacity = (Math.random() * 0.4 + 0.6).toFixed(2);
 		setTimeout(
 			() => {

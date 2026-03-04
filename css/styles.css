@@ -4,8 +4,7 @@
 	--error-text-color: #ff665cc0;
 	--ok-text-color: #7bc275c0;
 
-	--primary-font-family: "Fira Code", monospace;
-	--fancy-font-family: "Departure Mono", cursive;
+	--primary-font-family: "Departure Mono", "Fira Code", monospace;
 }
 
 @font-face {
@@ -16,11 +15,13 @@
 @font-face {
 	font-family: "Departure Mono";
 	src: url("../fonts/DepartureMono-Regular.woff") format("woff");
+	unicode-range: U+0020-007E, U+00A0-00FF;
 }
 
 * {
 	font-size: 14px;
 	color: var(--primary-text-color);
+	font-family: var(--primary-font-family);
 }
 
 @media screen and (min-width: 460px) {
@@ -74,7 +75,6 @@ body {
 }
 
 .fancy-3d {
-	font-family: var(--fancy-font-family);
 	font-size: 130px;
 	margin: auto;
 	word-break: break-word;

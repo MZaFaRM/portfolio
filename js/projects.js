@@ -5,7 +5,7 @@ export class Projects {
 		this.content = content;
 		this.outputArea = `
 											<div>
-												<p class="sub-heading fancy-3d">Projects_</p>
+												<p class="sub-heading fancy-3d glitch flicker">Projects_</p>
 												<p>
 													Type <code class="glow">projects &lt;project name&gt;</code>
 													command to get more information about a project.
