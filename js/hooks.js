@@ -56,51 +56,49 @@ const glitchGroups = [
 
 function randomGlitch() {
 	document.querySelectorAll(".glitch").forEach((el) => {
+		if (!el.dataset.original) el.dataset.original = el.textContent;
+		const original = el.dataset.original;
+		const originalChars = [...original];
+
 		if (Math.random() > 0.7) return;
 
-		const current = el.textContent;
-		const currentChars = [...current];
-		const glitchable = currentChars
+		const glitchable = originalChars
 			.map((c, i) => (glitchGroups.find((g) => g.includes(c)) ? i : null))
 			.filter((i) => i !== null);
 
 		if (glitchable.length === 0) return;
 
 		const idx = glitchable[Math.floor(Math.random() * glitchable.length)];
-		const group = glitchGroups.find((g) => g.includes(currentChars[idx]));
+		// Group is always derived from the original character, never the live one
+		const group = glitchGroups.find((g) => g.includes(originalChars[idx]));
 
 		const cycles = 5 + Math.floor(Math.random() * 5);
 		let i = 0;
 
 		const interval = setInterval(() => {
-			const tempChars = [...currentChars];
+			const tempChars = [...originalChars];
 			tempChars[idx] = group[Math.floor(Math.random() * group.length)];
 			el.textContent = tempChars.join("");
 			i++;
 
 			if (i >= cycles) {
 				clearInterval(interval);
-				const original = currentChars[idx];
-				const candidates = group.filter((c) => c !== original);
-				const settled =
-					candidates[Math.floor(Math.random() * candidates.length)];
-				const finalChars = [...currentChars];
-				finalChars[idx] = settled;
-				el.textContent = finalChars.join("");
 
-				if (Math.random() > 0.5) {
-					setTimeout(
-						() => {
-							el.textContent = current;
-						},
-						Math.random() * 150 + 80,
-					);
-				}
+				// Pick any character from the group for the settled state
+				const candidates = group.filter((c) => c !== originalChars[idx]);
+				const settled = candidates[Math.floor(Math.random() * candidates.length)];
+				const settledChars = [...originalChars];
+				settledChars[idx] = settled;
+				el.textContent = settledChars.join("");
+
+				// Restore to original after a brief moment
+				setTimeout(() => {
+					el.textContent = original;
+				}, Math.random() * 150 + 80);
 			}
 		}, 40);
 	});
 
-	// Adjust to fix frequency of glitches (currently set to glitch every 3-11 seconds)
 	setTimeout(randomGlitch, Math.random() * 8000 + 3000);
 }
 
