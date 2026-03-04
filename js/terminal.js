@@ -1,5 +1,5 @@
 import { FileCommands, SimpleCommands } from "./commands.js";
-import { getCurrentTime } from "./hooks.js";
+import { getCurrentTime, getUptime } from "./hooks.js";
 import { browser, generatePlaceholder, suggestCommand } from "./scripts.js";
 
 export const commandDescription = {
@@ -75,9 +75,12 @@ export async function setBoard() {
 		// Append the fetched CLI content to the main container.
 		mainBody.innerHTML += content;
 
+		// init the interactive browser element in the CLI prompt
 		const browserElement = mainBody.querySelector("#browser");
 		browserElement.textContent = browser;
 		browserElement.removeAttribute("id");
+		const uptimeElement = mainBody.querySelector("#uptime");
+		uptimeElement.textContent = `up ${getUptime()}`;
 
 		// Add event listener to the CLI input to handle user input.
 		const commandInput = document.getElementById("prompt-input");
@@ -247,7 +250,7 @@ function saveUserInput(command) {
 	const currentPrompt = promptContainers[promptContainers.length - 1];
 	const inputBox = currentPrompt.querySelector(".input-box");
 	inputBox.innerHTML = `<span style="color: var(--primary-text-color)">${command}</span>`;
-	currentPrompt.querySelector("#idle").removeAttribute("id");
+	currentPrompt.querySelector("#uptime").removeAttribute("id");
 
 	const clockElement = currentPrompt.querySelector("#clock");
 	if (clockElement) {

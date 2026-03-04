@@ -4,42 +4,42 @@ export class Projects {
 	constructor(content) {
 		this.content = content;
 		this.outputArea = `
-                            <span>
-                                <span class="sub-heading fancy-3d">
-                                    Projects 
-                                </span>
-                                <br>
-                                  <br>
-                                      Type <code class="glow">projects &lt;project name&gt;</code> 
-                                      command to get more information about a project.    
-                                  <br>
-                                  <br>
-                                      Eg: <code class="glow">projects dataforge</code>  
-                                  <br>
-                                <br>
-                            </span>`;
+											<div>
+												<p class="sub-heading fancy-3d">Projects_</p>
+												<p>
+													Type <code class="glow">projects &lt;project name&gt;</code>
+													command to get more information about a project.
+													<br />
+													<br />
+													Eg: <code class="glow">projects dataforge</code>
+													<br />
+													<br />
+												</p>
+											</div>
+											`;
 	}
+
 	async getProject(projectName) {
 		const projects = await this.getProjects();
 		if (
 			projects.some(
 				(project) =>
 					project.projectId.toLowerCase() ===
-					projectName.toLowerCase()
+					projectName.toLowerCase(),
 			)
 		) {
 			let project = this.content.querySelector(
-				".frames .project.hidden#" + projectName
+				".frames .project.hidden#" + projectName,
 			);
 			project.classList.remove("hidden");
 			this.outputArea = project.outerHTML;
 			return this.outputArea;
 		} else {
 			const projectElements = this.content.querySelectorAll(
-				".frames .project.hidden"
+				".frames .project.hidden",
 			);
 			let projectIds = Object(
-				Array.from(projectElements, (element) => element.id)
+				Array.from(projectElements, (element) => element.id),
 			);
 			const suggestion = suggestCommand(projectName, projectIds);
 
@@ -67,10 +67,10 @@ export class Projects {
 
 			let projectIds = Array.from(
 				projectElements,
-				(element) => element.id
+				(element) => element.id,
 			);
 			let projectDesc = Array.from(projectElements, (element) =>
-				element.querySelector(".description")
+				element.querySelector(".description"),
 			);
 
 			return projectIds.map((projectId, index) => {
@@ -78,8 +78,8 @@ export class Projects {
 				const description = descriptionElement
 					? descriptionElement.textContent.replace(
 							/^[\n* *: *]+|[ *: *]+$/g,
-							""
-					  )
+							"",
+						)
 					: "";
 
 				return { projectId, description };

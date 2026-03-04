@@ -133,7 +133,7 @@ export class Game {
 						? { action, value }
 						: bestAction;
 				},
-				{ action: null, value: -Infinity }
+				{ action: null, value: -Infinity },
 			).action;
 		} else if (this.AIPlayer === O) {
 			// AI will try to minimize the value of the board by selecting
@@ -145,7 +145,7 @@ export class Game {
 						? { action, value }
 						: bestAction;
 				},
-				{ action: null, value: Infinity }
+				{ action: null, value: Infinity },
 			).action;
 		}
 	}
@@ -160,7 +160,6 @@ export class Game {
 			return Array.from(availableActions)[
 				Math.floor(Math.random() * availableActions.size)
 			];
-			this.board[randomAction] = this.AIPlayer;
 		}
 		return null;
 	}
@@ -173,7 +172,7 @@ export class Game {
 			for (let move of this.actions(board)) {
 				v = Math.max(
 					v,
-					this.minValue(this.result(board, move), alpha, beta)
+					this.minValue(this.result(board, move), alpha, beta),
 				);
 				alpha = Math.max(alpha, v);
 				if (beta <= alpha) {
@@ -195,7 +194,7 @@ export class Game {
 			for (let move of this.actions(board)) {
 				v = Math.min(
 					v,
-					this.maxValue(this.result(board, move), alpha, beta)
+					this.maxValue(this.result(board, move), alpha, beta),
 				);
 				beta = Math.min(beta, v);
 				if (beta <= alpha) {
@@ -277,7 +276,7 @@ export function makeMove(cell, index) {
 			return;
 		} else {
 			const move =
-				Math.random() > 0.20
+				Math.random() > 0.2
 					? game.minimax(game.board)
 					: game.randomMove(game.board);
 			// Setting some artificial delay because the AI is too fast

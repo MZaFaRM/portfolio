@@ -6,7 +6,7 @@
 	font-size: max(50px, 2vw);
 	cursor: pointer;
 	background: none;
-	border: 3px solid #83785a;
+	border: 2px solid #C57BDB80;
 }
 
 .cell.left {

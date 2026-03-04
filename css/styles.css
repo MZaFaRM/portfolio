@@ -4,12 +4,18 @@
 	--error-text-color: #ff665cc0;
 	--ok-text-color: #7bc275c0;
 
-	--primary-font-family: "Fira Code" monospace;
+	--primary-font-family: "Fira Code", monospace;
+	--fancy-font-family: "Departure Mono", cursive;
 }
 
 @font-face {
 	font-family: "Fira Code";
 	src: url("../fonts/FiraCodeNerdFont-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Departure Mono";
+	src: url("../fonts/DepartureMono-Regular.woff") format("woff");
 }
 
 * {
@@ -33,7 +39,7 @@ body {
 	padding-right: 20px;
 	padding-top: 20px;
 	background-color: var(--primary-bg-color);
-	font-family: "Fira Code";
+	font-family: var(--primary-font-family);
 	min-height: 100vh;
 }
 
@@ -54,7 +60,7 @@ body {
 }
 
 .fancy-3d {
-	font-family: "Mexcellent 3D", cursive;
+	font-family: var(--fancy-font-family);
 	font-size: min(20cqw, 130px);
 	margin: auto;
 	word-break: break-word;
@@ -161,7 +167,12 @@ a:active {
 
 @-webkit-keyframes highlight {
 	to {
-		background-position: 0 0;
+		bac{
+		transform: none;
+		text-shadow: none;
+	}
+}
+kground-position: 0 0;
 	}
 }
 

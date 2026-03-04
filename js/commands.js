@@ -15,17 +15,14 @@ export class SimpleCommands {
 			// Called to break the constant "Try "help" message once help is used
 			generatePlaceholder(true);
 			this.outputArea += `
-          <span>
-              <span class="sub-heading fancy-3d">
-                  Commands
-              </span>
-              <br>
-              
-                  <br>
-                      Type a command and press enter.  
-                  <br>
-              <br>
-          </span>`;
+          <div>
+              <p class="sub-heading fancy-3d">
+								commands_
+              </p>
+              <p>
+								Type a command and press enter.  
+              </p>
+          </div>`;
 			return this.listStuff(commandDescription);
 		} else if (/^repo/i.test(command)) {
 			return this.outputArea + this.sendRepo();
@@ -104,7 +101,7 @@ export class FileCommands extends SimpleCommands {
 		let projectSpecification = command.match(/^projects (.+)/);
 		if (projectSpecification) {
 			this.outputArea = await projectListing.getProject(
-				projectSpecification[1]
+				projectSpecification[1],
 			);
 			return this.outputArea;
 		} else {
@@ -126,7 +123,7 @@ export class FileCommands extends SimpleCommands {
 			this.contentPointer.querySelector(".tictactoe-board");
 		newGameBoard.setAttribute(
 			"id",
-			"tictactoe-" + gameCounter.getCurrentCount()
+			"tictactoe-" + gameCounter.getCurrentCount(),
 		);
 		const newGameData = new Game(this.contentPointer);
 
@@ -158,7 +155,7 @@ export class FileCommands extends SimpleCommands {
 					}
 					signature.innerText += data.slice(
 						signature.innerText.length,
-						letterIndex + 1
+						letterIndex + 1,
 					);
 				}
 			});
