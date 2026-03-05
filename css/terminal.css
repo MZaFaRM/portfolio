@@ -119,5 +119,49 @@
 	font-weight: 800;
 	border-radius: 1px;
 	background-color: #ecbe7b;
+	max-width: 55px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 	color: var(--primary-bg-color);
+}
+
+.uptime.status-bar-verbose {
+	max-width: 90px;
+}
+
+.status-bar {
+	display: block;
+}
+@media (min-width: 560px) {
+	.status-bar {
+		display: none;
+	}
+}
+
+.status-bar-verbose {
+	display: none;
+}
+@media (min-width: 560px) {
+	.status-bar-verbose {
+		display: block;
+	}
+}
+
+.help-prompt {
+	display: block;
+}
+@media (min-width: 400px) {
+	.help-prompt {
+		display: none;
+	}
+}
+
+.help-prompt-verbose {
+	display: none;
+}
+@media (min-width: 400px) {
+	.help-prompt-verbose {
+		display: block;
+	}
 }
