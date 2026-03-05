@@ -237,14 +237,15 @@ function markEndGame(game, gameHTML) {
 	// Check if the game is over
 	// and display the winner or a draw message
 	const winner = game.winner(game.board);
+	const retryMessage = " retry? <span class='clickable'>tictactoe</span>";
 	if (winner) {
-		gameHTML.parentNode.querySelector("#message").textContent =
-			winner + " Wins!";
+		gameHTML.parentNode.querySelector("#message").innerHTML =
+			winner + " Wins!" + retryMessage;
 		game.isGameOver = true;
 		return true;
 	} else if (game.board.every((cell) => cell !== null)) {
-		gameHTML.parentNode.querySelector("#message").textContent =
-			"It's a draw!";
+		gameHTML.parentNode.querySelector("#message").innerHTML =
+			"It's a draw!" + retryMessage;
 		game.isGameOver = true;
 		return true;
 	}
@@ -275,10 +276,14 @@ export function makeMove(cell, index) {
 		if (markEndGame(game, gameHTML)) {
 			return;
 		} else {
-			const move =
-				Math.random() > 0.2
-					? game.minimax(game.board)
-					: game.randomMove(game.board);
+			// Makes AI dumber by making it select a random move 20% of the time
+			// const move =
+			// 	Math.random() > 0.2
+			// 		? game.minimax(game.board)
+			// 		: game.randomMove(game.board);
+			// Keeps the AI smart by always making it select the best move
+			const move = game.minimax(game.board);
+
 			// Setting some artificial delay because the AI is too fast
 			setTimeout(() => {
 				gameHTML.querySelectorAll(".cell")[move].textContent =
