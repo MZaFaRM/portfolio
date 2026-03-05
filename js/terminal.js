@@ -21,17 +21,6 @@ export const commandDescription = {
 export const commands = Object.keys(commandDescription);
 
 function smoothFocus(inputElement) {
-	// Get the bounding rectangle of the inputElement
-	const elementRect = inputElement.getBoundingClientRect();
-	const absoluteElementTop = elementRect.top + window.scrollY;
-	const middle = absoluteElementTop - window.innerHeight / 2;
-
-	// Smoothly scroll to the inputElement
-	window.scrollTo({
-		top: middle,
-		behavior: "smooth",
-	});
-
 	document.addEventListener("keypress", (event) => {
 		if (
 			event.key.match(/^[a-zA-Z]$/) &&
@@ -41,6 +30,16 @@ function smoothFocus(inputElement) {
 			inputElement.value += event.key;
 		}
 	});
+
+	const allPromptContainers = document.querySelectorAll(".prompt-container");
+	if (allPromptContainers.length <= 2) return;
+	console.log(allPromptContainers.length);
+	const secondLast = allPromptContainers[allPromptContainers.length - 2];
+	const scrollTarget = secondLast ?? inputElement;
+
+	const absoluteElementTop =
+		scrollTarget.getBoundingClientRect().top + window.scrollY;
+	window.scrollTo({ top: absoluteElementTop, behavior: "smooth" });
 }
 
 // Function to remove the ID attributes from the CLI and its output area.

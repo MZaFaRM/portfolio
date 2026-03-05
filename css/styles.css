@@ -227,3 +227,7 @@ td {
 		justify-content: center;
 	}
 }
+.section-gap {
+	margin-top: 24px;
+	margin-bottom: 0;
+}

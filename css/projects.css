@@ -30,7 +30,7 @@
 }
 
 .skills-tag {
-	background-color: #46D9FF;
+	background-color: #46d9ff;
 	padding: 1px 3px;
 	color: var(--primary-bg-color);
 	white-space: nowrap;
@@ -55,4 +55,9 @@
 .project-title {
 	font-size: min(9cqw, 80px);
 	margin-bottom: 0;
+}
+
+.project-highlight {
+	color: #51afef;
+	font-weight: 800;
 }

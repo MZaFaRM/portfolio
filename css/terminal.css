@@ -126,8 +126,16 @@
 	color: var(--primary-bg-color);
 }
 
-.uptime.status-bar-verbose {
-	max-width: 90px;
+@media screen and (max-width: 575px) {
+	.uptime {
+		max-width: 90px;
+	}
+}
+
+@media screen and (min-width: 575px) {
+	.uptime {
+		max-width: none;
+	}
 }
 
 .status-bar {
@@ -164,4 +172,15 @@
 	.help-prompt-verbose {
 		display: block;
 	}
+}
+
+.experience-highlight {
+	color: #c57bdb;
+	font-weight: 800;
+}
+
+.experience-date {
+	color: #ecbe7b;
+	font-weight: 800;
+	white-space: nowrap;
 }

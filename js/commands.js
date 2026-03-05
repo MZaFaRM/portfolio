@@ -52,7 +52,7 @@ export class SimpleCommands {
 	sendRepo(outputArea) {
 		return `
                   <span class="sub-heading fancy-3d glitch">
-                      Repository
+                      repository_
                   </span>
               <br>
               <br>

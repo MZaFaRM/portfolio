@@ -96,7 +96,7 @@ class ListCommands {
 export class Projects extends ListCommands {
 	constructor(content) {
 		super(content, {
-			title: "Projects_",
+			title: "projects_",
 			command: "projects",
 			itemLabel: "project",
 			itemClass: "project",

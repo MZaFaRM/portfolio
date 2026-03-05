@@ -132,6 +132,28 @@ function randomFlicker() {
 	setTimeout(randomFlicker, Math.random() * 5000 + 1000);
 }
 
+function glitchRevealWord(li, word, currentHTML, onComplete) {
+    const glitchCycles = 3 + Math.floor(Math.random() * 3);
+    let i = 0;
+
+    const interval = setInterval(() => {
+        const glitched = [...word]
+            .map((c) => {
+                const group = glitchGroups.find((g) => g.includes(c));
+                return group ? group[Math.floor(Math.random() * group.length)] : c;
+            })
+            .join("");
+        li.innerHTML = currentHTML + glitched;
+        i++;
+
+        if (i >= glitchCycles) {
+            clearInterval(interval);
+            li.innerHTML = currentHTML + word;
+            onComplete();
+        }
+    }, 40);
+}
+
 randomFlicker();
 randomGlitch();
 

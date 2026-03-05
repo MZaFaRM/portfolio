@@ -26,3 +26,7 @@
 	font-size: min(9cqw, 80px);
 	margin-bottom: 0;
 }
+
+.experience-li {
+	min-height: 1.5em;
+}
