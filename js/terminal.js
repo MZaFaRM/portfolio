@@ -8,12 +8,13 @@ import {
 } from "./scripts.js";
 
 export const commandDescription = {
-	help: "get all commands",
-	repo: "get project repo link",
+	help: "list all commands",
+	repo: "list project repo link",
 	banner: "show the project banner",
-	projects: "get all of my projects",
+	projects: "list all projects",
+	experience: "list all experiences",
 	tictactoe: "play a game of tictactoe",
-	whoami: "get the aboutme page",
+	whoami: "show the aboutme page",
 	clear: "clean the terminal",
 };
 

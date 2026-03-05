@@ -1,6 +1,6 @@
 import { commandDescription } from "./terminal.js";
 import { TicTacToeGameCounter, Game } from "./tictactoe.js";
-import { Projects } from "./projects.js";
+import { Projects, Experience } from "./listCommands.js";
 import { generatePlaceholder } from "./scripts.js";
 
 export class SimpleCommands {
@@ -91,8 +91,10 @@ export class FileCommands extends SimpleCommands {
 			return this.outputArea + this.content;
 		} else if (/^whoami/i.test(command)) {
 			return await this.handleWHoAmI();
+		} else if (/^experience/i.test(command)) {
+			return await this.handleExperience(command);
 		} else {
-			return false;
+			throw new Error("Command not found");
 		}
 	}
 
@@ -100,14 +102,28 @@ export class FileCommands extends SimpleCommands {
 		let projectListing = new Projects(this.contentPointer);
 		let projectSpecification = command.match(/^projects (.+)/);
 		if (projectSpecification) {
-			this.outputArea = await projectListing.getProject(
+			this.outputArea = await projectListing.getItem(
 				projectSpecification[1],
 			);
 			return this.outputArea;
 		} else {
-			let projectList = await projectListing.listProjects();
-			this.outputArea +=
-				projectListing.outputArea + this.listStuff(projectList);
+			let projectList = await projectListing.listItems();
+			this.outputArea += projectListing.outputArea + projectList;
+			return this.outputArea;
+		}
+	}
+
+	async handleExperience(command) {
+		let experienceListing = new Experience(this.contentPointer);
+		let experienceSpecification = command.match(/^experience (.+)/);
+		if (experienceSpecification) {
+			this.outputArea = await experienceListing.getItem(
+				experienceSpecification[1],
+			);
+			return this.outputArea;
+		} else {
+			let experienceList = await experienceListing.listItems();
+			this.outputArea += experienceListing.outputArea + experienceList;
 			return this.outputArea;
 		}
 	}

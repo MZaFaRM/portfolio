@@ -1,0 +1,28 @@
+.experience-img {
+	max-height: 400px;
+	margin: 30px;
+}
+
+@media screen and (max-width: 542px) {
+	.experience-img {
+		width: 80%;
+	}
+}
+
+.experience-video {
+	min-width: 500px;
+	aspect-ratio: 16/9;
+	background-color: #000;
+	margin: auto;
+}
+
+@media screen and (max-width: 542px) {
+	.experience-video {
+		min-width: 250px;
+	}
+}
+
+.experience-title {
+	font-size: min(9cqw, 80px);
+	margin-bottom: 0;
+}

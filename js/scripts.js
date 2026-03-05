@@ -1,4 +1,3 @@
-import { Projects } from "./projects.js";
 import { commands, executeCommand } from "./terminal.js";
 
 // Function to calculate the Levenshtein Distance

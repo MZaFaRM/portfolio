@@ -85,16 +85,22 @@ function randomGlitch() {
 				clearInterval(interval);
 
 				// Pick any character from the group for the settled state
-				const candidates = group.filter((c) => c !== originalChars[idx]);
-				const settled = candidates[Math.floor(Math.random() * candidates.length)];
+				const candidates = group.filter(
+					(c) => c !== originalChars[idx],
+				);
+				const settled =
+					candidates[Math.floor(Math.random() * candidates.length)];
 				const settledChars = [...originalChars];
 				settledChars[idx] = settled;
 				el.textContent = settledChars.join("");
 
 				// Restore to original after a brief moment
-				setTimeout(() => {
-					el.textContent = original;
-				}, Math.random() * 150 + 80);
+				setTimeout(
+					() => {
+						el.textContent = original;
+					},
+					Math.random() * 150 + 80,
+				);
 			}
 		}, 40);
 	});
@@ -154,11 +160,17 @@ function getAge() {
 
 setInterval(() => {
 	const { verbose: uptimeVerbose, compact: uptimeCompact } = getUptime();
-	document.querySelector("#uptime-verbose").textContent = uptimeVerbose;
-	document.querySelector("#uptime").textContent = uptimeCompact;
+	const uptimeVerboseEl = document.querySelector("#uptime-verbose");
+	const uptimeEl = document.querySelector("#uptime");
+	if (uptimeVerboseEl) uptimeVerboseEl.textContent = uptimeVerbose;
+	if (uptimeEl) uptimeEl.textContent = uptimeCompact;
+
 	const { verbose: timeVerbose, compact: timeCompact } = getCurrentTime();
-	document.querySelector("#clock-verbose").textContent = timeVerbose;
-	document.querySelector("#clock").textContent = timeCompact;
+	const clockVerboseEl = document.querySelector("#clock-verbose");
+	const clockEl = document.querySelector("#clock");
+	if (clockVerboseEl) clockVerboseEl.textContent = timeVerbose;
+	if (clockEl) clockEl.textContent = timeCompact;
+
 	document.querySelectorAll(".age").forEach((el) => {
 		el.innerHTML = getAge();
 	});

@@ -103,7 +103,7 @@ body {
 }
 
 .sub-heading {
-	font-size: min(12cqw, 98px);
+	font-size: min(10cqw, 98px);
 }
 
 .caption-body {
@@ -209,4 +209,21 @@ td {
 	vertical-align: top;
 	text-align: left;
 	padding: 5px;
+}
+
+.hidden {
+	display: none;
+}
+
+.image {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+}
+
+@media screen and (max-width: 800px) {
+	.image {
+		align-items: center;
+		justify-content: center;
+	}
 }
