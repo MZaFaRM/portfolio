@@ -232,36 +232,19 @@ td {
 	margin-bottom: 0;
 }
 
-.shimmer {
+.jump {
 	display: inline-block;
-	position: relative;
-	overflow: hidden;
+	animation: clickable-jump 1.5s ease-in-out infinite;
 }
 
-.shimmer::after {
-	content: "";
-	position: absolute;
-	top: -50%;
-	left: -75%;
-	width: 50%;
-	bottom: 3px;
-	height: auto;
-	background: linear-gradient(
-		to right,
-		transparent 0%,
-		rgba(255, 255, 255, 0.25) 50%,
-		transparent 100%
-	);
-	transform: skewX(-20deg);
-	animation: shimmer-sweep 2.5s ease-in-out infinite;
-	pointer-events: none;
-}
-
-@keyframes shimmer-sweep {
+@keyframes clickable-jump {
 	0% {
-		left: -75%;
+		transform: translateY(-3px);
+	}
+	50% {
+		transform: translateY(-7px);
 	}
 	100% {
-		left: 150%;
+		transform: translateY(-3px);
 	}
 }
