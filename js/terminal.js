@@ -9,13 +9,13 @@ import {
 
 export const commandDescription = {
 	help: "list all commands",
-	repo: "list project repo link",
-	banner: "show the project banner",
+	repo: "get repository link",
+	banner: "display the project banner",
 	projects: "list all projects",
 	experience: "list all experiences",
 	tictactoe: "play a game of tictactoe",
-	whoami: "show the aboutme page",
-	clear: "clean the terminal",
+	whoami: "display user information",
+	clear: "clear the terminal",
 };
 
 export const commands = Object.keys(commandDescription);
