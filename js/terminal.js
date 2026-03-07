@@ -245,7 +245,7 @@ export async function executeCommand(command) {
 			outputArea.innerHTML += isSimpleCommand;
 			await postExecutionCleanup();
 			return;
-		} else if (formattedCommand === "clear") {
+		} else if (/^clear$/i.test(formattedCommand)) {
 			outputArea = document.querySelector("main");
 			outputArea.innerHTML = "";
 			await setBoard();
