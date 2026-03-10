@@ -1,4 +1,4 @@
-import { FileCommands, SimpleCommands } from "./commands.js";
+import { FileCommands, SimpleCommands, terminalConfig } from "./commands.js";
 import { getCurrentTime, getUptime } from "./hooks.js";
 import {
 	browser,
@@ -7,33 +7,9 @@ import {
 	suggestCommand,
 } from "./scripts.js";
 
-export const commandDescription = {
-	help: "list all commands",
-	repo: "get repository link",
-	banner: "display the project banner",
-	projects: "list all projects",
-	experience: "list all experiences",
-	tictactoe: "play a game of tictactoe",
-	whoami: "display user information",
-	clear: "clear the terminal",
-};
-
-export const commands = Object.keys(commandDescription);
-
 function smoothFocus(inputElement) {
-	document.addEventListener("keypress", (event) => {
-		if (
-			event.key.match(/^[a-zA-Z]$/) &&
-			!(inputElement === document.activeElement)
-		) {
-			inputElement.focus();
-			inputElement.value += event.key;
-		}
-	});
-
 	const allPromptContainers = document.querySelectorAll(".prompt-container");
 	if (allPromptContainers.length <= 2) return;
-	console.log(allPromptContainers.length);
 	const secondLast = allPromptContainers[allPromptContainers.length - 2];
 	const scrollTarget = secondLast ?? inputElement;
 
@@ -107,11 +83,8 @@ export async function setBoard() {
 		smoothFocus(commandInput);
 		const promptSuggest = document.getElementById("prompt-suggest");
 
-		commandInput.addEventListener("input", (event) => {
-			const userCommand = commandInput.value
-				.toLowerCase()
-				.trim()
-				.split(" ")[0];
+		commandInput.addEventListener("input", async (event) => {
+			const userCommand = commandInput.value.toLowerCase().trim();
 
 			if (userCommand === "") {
 				commandInput.classList.remove("unknown-command");
@@ -119,14 +92,14 @@ export async function setBoard() {
 				promptSuggest.innerText = "";
 				return;
 			} else {
-				for (const command of commands) {
-					if (command.startsWith(userCommand)) {
+				await terminalConfig.ready;
+				for (const command of terminalConfig.baseCommands) {
+					if (command.toLowerCase().startsWith(userCommand)) {
 						commandInput.classList.remove("unknown-command");
 						commandInput.classList.add("known-command");
 
-						promptSuggest.innerHTML = `<span id="user-text" style="color: transparent">${commandInput.value.trim()}</span>${command.slice(
-							commandInput.value.length,
-						)}`; // Show the suggested command after the commandInput.value
+						promptSuggest.innerHTML =
+							promptSuggest.innerHTML = `<span id="user-text" style="color: transparent">${commandInput.value.trim()}</span>${command.slice(commandInput.value.length)}`; // Show the suggested command after the commandInput.value
 						return;
 					}
 				}
@@ -176,7 +149,7 @@ function determineFileName(command) {
 	// Check if the command is not found or not in the list of commands
 	if (
 		!formattedCommand ||
-		!commands.includes(formattedCommand[0].toLowerCase())
+		!terminalConfig.baseCommands.includes(formattedCommand[0].toLowerCase())
 	) {
 		// Handle null formattedCommand
 		let commandName = formattedCommand
@@ -186,7 +159,10 @@ function determineFileName(command) {
 
 		// Only suggest a command if formattedCommand is not null
 		if (formattedCommand) {
-			const suggestion = suggestCommand(formattedCommand[0], commands);
+			const suggestion = suggestCommand(
+				formattedCommand[0],
+				terminalConfig.baseCommands,
+			);
 			if (suggestion) {
 				error += `; did you mean: <span class="clickable">${suggestion}</span>?`;
 			}
@@ -270,6 +246,8 @@ function saveUserInput(command) {
 	const currentPrompt = promptContainers[promptContainers.length - 1];
 	const inputBox = currentPrompt.querySelector(".input-box");
 	inputBox.innerHTML = `<span style="color: var(--primary-text-color)">${command}</span>`;
+
+	// Remove the 'id' attributes from the CLI elements to prepare for the next input.
 	currentPrompt.querySelector("#uptime").removeAttribute("id");
 	currentPrompt.querySelector("#uptime-verbose").removeAttribute("id");
 	currentPrompt.querySelector("#clock").removeAttribute("id");

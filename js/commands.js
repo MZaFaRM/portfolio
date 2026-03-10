@@ -1,7 +1,61 @@
-import { commandDescription } from "./terminal.js";
 import { TicTacToeGameCounter, Game } from "./tictactoe.js";
 import { Projects, Experience } from "./listCommands.js";
 import { generatePlaceholder } from "./scripts.js";
+
+class TerminalConfig {
+	#baseCommands = [
+		"help",
+		"repo",
+		"banner",
+		"resume",
+		"projects",
+		"experience",
+		"tictactoe",
+		"whoami",
+	];
+
+	#loaders = {
+		projects: "../pages/projects.html",
+		experience: "../pages/experience.html",
+	};
+
+	#cache = {};
+	ready = null;
+
+	constructor() {
+		this.ready = Promise.all(
+			Object.entries(this.#loaders).map(([key, url]) =>
+				this.#load(key, url),
+			),
+		);
+	}
+
+	async #load(key, url) {
+		const text = await fetch(url).then((r) => r.text());
+		const parser = new DOMParser();
+		const content = parser.parseFromString(text, "text/html");
+		this.#cache[key] = content;
+		content.querySelectorAll(`[id]`).forEach((el) => {
+			this.#baseCommands.push(`${key} ${el.id}`);
+		});
+		return content;
+	}
+
+	get baseCommands() {
+		return this.#baseCommands;
+	}
+
+	suggest(prefix) {
+		return this.#baseCommands.find((cmd) => cmd.startsWith(prefix)) ?? null;
+	}
+
+	async get(key) {
+		await this.ready;
+		return this.#cache[key] ?? null;
+	}
+}
+
+export const terminalConfig = new TerminalConfig();
 
 export class SimpleCommands {
 	// SimpleCommands class is used to handle commands that do not require additional content
@@ -23,15 +77,29 @@ export class SimpleCommands {
 								Type a command and press enter.  
               </p>
           </div>`;
-			return this.listStuff(commandDescription);
+			return this.outputArea + this.sendHelp();
 		} else if (/^repo/i.test(command)) {
 			return this.outputArea + this.sendRepo();
+		} else if (/^resume/i.test(command)) {
+			return this.outputArea + this.sendResume();
 		} else {
 			return false;
 		}
 	}
 
-	listStuff(map) {
+	sendHelp() {
+		const map = {
+			help: "list all commands",
+			repo: "get repository link",
+			banner: "display the project banner",
+			resume: "download user resume",
+			projects: "list all projects",
+			experience: "list all experiences",
+			tictactoe: "play a game of tictactoe",
+			whoami: "display user information",
+			clear: "clear the terminal",
+		};
+
 		let keys = Object.keys(map);
 		let tableHtml = `<table style="color: white;">`;
 
@@ -45,11 +113,10 @@ export class SimpleCommands {
 
 		tableHtml += `</table><br>`;
 
-		this.outputArea += tableHtml;
-		return this.outputArea;
+		return tableHtml;
 	}
 
-	sendRepo(outputArea) {
+	sendRepo() {
 		return `
                   <span class="sub-heading fancy-3d glitch">
                       repository_
@@ -62,6 +129,23 @@ export class SimpleCommands {
                   
                   class="highlight">
                   Click here to redirect!
+                </a>
+              <br>
+              <br>`;
+	}
+
+	sendResume() {
+		return `
+                  <span class="sub-heading fancy-3d glitch">
+                      resume_
+                  </span>
+              <br>
+              <br>
+                <a 
+                  href="https://docs.google.com/document/d/1RGvgfufNKBGRyRrKwfn89TncH84hvWEhF_tjKZbYNxU/export?format=pdf"
+                  target="_blank"
+                  class="highlight">
+                  Click here to download!
                 </a>
               <br>
               <br>`;

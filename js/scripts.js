@@ -1,4 +1,5 @@
-import { commands, executeCommand } from "./terminal.js";
+import { terminalConfig } from "./commands.js";
+import { executeCommand } from "./terminal.js";
 
 // Function to calculate the Levenshtein Distance
 function levenshteinDistance(a, b) {
@@ -77,8 +78,10 @@ export function generatePlaceholder(shouldReset = false) {
 		let key = lastCommand;
 		// Loop until a different command than the last one is found
 		while (key === lastCommand) {
-			let randomIndex = Math.floor(Math.random() * commands.length);
-			key = commands[randomIndex];
+			let randomIndex = Math.floor(
+				Math.random() * terminalConfig.baseCommands.length,
+			);
+			key = terminalConfig.baseCommands[randomIndex];
 		}
 		// Update lastCommand for next time
 		lastCommand = key;

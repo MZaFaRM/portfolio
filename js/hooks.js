@@ -133,25 +133,27 @@ function randomFlicker() {
 }
 
 function glitchRevealWord(li, word, currentHTML, onComplete) {
-    const glitchCycles = 3 + Math.floor(Math.random() * 3);
-    let i = 0;
+	const glitchCycles = 3 + Math.floor(Math.random() * 3);
+	let i = 0;
 
-    const interval = setInterval(() => {
-        const glitched = [...word]
-            .map((c) => {
-                const group = glitchGroups.find((g) => g.includes(c));
-                return group ? group[Math.floor(Math.random() * group.length)] : c;
-            })
-            .join("");
-        li.innerHTML = currentHTML + glitched;
-        i++;
+	const interval = setInterval(() => {
+		const glitched = [...word]
+			.map((c) => {
+				const group = glitchGroups.find((g) => g.includes(c));
+				return group
+					? group[Math.floor(Math.random() * group.length)]
+					: c;
+			})
+			.join("");
+		li.innerHTML = currentHTML + glitched;
+		i++;
 
-        if (i >= glitchCycles) {
-            clearInterval(interval);
-            li.innerHTML = currentHTML + word;
-            onComplete();
-        }
-    }, 40);
+		if (i >= glitchCycles) {
+			clearInterval(interval);
+			li.innerHTML = currentHTML + word;
+			onComplete();
+		}
+	}, 40);
 }
 
 randomFlicker();
@@ -197,3 +199,15 @@ setInterval(() => {
 		el.innerHTML = getAge();
 	});
 }, 1000);
+
+document.addEventListener("keydown", (event) => {
+	const inputElement = document.getElementById("prompt-input");
+	if (
+		event.key.match(/^[a-zA-Z]$/) &&
+		!event.ctrlKey &&
+		!event.metaKey &&
+		inputElement !== document.activeElement
+	) {
+		inputElement.focus();
+	}
+});
