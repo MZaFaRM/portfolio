@@ -96,6 +96,10 @@
 	opacity: 0.4;
 }
 
+.term-spacer {
+	flex: 1;
+}
+
 .term-ok {
 	color: var(--hero-green);
 }

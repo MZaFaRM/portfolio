@@ -100,7 +100,7 @@ export class Projects extends ListCommands {
 			command: "projects",
 			itemLabel: "project",
 			itemClass: "project",
-			example: "dataforge",
+			example: "datasmith",
 		});
 	}
 }
@@ -112,7 +112,7 @@ export class Experience extends ListCommands {
 			command: "experience",
 			itemLabel: "experience",
 			itemClass: "experience",
-			example: "IEDC",
+			example: "SnapshareAI",
 		});
 	}
 }

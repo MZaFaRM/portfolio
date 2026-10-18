@@ -159,27 +159,52 @@ function glitchRevealWord(li, word, currentHTML, onComplete) {
 randomFlicker();
 randomGlitch();
 
-function getAge() {
-	const birth = new Date("2003-07-23");
+const BIRTH_DATE = new Date(2003, 6, 23);
+const WORK_STINTS = [
+	[new Date(2023, 0, 1), new Date(2024, 1, 1)], // MuLearn: Jan 2023 to end of Jan 2024
+	[new Date(2025, 8, 1), null], // Snapshare: Sep 2025 to now
+];
+
+function getCareer() {
 	const now = new Date();
-	const diff = now - birth;
-
-	const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
-	const months = Math.floor(
-		(diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44),
+	const worked = WORK_STINTS.reduce(
+		(total, [start, end]) => total + ((end ?? now) - start),
+		0,
 	);
-	const days = Math.floor(
-		(diff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24),
-	);
-	const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-	const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-	const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+	return elapsedSince(new Date(now - worked), now);
+}
 
+// Calendar-accurate time since `start`, as "1y 2m 3d 4h 5m 6s"
+function elapsedSince(start, now = new Date()) {
+	let totalMonths =
+		(now.getFullYear() - start.getFullYear()) * 12 +
+		(now.getMonth() - start.getMonth());
+
+	const anchor = new Date(start);
+	anchor.setMonth(start.getMonth() + totalMonths);
+	if (anchor > now) {
+		totalMonths--;
+		anchor.setTime(start.getTime());
+		anchor.setMonth(start.getMonth() + totalMonths);
+	}
+
+	const years = Math.floor(totalMonths / 12);
+	const months = totalMonths % 12;
+	const rest = now - anchor;
+	const days = Math.floor(rest / 86_400_000);
+	const hours = Math.floor((rest % 86_400_000) / 3_600_000);
+	const minutes = Math.floor((rest % 3_600_000) / 60_000);
+	const seconds = Math.floor((rest % 60_000) / 1000);
+
+	return `${years}y ${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+function getAge() {
+	const now = new Date();
 	const isBirthday =
-		now.getMonth() === birth.getMonth() &&
-		now.getDate() === birth.getDate();
-
-	return `${years}y ${months}m ${days}d ${hours}h ${minutes}m ${seconds}s${isBirthday ? " <span style='color: #fcce7b'></span>" : ""}`;
+		now.getMonth() === BIRTH_DATE.getMonth() &&
+		now.getDate() === BIRTH_DATE.getDate();
+	return `${elapsedSince(BIRTH_DATE, now)}${isBirthday ? " <span style='color: #fcce7b'></span>" : ""}`;
 }
 
 setInterval(() => {
@@ -197,6 +222,9 @@ setInterval(() => {
 
 	document.querySelectorAll(".age").forEach((el) => {
 		el.innerHTML = getAge();
+	});
+	document.querySelectorAll(".career").forEach((el) => {
+		el.textContent = getCareer();
 	});
 }, 1000);
 

@@ -38,6 +38,8 @@ function buildPrompt() {
 			<span>╰─</span>
 			<span class="term-face">(⌐■_■)</span>
 			<span data-command></span><span class="term-caret"></span>
+			<span class="term-spacer"></span>
+			<span>─╯</span>
 		</div>`;
 	stampPrompt(prompt);
 	return prompt;
@@ -114,7 +116,9 @@ function buildHero() {
 
 			<div class="hero-greeting">
 				<p>Hello World! <span class="hero-star">✦</span></p>
-				<p>I'm a CS grad and software developer. This is the scrollable side of my terminal portfolio. Pick a section below, or open the terminal and explore with commands.</p>
+				<p>I'm a software developer building backend systems and cloud infrastructure at Snapshare AI. I like making things faster, cheaper and easier to run.</p>
+				<p>Currently in Dubai, open to roles in the UAE and remote.</p>
+				<p>Scroll for the details, or open the terminal and explore with commands.</p>
 			</div>
 
 			<nav class="hero-help" aria-label="Jump to">
