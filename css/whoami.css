@@ -35,8 +35,8 @@
 }
 
 .signature {
-	font-family: "Reem Kufi";
-	font-size: 40px;
+	font-family: "Reem Kufi" !important;
+	font-size: 40px !important;
 	white-space: nowrap;
 	overflow: hidden;
 	line-height: 100px;

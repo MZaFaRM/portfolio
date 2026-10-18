@@ -535,8 +535,6 @@
 
 .dock {
 	position: fixed;
-	right: max(16px, env(safe-area-inset-right));
-	bottom: max(16px, env(safe-area-inset-bottom));
 	z-index: 20;
 	width: 190px;
 	border: 1px solid rgb(187 194 207 / 0.4);
@@ -546,6 +544,22 @@
 	font-family: var(--primary-font-family);
 	font-size: 14px;
 	transition: width 160ms ease;
+}
+
+.dock[data-corner^="t"] {
+	top: max(16px, env(safe-area-inset-top));
+}
+
+.dock[data-corner^="b"] {
+	bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+.dock[data-corner$="l"] {
+	left: max(16px, env(safe-area-inset-left));
+}
+
+.dock[data-corner$="r"] {
+	right: max(16px, env(safe-area-inset-right));
 }
 
 /* Zero-specificity reset so dock children inherit instead of using the global * rule */
@@ -575,6 +589,29 @@
 	border-bottom: 1px solid rgb(187 194 207 / 0.2);
 	color: #8b929c;
 	font-size: 12px;
+	cursor: grab;
+	touch-action: none;
+	user-select: none;
+}
+
+.dock-launcher {
+	touch-action: none;
+}
+
+.dock.is-dragging,
+.dock.is-dragging * {
+	cursor: grabbing;
+	user-select: none;
+}
+
+.dock.is-dragging {
+	box-shadow: 0 12px 32px rgb(0 0 0 / 0.45);
+}
+
+.dock.is-snapping {
+	transition:
+		width 160ms ease,
+		transform 340ms cubic-bezier(0.22, 1.2, 0.36, 1);
 }
 
 .dock-dots {

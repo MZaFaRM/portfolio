@@ -413,6 +413,156 @@ const dockLauncher = dock.querySelector(".dock-launcher");
 const dockPanel = dock.querySelector(".dock-panel");
 const dockInput = dock.querySelector(".dock-input");
 const dockList = dock.querySelector(".dock-list");
+
+/* ---------- Dock: drag and snap to a corner ---------- */
+
+const DOCK_CORNERS = ["tl", "tr", "bl", "br"];
+const DRAG_THRESHOLD = 4;
+const FLICK_MS = 200;
+
+const clamp = (n, min, max) => Math.min(Math.max(n, min), max);
+
+function loadCorner() {
+	try {
+		const saved = localStorage.getItem("dock-corner");
+		if (DOCK_CORNERS.includes(saved)) return saved;
+	} catch {}
+	return "br";
+}
+
+function saveCorner(corner) {
+	try {
+		localStorage.setItem("dock-corner", corner);
+	} catch {}
+}
+
+dock.dataset.corner = loadCorner();
+
+let drag = null;
+let suppressClick = false;
+
+function startDrag(event) {
+	if (event.button !== 0) return;
+
+	// If grabbed mid-snap, freeze the dock where it is currently drawn.
+	const drawn = dock.getBoundingClientRect();
+	dock.classList.remove("is-snapping");
+	dock.style.transform = "";
+	const home = dock.getBoundingClientRect();
+	const offsetX = drawn.left - home.left;
+	const offsetY = drawn.top - home.top;
+	if (offsetX || offsetY) {
+		dock.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+	}
+
+	drag = {
+		id: event.pointerId,
+		home,
+		offsetX,
+		offsetY,
+		downX: event.clientX,
+		downY: event.clientY,
+		lastX: event.clientX,
+		lastY: event.clientY,
+		lastT: event.timeStamp,
+		vx: 0,
+		vy: 0,
+		moved: Boolean(offsetX || offsetY),
+	};
+	event.currentTarget.setPointerCapture(event.pointerId);
+}
+
+function moveDrag(event) {
+	if (event.pointerId !== drag?.id) return;
+	const dx = event.clientX - drag.downX;
+	const dy = event.clientY - drag.downY;
+	if (!drag.moved && Math.hypot(dx, dy) < DRAG_THRESHOLD) return;
+	drag.moved = true;
+	dock.classList.add("is-dragging");
+
+	const { home } = drag;
+	const vw = document.documentElement.clientWidth;
+	const vh = document.documentElement.clientHeight;
+	const x =
+		clamp(home.left + drag.offsetX + dx, 0, vw - home.width) - home.left;
+	const y =
+		clamp(home.top + drag.offsetY + dy, 0, vh - home.height) - home.top;
+	dock.style.transform = `translate(${x}px, ${y}px)`;
+
+	// Smoothed velocity in px/ms projects the dock's destination on flicks.
+	const dt = event.timeStamp - drag.lastT;
+	if (dt > 0) {
+		drag.vx = 0.7 * ((event.clientX - drag.lastX) / dt) + 0.3 * drag.vx;
+		drag.vy = 0.7 * ((event.clientY - drag.lastY) / dt) + 0.3 * drag.vy;
+	}
+	drag.lastX = event.clientX;
+	drag.lastY = event.clientY;
+	drag.lastT = event.timeStamp;
+}
+
+function endDrag(event) {
+	if (event.pointerId !== drag?.id) return;
+	const { moved, vx, vy, lastT } = drag;
+	drag = null;
+	dock.classList.remove("is-dragging");
+	if (!moved) return;
+
+	// Pausing before release should not count as a flick.
+	const stale = event.timeStamp - lastT > 80;
+	snapDock(stale ? 0 : vx, stale ? 0 : vy);
+
+	// Swallow the click following a drag so the launcher does not open.
+	if (event.type === "pointerup") {
+		suppressClick = true;
+		setTimeout(() => (suppressClick = false));
+	}
+}
+
+function snapDock(vx = 0, vy = 0) {
+	const from = dock.getBoundingClientRect();
+	const vw = document.documentElement.clientWidth;
+	const vh = document.documentElement.clientHeight;
+	const x = from.left + from.width / 2 + vx * FLICK_MS;
+	const y = from.top + from.height / 2 + vy * FLICK_MS;
+	const corner = (y < vh / 2 ? "t" : "b") + (x < vw / 2 ? "l" : "r");
+
+	dock.dataset.corner = corner;
+	saveCorner(corner);
+	dock.style.transform = "";
+	if (reduceMotion) return;
+
+	// FLIP: anchor at the new corner, offset to the old position, then animate.
+	const to = dock.getBoundingClientRect();
+	dock.style.transform = `translate(${from.left - to.left}px, ${from.top - to.top}px)`;
+	dock.getBoundingClientRect();
+	dock.classList.add("is-snapping");
+	dock.style.transform = "";
+}
+
+dock.addEventListener("transitionend", (event) => {
+	if (event.target === dock && event.propertyName === "transform") {
+		dock.classList.remove("is-snapping");
+	}
+});
+
+dock.addEventListener(
+	"click",
+	(event) => {
+		if (!suppressClick) return;
+		suppressClick = false;
+		event.preventDefault();
+		event.stopPropagation();
+	},
+	true,
+);
+
+for (const handle of [dock.querySelector(".dock-titlebar"), dockLauncher]) {
+	handle.addEventListener("pointerdown", startDrag);
+	handle.addEventListener("pointermove", moveDrag);
+	handle.addEventListener("pointerup", endDrag);
+	handle.addEventListener("pointercancel", endDrag);
+}
+
 let dockResults = [];
 let dockActive = 0;
 
