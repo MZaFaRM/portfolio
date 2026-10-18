@@ -41,7 +41,7 @@ function releaseCli() {
 export async function setBoard() {
 	try {
 		// Fetch the main container where we will add the CLI content.
-		let mainBody = document.querySelector("main");
+		let mainBody = document.querySelector("#terminal-view");
 
 		// fetch the CLI window.
 		let cli = "pages/cli-window.html";
@@ -222,7 +222,7 @@ export async function executeCommand(command) {
 			await postExecutionCleanup();
 			return;
 		} else if (/^clear$/i.test(formattedCommand)) {
-			outputArea = document.querySelector("main");
+			outputArea = document.querySelector("#terminal-view");
 			outputArea.innerHTML = "";
 			await setBoard();
 			return;

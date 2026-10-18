@@ -66,13 +66,14 @@
 		<link rel="stylesheet" href="css/tictactoe.css" />
 		<link rel="stylesheet" href="css/terminal.css" />
 		<link rel="stylesheet" href="css/whoami.css" />
+		<link rel="stylesheet" href="css/scroll-view.css" />
 	</head>
 	<body>
 		<div id="window">
-			<main></main>
-			<footer></footer>
+			<main id="scroll-view" aria-label="Portfolio"></main>
+			<main id="terminal-view" aria-label="Terminal" hidden></main>
+			<footer id="terminal-footer"></footer>
 		</div>
-
 		<noscript>
 			<h1>Muhammed Zafar MM, Full Stack Software Developer</h1>
 			<p>
@@ -107,4 +108,5 @@
 	<script type="module" src="js/terminal.js"></script>
 	<script type="module" src="js/listCommands.js"></script>
 	<script type="module" src="js/hooks.js"></script>
+	<script type="module" src="js/scrollView.js"></script>
 </html>

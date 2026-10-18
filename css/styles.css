@@ -50,6 +50,9 @@ body {
 	border: 2px solid #bbc2cf80;
 	border-radius: 5px;
 	height: auto;
+	width: 100%;
+	max-width: 1440px;
+	margin-inline: auto;
 	padding-left: 20px;
 	padding-right: 20px;
 	padding-top: 20px;
