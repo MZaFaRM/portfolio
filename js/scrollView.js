@@ -1,4 +1,4 @@
-import { getCurrentTime, getUptime } from "./hooks.js";
+import { getCareer, getCurrentTime, getUptime } from "./hooks.js";
 import { browser } from "./scripts.js";
 import { Game } from "./tictactoe.js";
 
@@ -196,6 +196,22 @@ function makeEntries(source, itemSelector, className) {
 		)
 			.replace(/\s+/g, " ")
 			.replace(/^[\s:]+|[\s:]+$/g, "");
+		if (item.dataset.when) {
+			const when = document.createElement("span");
+			when.className = "entry-when";
+			when.textContent = item.dataset.when;
+			summary.insertBefore(when, summary.querySelector(".entry-toggle"));
+		}
+		const repo = description
+			?.getAttribute("href")
+			?.match(/github\.com\/([^/]+\/[^/#?]+)/)?.[1];
+		if (repo) entry.dataset.repo = repo;
+		if (item.id === "Healie") {
+			const award = document.createElement("span");
+			award.className = "project-award";
+			award.textContent = " (tag: award)";
+			summary.querySelector(".entry-desc").append(award);
+		}
 
 		const body = document.createElement("div");
 		body.className = "entry-body";
@@ -216,6 +232,137 @@ function makeEntries(source, itemSelector, className) {
 		list.append(entry);
 	});
 	return list;
+}
+
+function experienceIntro() {
+	const intro = document.createElement("div");
+	intro.className = "xp-intro";
+	intro.innerHTML = `
+		<p class="xp-runtime">
+			<span class="xp-key">runtime</span>
+			<span class="career"></span>
+			<!-- <span class="xp-comment"># in prod</span> -->
+		</p>
+		<p class="xp-blurb">
+			I started out leading the backend behind MuLearn's 50,000+ student
+			community, and now work on Snapshare AI's backend and infrastructure.
+			Most of my work comes down to finding the slow or expensive part and fixing it.
+		</p>
+		<dl class="xp-stats">
+			<div><dt>2–4×</dt><dd>faster endpoints</dd></div>
+			<div><dt>75%</dt><dd>lower storage costs</dd></div>
+			<div><dt>60,000+</dt><dd>users in prod</dd></div>
+		</dl>`;
+	intro.querySelector(".career").textContent = getCareer();
+	return intro;
+}
+
+const LANG_COLORS = {
+	Python: "#3572A5",
+	JavaScript: "#f1e05a",
+	TypeScript: "#3178c6",
+	Rust: "#dea584",
+	Dart: "#00B4AB",
+	HTML: "#e34c26",
+	CSS: "#663399",
+	Kotlin: "#A97BFF",
+	Java: "#b07219",
+	"Jupyter Notebook": "#DA5B0B",
+};
+
+const langColor = (language) => LANG_COLORS[language] ?? "var(--hero-dim)";
+
+function langDot(language) {
+	const dot = document.createElement("i");
+	dot.className = "lang-dot";
+	dot.style.background = langColor(language);
+	return dot;
+}
+
+function projectsIntro(count) {
+	const intro = document.createElement("div");
+	intro.className = "xp-intro";
+	intro.innerHTML = `
+		<p class="xp-runtime">
+			<span class="xp-key">repos</span>
+			<span>${count} public</span>
+			<!--  <span class="xp-comment"># from github.com/MZaFaRM</span> -->
+		</p>
+		<p class="xp-blurb">
+			Side projects, a final-year project and one hackathon win.
+			Most of them started because I wanted the thing to exist.
+		</p>
+		<div class="lang-bar" hidden></div>
+		<ul class="lang-legend" hidden></ul>`;
+	return intro;
+}
+
+async function fetchRepo(repo) {
+	const key = `gh:${repo}`;
+	try {
+		const cached = sessionStorage.getItem(key);
+		if (cached) return JSON.parse(cached);
+	} catch {}
+
+	const response = await fetch(`https://api.github.com/repos/${repo}`);
+	if (!response.ok) throw new Error(`GitHub ${response.status}`);
+	const { language } = await response.json();
+	const data = { language };
+	try {
+		sessionStorage.setItem(key, JSON.stringify(data));
+	} catch {}
+	return data;
+}
+
+async function decorateProjects(list, intro) {
+	const entries = Array.from(
+		list.querySelectorAll(".portfolio-entry[data-repo]"),
+	);
+	const results = await Promise.allSettled(
+		entries.map((entry) => fetchRepo(entry.dataset.repo)),
+	);
+
+	const tally = {};
+	results.forEach((result, index) => {
+		if (result.status !== "fulfilled") return;
+		const { language } = result.value;
+		if (!language) return;
+
+		const meta = document.createElement("span");
+		meta.className = "entry-when entry-repo";
+		tally[language] = (tally[language] ?? 0) + 1;
+		meta.append(langDot(language), language);
+
+		const row = entries[index].querySelector(".entry-row");
+		row.insertBefore(meta, row.querySelector(".entry-toggle"));
+	});
+
+	const sorted = Object.entries(tally).sort((a, b) => b[1] - a[1]);
+	const total = sorted.reduce((sum, [, count]) => sum + count, 0);
+	if (!total) return;
+
+	const bar = intro.querySelector(".lang-bar");
+	const legend = intro.querySelector(".lang-legend");
+	bar.replaceChildren(
+		...sorted.map(([language, count]) => {
+			const segment = document.createElement("span");
+			segment.style.flex = count;
+			segment.style.background = langColor(language);
+			segment.title = language;
+			return segment;
+		}),
+	);
+	legend.replaceChildren(
+		...sorted.map(([language, count]) => {
+			const item = document.createElement("li");
+			const pct = document.createElement("span");
+			pct.className = "lang-pct";
+			pct.textContent = `${Math.round((count / total) * 100)}%`;
+			item.append(langDot(language), language, pct);
+			return item;
+		}),
+	);
+	bar.hidden = legend.hidden = false;
 }
 
 function makeInlineLinksNavigable() {
@@ -292,6 +439,7 @@ async function renderScrollView() {
 		aboutSection.append(sectionHeading("whoami", "me.DEBUG()"));
 		const aboutContent = about.querySelector("#whoami");
 		aboutContent.classList.add("scroll-about-content");
+		aboutContent.querySelector(".career")?.closest("p")?.remove();
 		const signature = aboutContent.querySelector(".signature");
 		if (signature) signature.textContent = SIGNATURE;
 		aboutSection.append(aboutContent);
@@ -301,19 +449,33 @@ async function renderScrollView() {
 		experienceSection.id = "experience";
 		experienceSection.className = "scroll-section";
 		experienceSection.append(sectionHeading("experience", "experience_"));
-		experienceSection.append(
-			makeEntries(experience, ".experience", "experience-list"),
+		experienceSection.append(experienceIntro());
+		const experienceList = makeEntries(
+			experience,
+			".experience",
+			"experience-list",
 		);
+		experienceList.firstElementChild.open = true;
+		const year = document.createElement("span");
+		year.className = "experience-year";
+		year.textContent = "2023";
+		experienceList.append(year);
+		experienceSection.append(experienceList);
 		scrollView.append(experienceSection);
 
 		const projectsSection = document.createElement("section");
 		projectsSection.id = "projects";
 		projectsSection.className = "scroll-section";
 		projectsSection.append(sectionHeading("projects", "projects_"));
-		projectsSection.append(
-			makeEntries(projects, ".project", "projects-list"),
-		);
+		const projectsList = makeEntries(projects, ".project", "projects-list");
+		const projectsHeader = projectsIntro(projectsList.children.length);
+		const projectCount = document.createElement("p");
+		projectCount.className = "projects-count";
+		projectCount.textContent = `${projectsList.children.length} directories`;
+		projectsList.append(projectCount);
+		projectsSection.append(projectsHeader, projectsList);
 		scrollView.append(projectsSection);
+		decorateProjects(projectsList, projectsHeader);
 		makeInlineLinksNavigable();
 		entryCommands = collectEntryCommands();
 

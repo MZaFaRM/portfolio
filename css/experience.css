@@ -30,3 +30,23 @@
 .experience-li {
 	min-height: 1.5em;
 }
+
+.experience-commit {
+	margin: 4px 0 20px;
+	color: #8b929c;
+	font-weight: 400;
+}
+
+.experience-commit span {
+	font-family: inherit;
+	font-size: inherit;
+}
+
+.commit-hash,
+.commit-ref {
+	color: #ecbe7b;
+}
+
+.commit-ref {
+	font-weight: 700;
+}

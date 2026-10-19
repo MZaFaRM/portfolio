@@ -184,3 +184,81 @@
 	font-weight: 800;
 	white-space: nowrap;
 }
+.git-log,
+.git-show {
+	line-height: 1.8;
+}
+
+.git-log .clickable::before,
+.gh-list .clickable::before {
+	content: "[";
+}
+
+.git-log .clickable::after,
+.gh-list .clickable::after {
+	content: "]";
+}
+
+.ref-head {
+	color: #46d9ff;
+	font-weight: 700;
+}
+
+.ref-branch {
+	color: #7bc275;
+	font-weight: 700;
+}
+
+.git-hint {
+	color: #ecbe7b;
+}
+
+.gh-meta,
+.gh-head th,
+.gh-info {
+	color: #8b929c;
+}
+
+.gh-head th {
+	font-weight: 700;
+}
+
+.gh-list {
+	width: 100%;
+	border-spacing: 0 6px;
+	table-layout: fixed;
+	text-align: left;
+}
+
+.gh-list th,
+.gh-list td {
+	padding-right: 14px;
+	vertical-align: top;
+}
+
+.gh-list td:first-child {
+	width: 16%;
+	white-space: nowrap;
+}
+
+.gh-list td:nth-child(2) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.gh-list .gh-info {
+	width: 7ch;
+}
+
+.pager-end {
+	padding: 0 2px;
+	background: var(--primary-text-color);
+	color: var(--primary-bg-color);
+}
+
+@media (max-width: 560px) {
+	.gh-info {
+		display: none;
+	}
+}

@@ -165,7 +165,7 @@ const WORK_STINTS = [
 	[new Date(2025, 8, 1), null], // Snapshare: Sep 2025 to now
 ];
 
-function getCareer() {
+export function getCareer() {
 	const now = new Date();
 	const worked = WORK_STINTS.reduce(
 		(total, [start, end]) => total + ((end ?? now) - start),

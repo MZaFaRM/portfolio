@@ -453,6 +453,262 @@
 	white-space: normal;
 }
 
+/* ---------- Experience intro ---------- */
+
+.xp-intro {
+	max-width: 760px;
+	margin-bottom: 36px;
+}
+
+:where(.xp-intro *) {
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+}
+
+#scroll-view .xp-runtime {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 4px 12px;
+	margin: 0 0 18px;
+	color: var(--hero-fg);
+	font-family: var(--primary-font-family);
+}
+
+.xp-key {
+	padding: 0 5px;
+	border-radius: 1px;
+	background: var(--hero-yellow);
+	color: var(--primary-bg-color);
+	font-weight: 800;
+}
+
+.xp-runtime .career {
+	color: var(--hero-green);
+	font-weight: 700;
+}
+
+.xp-comment {
+	color: var(--hero-dim);
+}
+
+#scroll-view .xp-blurb {
+	margin: 0;
+	color: var(--scroll-muted);
+}
+
+.xp-stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 16px;
+	margin: 28px 0 0;
+	padding-top: 20px;
+	border-top: 1px dashed rgb(187 194 207 / 0.2);
+}
+
+.xp-stats dt {
+	color: var(--scroll-accent);
+	font-family: var(--primary-font-family);
+	font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+	line-height: 1.1;
+}
+
+.xp-stats dd {
+	margin: 6px 0 0;
+	color: var(--scroll-muted);
+	font-size: 0.9rem;
+}
+
+/* ---------- Experience: git log rail ---------- */
+
+.experience-list .portfolio-entry {
+	position: relative;
+	padding-left: 30px;
+}
+
+.experience-list .portfolio-entry::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 5px;
+	border-left: 1px dashed rgb(187 194 207 / 0.35);
+}
+
+.experience-list .portfolio-entry:first-child::before {
+	top: 30px;
+}
+
+.experience-list .portfolio-entry:last-of-type::before {
+	bottom: auto;
+	height: 30px;
+}
+
+.experience-list .portfolio-entry::after {
+	content: "";
+	position: absolute;
+	top: 26px;
+	left: 1px;
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+	background: var(--hero-dim);
+}
+
+.experience-list .portfolio-entry:first-child::after {
+	background: var(--hero-green);
+	box-shadow: 0 0 0 4px color-mix(in srgb, var(--hero-green) 20%, transparent);
+	animation: heartbeat 2s linear infinite;
+}
+
+.scroll-entry-list .entry-row {
+	grid-template-columns: minmax(10ch, max-content) minmax(0, 1fr) auto auto;
+	grid-template-areas: "title desc when toggle";
+}
+
+.entry-when {
+	grid-area: when;
+	color: #c4a66a;
+	font-family: var(--primary-font-family);
+	font-size: 0.9rem;
+	white-space: nowrap;
+}
+
+.experience-year {
+	display: block;
+	position: relative;
+	width: fit-content;
+	margin-left: 30px;
+	padding: 8px 0 0;
+	color: var(--hero-dim);
+	font-family: var(--primary-font-family);
+	font-size: 0.8rem;
+}
+
+.experience-year::before {
+	content: "";
+	position: absolute;
+	left: -25px;
+	bottom: 0.55em;
+	width: 20px;
+	border-top: 1px dashed rgb(187 194 207 / 0.35);
+}
+
+#scroll-view .portfolio-entry .experience-commit {
+	color: var(--hero-dim);
+	font-family: var(--primary-font-family);
+	font-size: 0.95rem !important;
+}
+
+@media (max-width: 600px) {
+	.scroll-entry-list .entry-row {
+		grid-template-columns: minmax(0, 1fr) auto;
+		grid-template-areas:
+			"title toggle"
+			"desc desc"
+			"when when";
+	}
+}
+
+/* ---------- Projects: repo meta and language bar ---------- */
+
+.entry-repo {
+	color: var(--scroll-muted);
+	white-space: pre;
+}
+
+.lang-dot {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin-right: 6px;
+	border-radius: 50%;
+}
+
+.lang-bar {
+	display: flex;
+	gap: 2px;
+	height: 8px;
+	margin-top: 28px;
+	overflow: hidden;
+	border-radius: 4px;
+}
+
+.lang-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px 20px;
+	margin: 12px 0 0;
+	padding: 0;
+	list-style: none;
+	font-family: var(--primary-font-family);
+}
+
+#scroll-view .lang-legend li {
+	font-size: 0.9rem;
+}
+
+.lang-pct {
+	margin-left: 6px;
+	color: var(--hero-dim);
+}
+
+.lang-bar[hidden],
+.lang-legend[hidden] {
+	display: none;
+}
+
+.project-award {
+	color: #ecbe7b;
+	font-family: var(--primary-font-family);
+	font-size: 0.9em;
+}
+
+/* ---------- Projects: tree gutter ---------- */
+
+.projects-list .portfolio-entry {
+	position: relative;
+	padding-left: 32px;
+}
+
+.projects-list .portfolio-entry::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 6px;
+	border-left: 1px solid rgb(187 194 207 / 0.35);
+}
+
+.projects-list .portfolio-entry:last-of-type::before {
+	bottom: auto;
+	height: 30px;
+}
+
+.projects-list .portfolio-entry::after {
+	content: "";
+	position: absolute;
+	top: 30px;
+	left: 6px;
+	width: 16px;
+	border-top: 1px solid rgb(187 194 207 / 0.35);
+}
+
+.projects-count {
+	margin: 0;
+	padding: 8px 0 0 32px;
+	color: var(--hero-dim);
+	font-family: var(--primary-font-family);
+	font-size: 0.85rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.experience-list .portfolio-entry:first-child::after {
+		animation: none;
+	}
+}
+
 .portfolio-entry .description:hover,
 .portfolio-entry .highlight:hover {
 	color: var(--scroll-accent);

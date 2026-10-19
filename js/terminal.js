@@ -151,20 +151,26 @@ function determineFileName(command) {
 		!formattedCommand ||
 		!terminalConfig.baseCommands.includes(formattedCommand[0].toLowerCase())
 	) {
-		// Handle null formattedCommand
-		let commandName = formattedCommand
-			? formattedCommand[0]
-			: "Unknown Command";
-		let error = `${commandName}: command not found`;
+		const commandName = formattedCommand?.[0] ?? "Unknown Command";
+		const safeCommandName = commandName.replace(/[&<>"']/g, (character) => {
+			const entities = {
+				"&": "&amp;",
+				"<": "&lt;",
+				">": "&gt;",
+				'"': "&quot;",
+				"'": "&#39;",
+			};
+			return entities[character];
+		});
+		let error = `git: '${safeCommandName}' is not a git command. See 'git --help'.`;
 
-		// Only suggest a command if formattedCommand is not null
 		if (formattedCommand) {
 			const suggestion = suggestCommand(
 				formattedCommand[0],
 				terminalConfig.baseCommands,
 			);
 			if (suggestion) {
-				error += `; did you mean: <span class="clickable">${suggestion}</span>?`;
+				error += `<br /><br />The most similar command is<br />&nbsp;&nbsp; <span class="clickable">${suggestion}</span>`;
 			}
 		}
 
@@ -255,7 +261,9 @@ function saveUserInput(command) {
 }
 
 async function handleError(error, outputArea) {
-	outputArea.innerHTML += "<br>error: " + error.message + "<br><br>";
+	const toolStyleError = /^(?:fatal:|GraphQL:|git:)/.test(error.message);
+	outputArea.innerHTML +=
+		"<br>" + (toolStyleError ? "" : "error: ") + error.message + "<br><br>";
 	const promptContainers =
 		document.getElementsByClassName("prompt-container");
 	const currentPrompt = promptContainers[promptContainers.length - 1];
