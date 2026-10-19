@@ -1,16 +1,100 @@
 .portrait {
-	height: 400px;
+	display: inline-grid;
+	width: 300px;
+	padding: 0;
+	border: 0;
+	background: none;
+	text-align: left;
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.portrait:focus-visible {
+	outline: 1px dashed #ecbe7b;
+	outline-offset: 4px;
+}
+
+.portrait img {
+	grid-area: 1 / 1;
+	align-self: end;
+	display: block;
+	width: 100%;
+	height: auto;
+	pointer-events: none;
+	user-select: none;
+	-webkit-user-drag: none;
+}
+
+.portrait-alt {
+	clip-path: inset(0 0 100% 0);
+	transition: clip-path 360ms steps(8, end);
+}
+
+.portrait[aria-pressed="true"] .portrait-alt {
+	clip-path: inset(0);
+	transition: clip-path 640ms steps(16, end);
+}
+
+.portrait[aria-pressed="true"] .portrait-img {
+	visibility: hidden;
+	transition: visibility 0s;
+}
+
+.portrait::after {
+	content: "";
+	grid-area: 1 / 1;
+	pointer-events: none;
+	background: repeating-linear-gradient(
+		to bottom,
+		transparent 0 2px,
+		rgb(0 0 0 / 0.18) 2px 3px
+	);
+	opacity: 0;
+}
+
+.portrait[aria-pressed="true"]::after {
+	opacity: 1;
+	transition: opacity 0s 640ms;
+}
+
+.portrait-caption {
+	grid-row: 2;
+	margin-top: 10px;
+	color: #8b929c;
+	font-size: 0.9rem;
+	line-height: 1.4;
+}
+
+.portrait-flag::after {
+	content: "--ascii";
+	color: #ecbe7b;
+}
+
+.portrait[aria-pressed="true"] .portrait-flag::after {
+	content: "--raw";
+}
+
+.portrait:hover .portrait-caption {
+	color: var(--primary-text-color);
 }
 
 @media screen and (max-width: 542px) {
 	.portrait {
-		height: 300px;
+		width: 240px;
 	}
 
 	.portrait-container {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.portrait-alt,
+	.portrait-img,
+	.portrait::after {
+		transition: none !important;
 	}
 }
 

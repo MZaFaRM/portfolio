@@ -132,6 +132,14 @@ function randomFlicker() {
 	setTimeout(randomFlicker, Math.random() * 5000 + 1000);
 }
 
+document.addEventListener("click", (event) => {
+	const portrait = event.target.closest?.(".portrait");
+	if (!portrait) return;
+	const raw = portrait.getAttribute("aria-pressed") !== "true";
+	portrait.setAttribute("aria-pressed", String(raw));
+	portrait.setAttribute("aria-label", raw ? "Show ASCII portrait" : "Show photo");
+});
+
 function glitchRevealWord(li, word, currentHTML, onComplete) {
 	const glitchCycles = 3 + Math.floor(Math.random() * 3);
 	let i = 0;
