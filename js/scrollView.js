@@ -289,8 +289,7 @@ function projectsIntro(count) {
 			<!--  <span class="xp-comment"># from github.com/MZaFaRM</span> -->
 		</p>
 		<p class="xp-blurb">
-			Side projects, a final-year project and one hackathon win.
-			Most of them started because I wanted the thing to exist.
+			A lot of my projects come from just building tools to fix my own problems.
 		</p>
 		<div class="lang-bar" hidden></div>
 		<ul class="lang-legend" hidden></ul>`;
