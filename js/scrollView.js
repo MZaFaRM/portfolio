@@ -117,7 +117,7 @@ function buildHero() {
 			<div class="hero-greeting">
 				<p>Hello World! <span class="hero-star">✦</span></p>
 				<p>I'm a software developer building backend systems and cloud infrastructure at Snapshare AI. I like making things faster, cheaper and easier to run.</p>
-				<p>Currently in Dubai, open to roles in the UAE and remote.</p>
+				<p>Currently in Dubai, open to roles across the UAE, Bengaluru, and remote.</p>
 				<p>Scroll for the details, or open the terminal and explore with commands.</p>
 			</div>
 
@@ -125,6 +125,7 @@ function buildHero() {
 				<a href="#about">about</a><span>who I am and what I'm up to</span>
 				<a href="#experience">experience</a><span>where I've worked</span>
 				<a href="#projects">projects</a><span>things I've built</span>
+				<a href="#skills">skills</a><span>tools and technologies I use</span>
 				<a href="${RESUME_URL}" target="_blank" rel="noreferrer">resume</a><span>download my résumé (PDF)</span>
 				<a href="mailto:muhammedzafar.mm@gmail.com">contact</a><span>send me an email</span>
 				<button type="button" data-open-tictactoe>tictactoe</button><span>play a minimax AI you can't beat</span>
@@ -257,6 +258,17 @@ function experienceIntro() {
 	return intro;
 }
 
+function skillsSection(source) {
+	const section = document.createElement("section");
+	section.id = "skills";
+	section.className = "scroll-section skills-section";
+	section.append(sectionHeading("skills --list", "skills/"));
+	const listing = source.querySelector(".terminal-skills").cloneNode(true);
+	listing.querySelector(".sub-heading")?.remove();
+	section.append(listing);
+	return section;
+}
+
 const LANG_COLORS = {
 	Python: "#3572A5",
 	JavaScript: "#f1e05a",
@@ -289,7 +301,8 @@ function projectsIntro(count) {
 			<!--  <span class="xp-comment"># from github.com/MZaFaRM</span> -->
 		</p>
 		<p class="xp-blurb">
-			A lot of my projects come from just building tools to fix my own problems.
+			A curated selection of my public repositories, mostly backend and infrastructure projects. 
+			The language distribution is shown below, and you can click on any entry to see more details.
 		</p>
 		<div class="lang-bar" hidden></div>
 		<ul class="lang-legend" hidden></ul>`;
@@ -422,10 +435,11 @@ function focusCommandParameter() {
 
 async function renderScrollView() {
 	try {
-		const [about, experience, projects] = await Promise.all([
+		const [about, experience, projects, skills] = await Promise.all([
 			loadPage("pages/whoami.html"),
 			loadPage("pages/experience.html"),
 			loadPage("pages/projects.html"),
+			loadPage("pages/skills.html"),
 		]);
 
 		const hero = buildHero();
@@ -475,6 +489,7 @@ async function renderScrollView() {
 		projectsSection.append(projectsHeader, projectsList);
 		scrollView.append(projectsSection);
 		decorateProjects(projectsList, projectsHeader);
+		scrollView.append(skillsSection(skills));
 		makeInlineLinksNavigable();
 		entryCommands = collectEntryCommands();
 
@@ -515,6 +530,11 @@ const baseCommands = [
 		run: () => goTo("projects"),
 	},
 	{
+		name: "skills",
+		hint: "tools and technologies",
+		run: () => goTo("skills"),
+	},
+	{
 		name: "resume",
 		hint: "download PDF",
 		run: () => window.open(RESUME_URL, "_blank", "noopener"),
@@ -549,7 +569,7 @@ dock.className = "dock";
 dock.setAttribute("aria-label", "Quick navigation");
 dock.innerHTML = `
 	<div class="dock-titlebar" aria-hidden="true">
-		<span class="dock-dots"><i></i><i></i><i></i></span>
+		<span class="dock-grip">≡</span>
 		<span>~/zafar</span>
 	</div>
 	<div class="dock-panel" hidden>
@@ -739,7 +759,7 @@ function renderDock() {
 			({ name }) =>
 				name.startsWith(query) || (query && name.includes(` ${query}`)),
 		)
-		.slice(0, 8);
+		.slice(0, baseCommands.length);
 	dockActive = Math.min(dockActive, Math.max(dockResults.length - 1, 0));
 	dock.classList.toggle("has-miss", Boolean(query) && !dockResults.length);
 

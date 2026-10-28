@@ -10,6 +10,7 @@ class TerminalConfig {
 		"resume",
 		"projects",
 		"experience",
+		"skills",
 		"tictactoe",
 		"whoami",
 	];
@@ -95,6 +96,7 @@ export class SimpleCommands {
 			resume: "download user resume",
 			projects: "list all projects",
 			experience: "list all experiences",
+			skills: "list skills and technologies",
 			tictactoe: "play a game of tictactoe",
 			whoami: "display user information",
 			clear: "clear the terminal",
@@ -177,6 +179,8 @@ export class FileCommands extends SimpleCommands {
 			return await this.handleWHoAmI();
 		} else if (/^experience/i.test(command)) {
 			return await this.handleExperience(command);
+		} else if (/^skills(?:\s|$)/i.test(command)) {
+			return this.handleSkills();
 		} else {
 			throw new Error("Command not found");
 		}
@@ -210,6 +214,10 @@ export class FileCommands extends SimpleCommands {
 			this.outputArea += experienceListing.outputArea + experienceList;
 			return this.outputArea;
 		}
+	}
+
+	handleSkills() {
+		return this.outputArea + this.content;
 	}
 
 	handleTicTacToe() {

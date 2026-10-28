@@ -162,7 +162,7 @@ function determineFileName(command) {
 			};
 			return entities[character];
 		});
-		let error = `git: '${safeCommandName}' is not a git command. See 'git --help'.`;
+		let error = `'${safeCommandName}' is not a command. Try <button type="button" class="clickable terminal-help-button">help</button> to see available commands.`;
 
 		if (formattedCommand) {
 			const suggestion = suggestCommand(
@@ -238,8 +238,9 @@ export async function executeCommand(command) {
 		let content = await response.text();
 
 		const fileCommandHandler = new FileCommands(content);
-		outputArea.innerHTML +=
-			await fileCommandHandler.executeCommand(formattedCommand);
+		outputArea.innerHTML += await fileCommandHandler.executeCommand(
+			formattedCommand,
+		);
 		await postExecutionCleanup();
 	} catch (error) {
 		await handleError(error, outputArea);

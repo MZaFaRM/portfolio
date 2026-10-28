@@ -45,8 +45,6 @@
 /* ---------- Hero: a whoami that already ran ---------- */
 
 .scroll-hero {
-	padding: clamp(28px, 5vw, 56px) 0 clamp(64px, 9vw, 112px);
-	border-bottom: 1px solid var(--scroll-rule);
 	color: var(--hero-text);
 	font-family: var(--primary-font-family);
 	font-size: 1rem;
@@ -843,7 +841,6 @@
 	align-items: center;
 	gap: 8px;
 	padding: 6px 10px;
-	border-bottom: 1px solid rgb(187 194 207 / 0.2);
 	color: #8b929c;
 	font-size: 12px;
 	cursor: grab;
@@ -871,24 +868,13 @@
 		transform 340ms cubic-bezier(0.22, 1.2, 0.36, 1);
 }
 
-.dock-dots {
-	display: flex;
-	gap: 5px;
+.dock-grip {
+	font-size: 14px;
+	line-height: 1;
 }
 
-.dock-dots i {
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: #ff665c;
-}
-
-.dock-dots i:nth-child(2) {
-	background: #ecbe7b;
-}
-
-.dock-dots i:nth-child(3) {
-	background: #7bc275;
+.dock-titlebar:hover .dock-grip {
+	color: var(--primary-text-color);
 }
 
 .dock-launcher {

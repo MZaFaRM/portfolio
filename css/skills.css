@@ -1,0 +1,255 @@
+/* ---------- Skills: a tree listing ---------- */
+
+.terminal-skills {
+	max-width: 1100px;
+	container-type: inline-size;
+	font-family: var(--primary-font-family);
+}
+
+.sp-c0 { --sp: #51afef; }
+.sp-c1 { --sp: #7bc275; }
+.sp-c2 { --sp: #ecbe7b; }
+.sp-c3 { --sp: #46d9ff; }
+.sp-c4 { --sp: #c57bdb; }
+.sp-c5 { --sp: #ff665c; }
+
+/* Box-drawing glyphs fall back to Fira Code, whose verticals overshoot the
+   em box, so the tree's lines join at this line-height */
+.skill-tree {
+	--tree-line: #8994a4;
+	color: var(--primary-text-color);
+	font-family: var(--primary-font-family);
+	line-height: 1.5;
+}
+
+:where(.skill-tree *) {
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+}
+
+#scroll-view .skill-tree :is(p, li) {
+	font-size: inherit;
+	line-height: inherit;
+}
+
+.skill-tree-root {
+	margin: 0;
+	color: #dfe3ea;
+}
+
+.skill-dir {
+	position: relative;
+}
+
+.skill-dir-name {
+	margin: 0;
+	padding-left: 4ch;
+	color: var(--sp);
+	font-weight: 400;
+	text-indent: -4ch;
+}
+
+.skill-dir ul {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.skill-name {
+	overflow-wrap: anywhere;
+	cursor: default;
+}
+
+.skill-name:hover {
+	color: var(--sp);
+}
+
+/* Compact: one branch per directory, its skills wrapping inline */
+
+.skill-dir-name::before {
+	content: "├── ";
+	color: var(--tree-line);
+	white-space: pre;
+}
+
+.skill-dir:last-of-type .skill-dir-name::before {
+	content: "└── ";
+}
+
+.skill-dir ul {
+	padding-left: 4ch;
+}
+
+.skill-dir::after {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	overflow: hidden;
+	color: var(--tree-line);
+	white-space: pre;
+	content: "│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│";
+	top: 1.5em;
+}
+
+.skill-dir:last-of-type::after {
+	content: none;
+}
+
+.skill-dir li {
+	display: inline;
+	white-space: nowrap;
+}
+
+.skill-dir li:not(:last-child)::after {
+	content: " ·";
+	color: var(--tree-line);
+}
+
+/* Columns: the root branches sideways, one subtree per column */
+
+@container (width >= 620px) {
+	.skill-tree {
+		display: grid;
+		grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+		padding-left: 3ch;
+	}
+
+	.skill-tree-root {
+		grid-column: 1 / -1;
+		margin-left: -3ch;
+	}
+
+	/* Row-first cells reach into the gutter, past the global max-width */
+	.skill-dir {
+		max-width: none;
+		padding: 0 2ch 1.5em 0;
+	}
+
+	.skill-dir::before {
+		content: "┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────";
+		display: block;
+		margin-right: -2ch;
+		overflow: hidden;
+		color: var(--tree-line);
+		white-space: pre;
+	}
+
+	.skill-dir:last-of-type::before {
+		content: "┐";
+	}
+
+	.skill-dir-name {
+		padding-left: 2ch;
+		text-indent: -2ch;
+	}
+
+	.skill-dir-name::before,
+	.skill-dir:last-of-type .skill-dir-name::before,
+	.skill-dir::after,
+	.skill-dir li:not(:last-child)::after {
+		content: none;
+	}
+
+	.skill-dir ul {
+		padding-left: 0;
+	}
+
+	.skill-dir li {
+		display: grid;
+		grid-template-columns: 4ch minmax(0, 1fr);
+		white-space: normal;
+	}
+
+	.skill-dir li::before {
+		content: "├── ";
+		color: var(--tree-line);
+		white-space: pre;
+	}
+
+	.skill-dir li:last-child::before {
+		content: "└── ";
+	}
+}
+
+@container (620px <= width < 1000px) {
+	.skill-tree {
+		--columns: 2;
+	}
+
+	.skill-dir:nth-of-type(2n)::before {
+		content: "┐";
+	}
+
+	.skill-dir:nth-of-type(2n + 1) {
+		margin-left: -3ch;
+		padding-left: 3ch;
+	}
+
+	.skill-dir:nth-of-type(2n + 1)::before {
+		margin-left: -3ch;
+		content: "├──┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────";
+	}
+
+	.skill-dir:nth-of-type(2n + 1)::after {
+		content: "│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│";
+		top: 1.5em;
+	}
+
+	.skill-dir:nth-of-type(2n + 1):nth-last-of-type(-n + 2)::before {
+		content: "└──┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────";
+	}
+
+	.skill-dir:nth-of-type(2n + 1):nth-last-of-type(-n + 2)::after {
+		content: none;
+	}
+}
+
+@container (width >= 1000px) {
+	.skill-tree {
+		--columns: 3;
+	}
+
+	.skill-dir:nth-of-type(3n)::before {
+		content: "┐";
+	}
+
+	.skill-dir:nth-of-type(3n + 1) {
+		margin-left: -3ch;
+		padding-left: 3ch;
+	}
+
+	.skill-dir:nth-of-type(3n + 1)::before {
+		margin-left: -3ch;
+		content: "├──┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────";
+	}
+
+	.skill-dir:nth-of-type(3n + 1)::after {
+		content: "│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│\A│";
+		top: 1.5em;
+	}
+
+	.skill-dir:nth-of-type(3n + 1):nth-last-of-type(-n + 3)::before {
+		content: "└──┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────";
+	}
+
+	.skill-dir:nth-of-type(3n + 1):nth-last-of-type(-n + 3)::after {
+		content: none;
+	}
+}
+
+/* Boot sequence, driven by js/skills.js */
+
+.skill-tree[data-state="idle"] {
+	visibility: hidden;
+}
+
+.skill-tree[data-state="running"]
+	:is(.skill-tree-root, .skill-dir-name, li):not(
+		.is-printed
+	),
+.skill-tree[data-state="running"] .skill-dir:not(.is-printed)::before,
+.skill-tree[data-state="running"] .skill-dir:not(.is-printed)::after {
+	visibility: hidden;
+}
