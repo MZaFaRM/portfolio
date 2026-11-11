@@ -390,6 +390,22 @@
 	color: var(--hero-dim);
 }
 
+.entry-stars {
+	grid-area: stars;
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	color: var(--scroll-accent);
+	font-family: var(--primary-font-family);
+	font-size: 0.85rem;
+	white-space: nowrap;
+}
+
+.entry-star-icon {
+	font-family: "Departure Mono", monospace;
+	color: var(--hero-yellow);
+}
+
 .entry-toggle::before {
 	content: "[+]";
 }
@@ -515,6 +531,25 @@
 	font-size: 0.9rem;
 }
 
+.education-content h3 {
+	margin: 28px 0 8px;
+	color: var(--hero-fg);
+	font-family: var(--primary-font-family);
+	font-weight: 600;
+}
+
+.education-content h3:first-child {
+	margin-top: 0;
+}
+
+.education-content p {
+	margin: 0 0 8px;
+}
+
+.education-content .scroll-muted {
+	color: var(--scroll-muted);
+}
+
 /* ---------- Experience: git log rail ---------- */
 
 .experience-list .portfolio-entry {
@@ -562,6 +597,11 @@
 	grid-template-areas: "title desc when toggle";
 }
 
+.projects-list .entry-row {
+	grid-template-columns: max-content auto minmax(0, 1fr) auto auto;
+	grid-template-areas: "title desc when stars toggle";
+}
+
 .entry-when {
 	grid-area: when;
 	color: #c4a66a;
@@ -603,6 +643,14 @@
 			"title toggle"
 			"desc desc"
 			"when when";
+	}
+
+	.projects-list .entry-row {
+		grid-template-columns: minmax(0, 1fr) auto;
+		grid-template-areas:
+			"title toggle"
+			"desc desc"
+			"when stars";
 	}
 }
 

@@ -117,7 +117,7 @@ function buildHero() {
 			<div class="hero-greeting">
 				<p>Hello World! <span class="hero-star">✦</span></p>
 				<p>I'm a software developer building backend systems and cloud infrastructure at Snapshare AI. I like making things faster, cheaper and easier to run.</p>
-				<p>Currently in Dubai, open to roles across the UAE, Bengaluru, and remote.</p>
+				<p>Currently open to roles across Bangalore, Dubai, and Abu Dhabi.</p>
 				<p>Scroll for the details, or open the terminal and explore with commands.</p>
 			</div>
 
@@ -126,6 +126,7 @@ function buildHero() {
 				<a href="#experience">experience</a><span>where I've worked</span>
 				<a href="#projects">projects</a><span>things I've built</span>
 				<a href="#skills">skills</a><span>tools and technologies I use</span>
+				<a href="#education">education</a><span>degree and certifications</span>
 				<a href="${RESUME_URL}" target="_blank" rel="noreferrer">resume</a><span>download my résumé (PDF)</span>
 				<a href="mailto:muhammedzafar.mm@gmail.com">contact</a><span>send me an email</span>
 				<button type="button" data-open-tictactoe>tictactoe</button><span>play a minimax AI you can't beat</span>
@@ -252,10 +253,30 @@ function experienceIntro() {
 		<dl class="xp-stats">
 			<div><dt>2–4×</dt><dd>faster endpoints</dd></div>
 			<div><dt>75%</dt><dd>lower storage costs</dd></div>
-			<div><dt>60,000+</dt><dd>users in prod</dd></div>
+			<div><dt>100,000+</dt><dd>daily API requests</dd></div>
 		</dl>`;
 	intro.querySelector(".career").textContent = getCareer();
 	return intro;
+}
+
+function educationSection() {
+	const section = document.createElement("section");
+	section.id = "education";
+	section.className = "scroll-section";
+	section.append(sectionHeading("education", "education_"));
+	const content = document.createElement("div");
+	content.className = "xp-intro education-content";
+	content.innerHTML = `
+		<h3>KMCT College of Engineering</h3>
+		<p>Bachelor of Technology in Computer Science &amp; Engineering</p>
+		<p class="scroll-muted">A.P.J. Abdul Kalam Technological University · Kozhikode, India · 2021–2025</p>
+		<h3>Certifications</h3>
+		<ul>
+			<li>CS50x: Introduction to Computer Science, Harvard</li>
+			<li>CS50AI: Introduction to Artificial Intelligence with Python, Harvard</li>
+		</ul>`;
+	section.append(content);
+	return section;
 }
 
 function skillsSection(source) {
@@ -283,6 +304,7 @@ const LANG_COLORS = {
 };
 
 const langColor = (language) => LANG_COLORS[language] ?? "var(--hero-dim)";
+const MIN_STARS_TO_SHOW = 10;
 
 function langDot(language) {
 	const dot = document.createElement("i");
@@ -313,13 +335,16 @@ async function fetchRepo(repo) {
 	const key = `gh:${repo}`;
 	try {
 		const cached = sessionStorage.getItem(key);
-		if (cached) return JSON.parse(cached);
+		if (cached) {
+			const data = JSON.parse(cached);
+			if (Number.isInteger(data.stars)) return data;
+		}
 	} catch {}
 
 	const response = await fetch(`https://api.github.com/repos/${repo}`);
 	if (!response.ok) throw new Error(`GitHub ${response.status}`);
-	const { language } = await response.json();
-	const data = { language };
+	const { language, stargazers_count } = await response.json();
+	const data = { language, stars: stargazers_count };
 	try {
 		sessionStorage.setItem(key, JSON.stringify(data));
 	} catch {}
@@ -337,15 +362,28 @@ async function decorateProjects(list, intro) {
 	const tally = {};
 	results.forEach((result, index) => {
 		if (result.status !== "fulfilled") return;
-		const { language } = result.value;
+		const { language, stars: starCount } = result.value;
+		const row = entries[index].querySelector(".entry-row");
+		if (Number.isInteger(starCount) && starCount >= MIN_STARS_TO_SHOW) {
+			const stars = document.createElement("span");
+			stars.className = "entry-stars";
+			stars.setAttribute("aria-label", `${starCount} GitHub stars`);
+			stars.title = `${starCount} GitHub stars`;
+			const icon = document.createElement("span");
+			icon.className = "entry-star-icon";
+			icon.setAttribute("aria-hidden", "true");
+			icon.textContent = "★";
+			const count = document.createElement("span");
+			count.textContent = String(starCount);
+			stars.append(icon, count);
+			row.insertBefore(stars, row.querySelector(".entry-desc"));
+		}
 		if (!language) return;
 
 		const meta = document.createElement("span");
 		meta.className = "entry-when entry-repo";
 		tally[language] = (tally[language] ?? 0) + 1;
 		meta.append(langDot(language), language);
-
-		const row = entries[index].querySelector(".entry-row");
 		row.insertBefore(meta, row.querySelector(".entry-toggle"));
 	});
 
@@ -490,6 +528,7 @@ async function renderScrollView() {
 		scrollView.append(projectsSection);
 		decorateProjects(projectsList, projectsHeader);
 		scrollView.append(skillsSection(skills));
+		scrollView.append(educationSection());
 		makeInlineLinksNavigable();
 		entryCommands = collectEntryCommands();
 
@@ -533,6 +572,11 @@ const baseCommands = [
 		name: "skills",
 		hint: "tools and technologies",
 		run: () => goTo("skills"),
+	},
+	{
+		name: "education",
+		hint: "degree and certifications",
+		run: () => goTo("education"),
 	},
 	{
 		name: "resume",
